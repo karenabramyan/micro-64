@@ -26,6 +26,9 @@ module.exports = {
       range: {
         type: Sequelize.INTEGER,
       },
+      img: {
+        type: Sequelize.TEXT,
+      },
       amount: {
         type: Sequelize.INTEGER,
       },

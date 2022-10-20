@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     range: {
       type: DataTypes.INTEGER,
+      img: {
+        type: DataTypes.TEXT,
+      },
     },
     amount: {
       type: DataTypes.INTEGER,
