@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 function App(): JSX.Element {
   return (
     <>
-      <h1>MICRO 64</h1>
+      <h1>MICRO-64</h1>
       <Button variant="text">Text</Button>
 
     </>
