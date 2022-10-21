@@ -1,0 +1,12 @@
+.Navi{
+    background-color: black;
+}
+.foot{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+.footBox{
+        display: flex;
+        justify-content: center;
+}
