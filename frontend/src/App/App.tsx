@@ -3,10 +3,10 @@ import './App.css';
 
 import { Route, Routes } from 'react-router-dom';
 
-import ItemList from '../features/cards/ItemList/ItemList';
 import Main from './Main';
 import RentItemList from '../features/cards/ItemList/RentItemList';
 import BuyItemList from '../features/cards/ItemList/BuyItemList';
+import ItemList from '../features/cards/ItemList/ItemList';
 
 function App(): JSX.Element {
   return (

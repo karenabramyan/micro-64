@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { Page } from './types/Page';
+import './Nav.css';
 
 const pages: Page[] = [{ name: 'Информация', way: '/' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/' }, { name: 'Зарегистрироваться', way: '/' }];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -46,8 +47,9 @@ function Navigation(): JSX.Element {
 
 
     return (
-      <AppBar position="static" style={{ color: 'red', backgroundColor: 'black' }}>
-      <Container maxWidth="xl">
+
+      <AppBar position="static">
+      <Container maxWidth="xl" className="Navi">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
