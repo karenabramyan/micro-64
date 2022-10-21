@@ -1,8 +1,8 @@
-const loginRouter = require('express').Router();
+const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../db/models');
 
-loginRouter.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   const { user } = res.locals;
   if (user) {
     res.json({
@@ -17,22 +17,22 @@ loginRouter.get('/', async (req, res) => {
   }
 });
 
-loginRouter.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  const exsistingUser = await User.findOne({ where: { email } });
-  if (exsistingUser && (await bcrypt.compare(password, exsistingUser.password))) {
-    req.session.userId = exsistingUser.id;
-    req.session.user = exsistingUser;
-    res.json({ id: exsistingUser.id, email: exsistingUser.email });
+  const user = await User.findOne({ where: { email } });
+  if (user && (await bcrypt.compare(password, user.password))) {
+    req.session.userId = user.id;
+    req.session.user = user;
+    res.json({ user });
   } else {
     res.status(401).json({ error: 'Такого пользователя нет либо пароли не совпадают' });
   }
 });
 
-loginRouter.post('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.session.destroy(() => {
     res.json({ success: true });
   });
 });
 
-module.exports = loginRouter;
+module.exports = router;

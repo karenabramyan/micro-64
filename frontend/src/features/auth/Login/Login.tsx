@@ -4,51 +4,40 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Container, FormGroup, TextField, Typography } from '@mui/material';
 // import { login, resetLoginFormError } from './authSlice';
 // import { selectLoginFormError } from './selectors';
-import { useAppDispatch } from '../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { login } from '../authSlice';
+import { useSelector } from 'react-redux';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   // const error = useSelector(selectLoginFormError);
-  // const [email, setEmail] = React.useState('');
+  // const selector = useSelector((globalState: RootState) => globalState.auth);
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  // const handleSubmit = React.useCallback(
-  //   async (event: React.FormEvent) => {
-  //     event.preventDefault();
-  //     const dispatchResult = await dispatch(
-  //       login({
-  //         email,
-  //         password,
-  //       })
-  //     );
+function handleSubmit(event: React.FormEvent): void {
+      event.preventDefault();
+      dispatch(
+        login({
+          email,
+          password,
+        })
+      );
+}
 
-  //     if (login.fulfilled.match(dispatchResult)) {
-  //       navigate('/');
-  //     }
-  //   },
-  //   [dispatch, email, navigate, password]
-  // );
+  function handleEmailChange(inputEmail: string): void {
+    setEmail(inputEmail);
+}
 
-  // const handleEmailChange = React.useCallback(
-  //   (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setEmail(event.target.value);
-  //     dispatch(resetLoginFormError());
-  //   },
-  //   [dispatch]
-  // );
-
-  // const handlePasswordChange = React.useCallback(
-  //   (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setPassword(event.target.value);
-  //     dispatch(resetLoginFormError());
-  //   },
-  //   [dispatch]
-  // );
+function handlePasswordChange(inputPassword: string): void {
+  setPassword(inputPassword);
+}
 
   return (
     <Container>
-      {/* <FormGroup className="form-group">
+      <form onSubmit={handleSubmit}>
+      <FormGroup className="form-group">
         <Typography variant="h5">Вход</Typography>
         <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
         <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePasswordChange(event.target.value)} />
@@ -56,7 +45,8 @@ function Login(): JSX.Element {
         <br />
         <Button type="submit">Вход</Button>
       </FormGroup>
-      <div className="err-form-error" /> */}
+      </form>
+      <div className="err-form-error" />
     </Container>
   );
 }
