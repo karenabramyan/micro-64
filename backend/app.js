@@ -6,6 +6,7 @@ const config = require('./config/config');
 // роутеры
 
 const itemsRouter = require('./routes/itemsRoute');
+const loginRouter = require('./routes/loginRoute');
 
 const PORT = process.env.PORT ?? 4000;
 const app = express();
@@ -14,6 +15,7 @@ config(app);
 // подключение роутера
 
 app.use('/api/items', itemsRouter);
+app.use('/api/users', loginRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT} port`);
