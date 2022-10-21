@@ -7,6 +7,7 @@ const config = require('./config/config');
 
 const itemsRouter = require('./routes/itemsRoute');
 const regRouter = require('./routes/registrationRoute');
+const loginRouter = require('./routes/loginRoute');
 
 const PORT = process.env.PORT ?? 4000;
 const app = express();
@@ -15,7 +16,8 @@ config(app);
 // подключение роутера
 
 app.use('/api/items', itemsRouter);
-app.use('/api/registration', itemsRouter);
+app.use('/api/registration', regRouter);
+app.use('/api/auth', loginRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT} port`);

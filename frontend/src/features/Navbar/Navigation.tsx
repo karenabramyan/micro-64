@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { Page } from './types/Page';
 import './Nav.css';
 
-const pages: Page[] = [{ name: 'Информация', way: '/rego' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/' }, { name: 'Зарегистрироваться', way: '/' }];
+const pages: Page[] = [{ name: 'Информация', way: '/' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/login' }, { name: 'Зарегистрироваться', way: '/register' }];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {

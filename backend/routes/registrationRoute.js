@@ -9,7 +9,7 @@ router
       const {
         login, email, phone, password,
       } = req.body;
-
+      console.log(req.body)
       const existingUser = await User.findOne({ where: { email } });
       // проверяем есть ли уже такой пользователь в БД
       if (existingUser) {
@@ -33,8 +33,10 @@ router
 
       // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
       req.session.userId = user.id;
-      res.json({ user: User });
+      res.json({ user });
     } catch (err) {
       res.json({ error: `${err.message}` });
     }
   });
+
+module.exports = router;
