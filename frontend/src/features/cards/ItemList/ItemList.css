@@ -5,3 +5,10 @@
     justify-content: center;
     justify-content: space-evenly;
 }
+
+.image-micro {
+    height: 400px;
+    min-height: 400px;
+    min-width: 250px;
+    width: 250px;
+}

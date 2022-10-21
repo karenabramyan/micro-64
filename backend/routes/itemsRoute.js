@@ -7,7 +7,7 @@ router
       id: 1,
       title: 'Проводной наушник',
       category: 'Проводные',
-      img: '../public/micro-1.jpeg',
+      img: './micro-1.jpeg',
       type: 'Аренда',
       price: '800',
     },
@@ -15,7 +15,7 @@ router
       id: 2,
       title: 'Ручка',
       category: 'Беспроводные',
-      img: '../public/micro-2.jpeg',
+      img: './micro-2.jpeg',
       type: 'Покупка',
       price: '3000',
     }];
