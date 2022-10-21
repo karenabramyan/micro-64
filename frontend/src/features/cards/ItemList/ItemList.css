@@ -17,11 +17,21 @@
 }
 
 .card-micro {
-    height: 650px;
-    min-height: 650px;
-    max-height: 650px;
+    height: 620px;
+    min-height: 620px;
+    max-height: 620px;
     min-width: 280px;
-    width: 280px;
-    max-width: 280px;
-    margin: 10px;
+    width: 300px;
+    max-width: 300px;
+    margin: 30px;
+}
+
+.item-title {
+    height: 70px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.button-container {
+    margin-left: 145px;
 }
