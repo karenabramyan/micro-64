@@ -28,8 +28,9 @@ module.exports = (sequelize, DataTypes) => {
           model: 'Item',
           key: 'id',
         },
-      orderStatus: {
-        type: DataTypes.BOOLEAN,
+        orderStatus: {
+          type: DataTypes.BOOLEAN,
+        },
       },
     },
     {

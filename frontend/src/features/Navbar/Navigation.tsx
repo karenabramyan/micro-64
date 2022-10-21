@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import './Nav.css';
 
 const pages = ['Информация', 'Аренда', 'Покупка', 'Войти', 'Зарегистрироваться'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -35,8 +36,8 @@ function Navigation(): JSX.Element {
       setAnchorElUser(null);
     };
     return (
-      <AppBar position="static" style={{ color: 'red' }}>
-      <Container maxWidth="xl">
+      <AppBar position="static">
+      <Container maxWidth="xl" className="Navi">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
