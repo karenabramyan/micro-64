@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { Page } from './types/Page';
 
-const pages: Page[] = [{ name: 'Информация', way: '/information' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/auth' }, { name: 'Зарегистрироваться', way: '/registration'},];
+const pages: Page[] = [{ name: 'Информация', way: '/' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/' }, { name: 'Зарегистрироваться', way: '/' }];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {

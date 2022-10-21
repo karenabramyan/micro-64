@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate({ Item, Like, Order }) {
-      User.hasMany(Item, { foreignKey: 'userId', onDelete: 'cascade' });
+      // User.hasMany(Item, { foreignKey: 'userId', onDelete: 'cascade' });
       User.hasMany(Like, { foreignKey: 'userId', onDelete: 'cascade' });
       User.hasMany(Order, { foreignKey: 'userId', onDelete: 'cascade' });
     }

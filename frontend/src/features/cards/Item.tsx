@@ -1,12 +1,10 @@
 import React from 'react';
 import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButton } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { blue } from '@mui/material/colors';
 import Item from './types/Item';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="card-micro">
       <CardMedia
         component="img"
         image={item.img}

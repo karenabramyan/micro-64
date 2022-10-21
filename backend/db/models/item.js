@@ -3,10 +3,10 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Item extends Model {
     static associate({ User, Like, Order, Basket }) {
-      Item.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
-      Item.belongsTo(Basket, { foreignKey: 'basketId', onDelete: 'cascade' });
-      Item.hasMany(Like, { foreignKey: 'likeId', onDelete: 'cascade' });
-      Item.hasMany(Order, { foreignKey: 'orderId', onDelete: 'cascade' });
+      // Item.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
+      // Item.belongsTo(Basket, { foreignKey: 'itemId', onDelete: 'cascade' });
+      // Item.hasMany(Like, { foreignKey: 'itemId', onDelete: 'cascade' });
+      // Item.hasMany(Order, { foreignKey: 'itemId', onDelete: 'cascade' });
     }
   }
   Item.init({
@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER,
     },
+    description: {
+      type: DataTypes.TEXT,
+    },
     type: {
       type: DataTypes.TEXT,
     },
@@ -33,28 +36,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     range: {
       type: DataTypes.INTEGER,
-      img: {
-        type: DataTypes.TEXT,
-      },
+    },
+    img: {
+      type: DataTypes.TEXT,
     },
     amount: {
       type: DataTypes.INTEGER,
-    },
-    userId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'User',
-        key: 'id',
-      },
-    },
-    basketId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Basket',
-        key: 'id',
-      },
     },
   }, {
     sequelize,
