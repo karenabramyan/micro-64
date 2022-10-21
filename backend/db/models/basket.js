@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       orderStatus: {
         type: DataTypes.BOOLEAN,
       },
-    },
+    }
+  },
     {
       sequelize,
       modelName: 'Basket',

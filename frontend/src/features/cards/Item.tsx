@@ -25,10 +25,10 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Заказать</Button>
-        <IconButton aria-label="add to favorites">
+        <Button size="small" color="inherit">Заказать</Button>
+        {/* <IconButton aria-label="add to favorites">
         <FavoriteIcon sx={{ color: blue[500] }} />
-        </IconButton>
+        </IconButton> */}
       </CardActions>
     </Card>
   );

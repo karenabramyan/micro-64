@@ -12,11 +12,20 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate } from 'react-router-dom';
+import { Page } from './types/Page';
 
-const pages = ['Информация', 'Аренда', 'Покупка', 'Войти', 'Зарегистрироваться'];
+const pages: Page[] = [{ name: 'Информация', way: '/information' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/auth' }, { name: 'Зарегистрироваться', way: '/registration'},];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {
+    const navigate = useNavigate();
+
+    function navigatePage(way: string): void {
+      navigate(way);
+      handleCloseNavMenu();
+    }
+
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -34,8 +43,10 @@ function Navigation(): JSX.Element {
     const handleCloseUserMenu = ():void => {
       setAnchorElUser(null);
     };
+
+
     return (
-      <AppBar position="static" style={{ color: 'red' }}>
+      <AppBar position="static" style={{ color: 'red', backgroundColor: 'black' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -86,9 +97,9 @@ function Navigation(): JSX.Element {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page: Page) => (
+                <MenuItem key={page.name} onClick={() => navigatePage(page.way)}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -113,13 +124,13 @@ function Navigation(): JSX.Element {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page: Page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => navigatePage(page.way)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
