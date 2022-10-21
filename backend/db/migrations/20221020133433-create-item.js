@@ -17,6 +17,9 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER,
       },
+      description: {
+        type: Sequelize.TEXT,
+      },
       type: {
         type: Sequelize.TEXT,
       },
