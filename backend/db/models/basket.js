@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Basket extends Model {
     static associate({ User, Item }) {
       Basket.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
-      Basket.hasMany(Item, { foreignKey: 'basketId', onDelete: 'cascade' });
+      // Basket.hasMany(Item, { foreignKey: 'itemId', onDelete: 'cascade' });
     }
   }
   Basket.init({

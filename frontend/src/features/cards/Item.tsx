@@ -1,12 +1,10 @@
 import React from 'react';
 import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButton } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { blue } from '@mui/material/colors';
 import Item from './types/Item';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="card-micro">
       <CardMedia
         component="img"
         image={item.img}
@@ -25,10 +23,10 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Заказать</Button>
-        <IconButton aria-label="add to favorites">
+        <Button size="small" color="inherit">Заказать</Button>
+        {/* <IconButton aria-label="add to favorites">
         <FavoriteIcon sx={{ color: blue[500] }} />
-        </IconButton>
+        </IconButton> */}
       </CardActions>
     </Card>
   );

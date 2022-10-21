@@ -1,20 +1,24 @@
 import React from 'react';
 import './App.css';
-import { Button } from '@mui/material';
 
-import Navigation from '../features/Navbar/Navigation';
-import Item from '../features/cards/Item';
+import { Route, Routes } from 'react-router-dom';
+
+import Main from './Main';
+import RentItemList from '../features/cards/ItemList/RentItemList';
+import BuyItemList from '../features/cards/ItemList/BuyItemList';
 import ItemList from '../features/cards/ItemList/ItemList';
-import Footer from '../features/Navbar/Footer';
 
 function App(): JSX.Element {
   return (
     <>
-      <Navigation />
-      <h1>MICRO-64</h1>
-      <Button variant="text">Text</Button>
-      <ItemList />
-      <Footer />
+      <br />
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route path="/" element={<ItemList />} />
+          <Route path="/rent" element={<RentItemList />} />
+          <Route path="/buy" element={<BuyItemList />} />
+        </Route>
+      </Routes>
     </>
   );
 }

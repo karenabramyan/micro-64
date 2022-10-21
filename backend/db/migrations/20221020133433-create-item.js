@@ -35,24 +35,6 @@ module.exports = {
       amount: {
         type: Sequelize.INTEGER,
       },
-      // userId: {
-      //   allowNull: false,
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Users',
-      //     key: 'id',
-      //   },
-      //   onDelete: 'cascade',
-      // },
-      // basketId: {
-      //   allowNull: false,
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Baskets',
-      //     key: 'id',
-      //   },
-      //   onDelete: 'cascade',
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

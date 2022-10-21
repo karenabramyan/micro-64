@@ -3,9 +3,9 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Item extends Model {
     static associate({ Like, Order, Basket }) {
-      Item.belongsTo(Basket, { foreignKey: 'itemId', onDelete: 'cascade' });
-      Item.hasMany(Like, { foreignKey: 'itemId', onDelete: 'cascade' });
-      Item.hasMany(Order, { foreignKey: 'orderId', onDelete: 'cascade' });
+      // Item.belongsTo(Basket, { foreignKey: 'itemId', onDelete: 'cascade' });
+      // Item.hasMany(Like, { foreignKey: 'itemId', onDelete: 'cascade' });
+      // Item.hasMany(Order, { foreignKey: 'orderId', onDelete: 'cascade' });
     }
   }
   Item.init(
