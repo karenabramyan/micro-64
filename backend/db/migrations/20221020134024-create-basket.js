@@ -10,19 +10,19 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
-        onDelete: 'cascade',
+        // references: {
+        //   model: 'Users',
+        //   key: 'id',
+        // },
+        // onDelete: 'cascade',
       },
       itemId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Items',
-          key: 'id',
-        },
-        onDelete: 'cascade',
+        // references: {
+        //   model: 'Items',
+        //   key: 'id',
+        // },
+        // onDelete: 'cascade',
       },
       orderStatus: {
         type: Sequelize.BOOLEAN,
