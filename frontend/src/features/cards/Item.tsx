@@ -3,19 +3,35 @@ import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButt
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
+import { useSelector } from 'react-redux';
 import Item from './types/Item';
 import ModalWindow from './ModaWindow';
+import { useAppDispatch } from '../../store';
+import { selectUser } from '../auth/selectors';
+import { sendToBasket } from '../basket/basketSlice';
+import User from '../auth/types/User';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
     const handleOpen = (): void => setOpen(true);
     const handleClose = (): void => setOpen(false);
+
+    const selectUs = useSelector(selectUser);
+
+    const dispatch = useAppDispatch();
 
   function cutTitle(text: string): string {
     if (text.length > 48) {
       return `${text.slice(0, 48)}...`;
     }
       return text;
+  }
+
+  function addToBasket(user: User | undefined, itemId: number): any {
+    console.log('first');
+    console.log(user, itemId);
+
+    dispatch(sendToBasket({ user, itemId }));
   }
 
   function cutPrice(price: string): string | number {
@@ -49,7 +65,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
 
       </CardContent>
       <CardActions className="button-container">
-        <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={handleOpen}>Заказать</Button>
+        <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={() => addToBasket(selectUs, item.id)}>Заказать</Button>
         <ModalWindow open={open} handleClose={handleClose} />
         <IconButton size="medium" color="inherit" onClick={handleOpen}><FavoriteBorderIcon /></IconButton>
       </CardActions>

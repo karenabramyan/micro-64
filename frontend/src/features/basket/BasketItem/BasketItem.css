@@ -1,0 +1,47 @@
+.basket-item {
+   width: 90%; 
+   margin: auto;
+   border: 2px solid black;
+   height: 70px;
+   margin-bottom: 2px;
+   position: relative;
+}
+
+.basket-item-img {
+    width: 70px;
+    height: 70px;
+    left: 0;
+    top: 0;
+    position: absolute;
+
+}
+
+.basket-item-title {
+    height: 70px;
+    width: 40%;
+    min-width: 300px;
+    padding-left: 80px;
+    /* position: absolute; */
+    text-align: left;
+}
+
+.basket-item-price {
+    width: 70px;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+.basket-item-type {
+    width: 70px;
+    right: 100px;
+    top: 0;
+    position: absolute;
+}
+
+.basket-item-days {
+    width: 70px;
+    right: 200px;
+    top: 10px;
+    position: absolute;
+}

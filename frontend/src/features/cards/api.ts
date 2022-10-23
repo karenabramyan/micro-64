@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import Item from './types/Item';
 
 export async function loadItems(): Promise<Item[]> {

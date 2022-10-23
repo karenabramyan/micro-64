@@ -19,7 +19,7 @@ config(app);
 app.use('/api/items', itemsRouter);
 app.use('/api/registration', regRouter);
 app.use('/api/auth', loginRouter);
-app.use('./api/basket', basketRouter);
+app.use('/api/basket', basketRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT} port`);
