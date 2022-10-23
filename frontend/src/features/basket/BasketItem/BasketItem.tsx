@@ -1,4 +1,4 @@
-import { imageListClasses, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Select, SelectChangeEvent, Typography } from '@mui/material';
 import React from 'react';
 import Item from '../../cards/types/Item';
 import './BasketItem.css';
