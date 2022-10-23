@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,19 +13,34 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Page } from './types/Page';
 import './Nav.css';
-
+import { RootState, useAppDispatch } from '../../store';
+import { logout } from '../auth/apireg';
+import { Setting } from './types/Setting';
 
 const pages: Page[] = [{ name: 'Информация', way: '/' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/login' }, { name: 'Зарегистрироваться', way: '/register' }];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {
-    const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const settings: Setting[] = [{ name: 'Logout', function: handleLogout, way: '#' }];
 
     function navigatePage(way: string): void {
       navigate(way);
       handleCloseNavMenu();
+    }
+
+    function handleLogout(func: any): void {
+      if (func) {
+      dispatch(logout);
+      handleCloseUserMenu();
+      navigate('/rent');
+      } else {
+        handleCloseUserMenu();
+      }
     }
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -45,7 +60,6 @@ function Navigation(): JSX.Element {
     const handleCloseUserMenu = ():void => {
       setAnchorElUser(null);
     };
-
 
     return (
 
@@ -161,8 +175,8 @@ function Navigation(): JSX.Element {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.name} onClick={() => handleLogout(setting.function)}>
+                  <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>

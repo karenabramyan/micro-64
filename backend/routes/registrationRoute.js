@@ -9,7 +9,6 @@ router
       const {
         login, email, phone, password,
       } = req.body;
-      console.log(req.body)
       const existingUser = await User.findOne({ where: { email } });
       // проверяем есть ли уже такой пользователь в БД
       if (existingUser) {
@@ -17,7 +16,7 @@ router
         return;
       }
       if (password.length < 8) {
-        res.json({ error: 'Длина пароля должна быть не меньше 8 символов!' });
+        res.json({ error: 'Длина пароля должна быть не меньше 8 символов' });
         return;
       }
 
@@ -33,7 +32,15 @@ router
 
       // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
       req.session.userId = user.id;
-      res.json({ user });
+      res.json({
+        user: {
+          id: user.id,
+          email: user.email,
+          phone: user.phone,
+          login: user.login,
+          role: user.role,
+        },
+      });
     } catch (err) {
       res.json({ error: `${err.message}` });
     }

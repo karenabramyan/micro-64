@@ -5,7 +5,6 @@ router
   .route('/')
   .get(async (req, res) => {
     const items = await Item.findAll({ raw: true });
-    console.log(items);
     res.json(items);
   });
 

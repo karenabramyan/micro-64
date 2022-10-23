@@ -3,7 +3,7 @@ import RegisterData from './types/RegisterData';
 import User from './types/User';
 
 /* eslint-disable import/prefer-default-export */
-export async function register(resData: RegisterData): Promise<{ user?: User, message?: string }> {
+export async function register(resData: RegisterData): Promise<{ user?: User, error?: string }> {
       const response = await fetch('/api/registration', {
         method: 'POST',
         body: JSON.stringify(resData),
@@ -22,19 +22,19 @@ export async function register(resData: RegisterData): Promise<{ user?: User, me
         return data;
     }
 
-  //   export async function user(): Promise<
-  //   | {
-  //       isLoggedIn: true;
-  //       user: User;
-  //     }
-  //   | {
-  //       isLoggedIn: false;
-  //     }
-  // > {
-  //   return (await fetch('/api/auth/user')).json();
-  // }
+    export async function user(): Promise<
+    | {
+        isLoggedIn: true;
+        user: User;
+      }
+    | {
+        isLoggedIn: false;
+      }
+  > {
+    return (await fetch('/api/auth/user')).json();
+  }
 
-  export async function login(credentials: Credentials): Promise<User> {
+  export async function login(credentials: Credentials): Promise<{ user?: User, error?: string }> {
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
@@ -44,12 +44,17 @@ export async function register(resData: RegisterData): Promise<{ user?: User, me
     });
 
     const data = await res.json();
-    console.log(data)
 
     if (res.status >= 400) {
-      const { error } = await res.json();
+      const { error } = data;
       throw error;
     }
 
-    return data.user;
+    return data;
+  }
+
+  export async function logout(): Promise<void> {
+    await fetch('/api/auth/logout', {
+      method: 'POST',
+    });
   }
