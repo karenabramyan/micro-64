@@ -24,6 +24,8 @@ const pages: Page[] = [
   { name: 'Информация', way: '/' },
   { name: 'Аренда', way: '/rent' },
   { name: 'Покупка', way: '/buy' },
+  { name: 'Корзина', way: '/basket' },
+  { name: 'Избранное', way: '/like' },
 ];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -135,14 +137,36 @@ function Navigation(): JSX.Element {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page: Page) => (
-                <MenuItem
-                  key={page.name}
-                  onClick={() => navigatePage(page.way)}
-                >
-                  <Typography textAlign="center">{page.name}</Typography>
+              {!user ? (
+                <div>
+                <MenuItem onClick={() => navigatePage('/')}>
+                  <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={() => navigatePage('/rent')}>
+                  <Typography textAlign="center">АРЕНДА</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigatePage('/buy')}>
+                <Typography textAlign="center">ПОКУПКА</Typography>
+                </MenuItem>
+                </div>
+              ) : (
+                <div>
+                <MenuItem onClick={() => navigatePage('/')}>
+                  <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigatePage('/rent')}>
+                  <Typography textAlign="center">АРЕНДА</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigatePage('/buy')}>
+                <Typography textAlign="center">ПОКУПКА</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigatePage('/basket')}>
+                    <Typography textAlign="center">КОРЗИНА</Typography>
+                </MenuItem><MenuItem onClick={() => navigatePage('/like')}>
+                      <Typography textAlign="center">ИЗБРАННОЕ</Typography>
+                           </MenuItem>
+                </div>
+              )}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -165,17 +189,62 @@ function Navigation(): JSX.Element {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page: Page) => (
+            {!user ? (
+              <div>
               <Button
-                key={page.name}
-                onClick={() => navigatePage(page.way)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={() => navigatePage('/')}
+                sx={{ color: 'white' }}
               >
-                {page.name}
+                информация
               </Button>
-            ))}
+                <Button
+                  onClick={() => navigatePage('/rent')}
+                  sx={{ color: 'white' }}
+                >
+               аренда
+                </Button>
+              <Button
+                onClick={() => navigatePage('/buy')}
+                sx={{ color: 'white' }}
+              >
+                покупка
+              </Button>
+              </div>
+              ) : (
+                <div>
+                <Button
+                  onClick={() => navigatePage('/')}
+                  sx={{ color: 'white' }}
+                >
+                информация
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/rent')}
+                  sx={{ color: 'white' }}
+                >
+               аренда
+                </Button>
+              <Button
+                onClick={() => navigatePage('/buy')}
+                sx={{ color: 'white' }}
+              >
+                покупка
+              </Button>
+              <Button
+                onClick={() => navigatePage('/basket')}
+                // sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                корзина
+              </Button>
+              <Button
+                onClick={() => navigatePage('/like')}
+                // sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+              избранное
+              </Button>
+                </div>
+            )}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -201,15 +270,15 @@ function Navigation(): JSX.Element {
               {!user ? (
                 <>
                   <MenuItem onClick={() => navigatePage('/register')}>
-                    <Typography textAlign="center">Registration</Typography>
+                    <Typography textAlign="center">РЕГИСТРАЦИЯ</Typography>
                   </MenuItem>
                   <MenuItem onClick={() => navigatePage('/login')}>
-                    <Typography textAlign="center">Login</Typography>
+                    <Typography textAlign="center">ЛОГИН</Typography>
                   </MenuItem>
                 </>
               ) : (
                 <MenuItem onClick={handleLogout}>
-                  <Typography textAlign="center">Logout</Typography>
+                  <Typography textAlign="center">ВЫЙТИ</Typography>
                 </MenuItem>
               )}
             </Menu>
