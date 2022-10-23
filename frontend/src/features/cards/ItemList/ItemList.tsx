@@ -17,7 +17,7 @@ function ItemList(): JSX.Element {
 
   return (
     <div className="container">
-    {items.map((item) => <Item item={item} />)}
+    {items.map((item) => <Item item={item} key={item.id} />)}
     </div>
   );
 }

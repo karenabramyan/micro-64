@@ -1,1 +1,15 @@
 import { RootState } from '../../store';
+import AuthState from './types/AuthState';
+import User from './types/User';
+
+// eslint-disable-next-line import/prefer-default-export
+export const selectAuthChecked = (state: RootState): boolean =>
+  state.auth.authChecked;
+  export const selectUser = (state: RootState): User | undefined =>
+  state.auth.user;
+export const selectLoginFormError = (state: RootState): string | undefined =>
+  state.auth.loginFormError;
+export const selectRegisterFormError = (state: RootState): string | undefined =>
+  state.auth.registerFormError;
+  export const selectAuth = (state: RootState): AuthState | undefined =>
+  state.auth;

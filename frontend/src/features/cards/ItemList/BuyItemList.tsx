@@ -18,7 +18,7 @@ function BuyItemList(): JSX.Element {
     const rentItems = useMemo(() => items.filter((el) => el.type !== 'Аренда'), [items]);
   return (
     <div className="container">
-    {rentItems.map((item) => <Item item={item} />)}
+    {rentItems.map((item) => <Item item={item} key={item.id} />)}
     </div>
   );
 }
