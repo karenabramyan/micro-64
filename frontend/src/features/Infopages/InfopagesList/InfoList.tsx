@@ -5,7 +5,7 @@ import Item from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 // import { Theme } from '@mui/material';
 import InfoCard from './InfoCard';
-import Info from './types/Info';
+// import Info from './types/Info';
 
 const infoArr = [
   {
