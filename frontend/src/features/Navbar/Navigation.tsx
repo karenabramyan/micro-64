@@ -20,7 +20,7 @@ import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/apireg';
 import { Setting } from './types/Setting';
 
-const pages: Page[] = [{ name: 'Информация', way: '/' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/login' }, { name: 'Зарегистрироваться', way: '/register' }];
+const pages: Page[] = [{ name: 'Информация', way: '/info' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/login' }, { name: 'Зарегистрироваться', way: '/register' }];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {

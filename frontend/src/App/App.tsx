@@ -12,7 +12,7 @@ import Login from '../features/auth/Login/Login';
 import { useAppDispatch } from '../store';
 import { getUser } from '../features/auth/authSlice';
 import Basket from '../features/basket/Basket';
-// import InfoList from '../features/Infopages/InfopagesList/InfoList';
+import InfoList from '../features/Infopages/InfopagesList/InfoList';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ function App(): JSX.Element {
       <br />
       <Routes>
         <Route path="/" element={<Main />}>
-          {/* <Route path="/info" element={<InfoList />} /> */}
+          <Route path="/info" element={<InfoList />} />
           <Route path="/" element={<ItemList />} />
           <Route path="/rent" element={<RentItemList />} />
           <Route path="/buy" element={<BuyItemList />} />
