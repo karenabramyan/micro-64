@@ -20,6 +20,7 @@ function Registration(): JSX.Element {
   const [secPassword, setSecPassword] = useState<string>('');
 
   function handleSubmit(): void {
+      // eslint-disable-next-line no-restricted-globals
       event!.preventDefault();
       const newUser: RegisterData = {
         login, email, phone, password, secPassword
