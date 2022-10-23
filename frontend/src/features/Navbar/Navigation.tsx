@@ -28,6 +28,7 @@ import { logout } from '../auth/authSlice';
 //   { name: 'Корзина', way: '/basket' },
 //   { name: 'Избранное', way: '/like' },
 // ];
+
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {
