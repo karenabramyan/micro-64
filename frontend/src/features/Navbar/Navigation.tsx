@@ -17,53 +17,74 @@ import { useSelector } from 'react-redux';
 import { Page } from './types/Page';
 import './Nav.css';
 import { RootState, useAppDispatch } from '../../store';
-import { logout } from '../auth/apireg';
+import { logout } from '../auth/authSlice';
 import { Setting } from './types/Setting';
 
-const pages: Page[] = [{ name: 'Информация', way: '/' }, { name: 'Аренда', way: '/rent' }, { name: 'Покупка', way: '/buy' }, { name: 'Войти', way: '/login' }, { name: 'Зарегистрироваться', way: '/register' }];
+const pages: Page[] = [
+  { name: 'Информация', way: '/' },
+  { name: 'Аренда', way: '/rent' },
+  { name: 'Покупка', way: '/buy' },
+];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const settings: Setting[] = [{ name: 'Logout', function: handleLogout, way: '#' }];
+  // const settings: Setting[] = [
+  //   { name: 'Logout', function: handleLogout, way: '#' },
+  //   { name: 'Войти', way: '/login' },
+  //   { name: 'Зарегистрироваться', way: '/register' },
+  // ];
 
-    function navigatePage(way: string): void {
-      navigate(way);
-      handleCloseNavMenu();
-    }
+  function navigatePage(way: string): void {
+    navigate(way);
+    handleCloseNavMenu();
+  }
 
-    function handleLogout(func: any): void {
-      if (func) {
-      dispatch(logout);
-      handleCloseUserMenu();
-      navigate('/rent');
-      } else {
-        handleCloseUserMenu();
+  // async function handleLogout() {
+  //   await dispatch(logout);
+  //   handleCloseUserMenu();
+  //   navigate('/');
+  // }
+
+  const handleLogout = React.useCallback(
+    async (event: React.MouseEvent) => {
+      event.preventDefault();
+
+      const dispatchResult = await dispatch(logout());
+      if (logout.fulfilled.match(dispatchResult)) {
+        navigate('/');
       }
-    }
+    },
+    [dispatch, navigate]
+  );
 
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>):void => {
-      setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>):void => {
-      setAnchorElUser(event.currentTarget);
-    };
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-    const handleCloseNavMenu = ():void => {
-      setAnchorElNav(null);
-    };
+  const handleCloseNavMenu = (): void => {
+    setAnchorElNav(null);
+  };
 
-    const handleCloseUserMenu = ():void => {
-      setAnchorElUser(null);
-    };
+  const handleCloseUserMenu = (): void => {
+    setAnchorElUser(null);
+  };
 
-    return (
+  const user = useSelector((state: RootState) => state.auth.user);
 
-      <AppBar position="static">
+  return (
+    <AppBar position="static">
       <Container maxWidth="xl" className="Navi">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -115,7 +136,10 @@ function Navigation(): JSX.Element {
               }}
             >
               {pages.map((page: Page) => (
-                <MenuItem key={page.name} onClick={() => navigatePage(page.way)}>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => navigatePage(page.way)}
+                >
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
@@ -174,16 +198,25 @@ function Navigation(): JSX.Element {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.name} onClick={() => handleLogout(setting.function)}>
-                  <Typography textAlign="center">{setting.name}</Typography>
+              {!user ? (
+                <>
+                  <MenuItem onClick={() => navigatePage('/register')}>
+                    <Typography textAlign="center">Registration</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/login')}>
+                    <Typography textAlign="center">Login</Typography>
+                  </MenuItem>
+                </>
+              ) : (
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
-              ))}
+              )}
             </Menu>
           </Box>
         </Toolbar>
       </Container>
-      </AppBar>
+    </AppBar>
   );
 }
 
