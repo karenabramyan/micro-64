@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import Item from './types/Item';
 
 // eslint-disable-next-line import/prefer-default-export

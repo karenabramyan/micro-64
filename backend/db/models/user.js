@@ -4,10 +4,11 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({ Item, Like, Order }) {
+    static associate({ Like, Order, Basket }) {
       // User.hasMany(Item, { foreignKey: 'userId', onDelete: 'cascade' });
-      User.hasMany(Like, { foreignKey: 'userId', onDelete: 'cascade' });
-      User.hasMany(Order, { foreignKey: 'userId', onDelete: 'cascade' });
+      // User.hasMany(Like, { foreignKey: 'userId', onDelete: 'cascade' });
+      // User.hasMany(Order, { foreignKey: 'userId', onDelete: 'cascade' });
+      // User.hasMany(Basket, { foreignKey: 'userId', onDelete: 'cascade' })
     }
   }
   User.init({

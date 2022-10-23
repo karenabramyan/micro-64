@@ -20,7 +20,7 @@ config(app);
 app.use('/api/items', itemsRouter);
 app.use('/api/registration', regRouter);
 app.use('/api/auth', loginRouter);
-app.use('./api/basket', basketRouter);
+app.use('/api/basket', basketRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
