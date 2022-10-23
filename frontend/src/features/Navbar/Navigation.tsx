@@ -9,24 +9,25 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import { useSelector } from 'react-redux';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { Page } from './types/Page';
+// import { Page } from './types/Page';
 import './Nav.css';
 import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/authSlice';
 
-import { Setting } from './types/Setting';
+// import { Setting } from './types/Setting';
 
-const pages: Page[] = [
-  { name: 'Информация', way: '/' },
-  { name: 'Аренда', way: '/rent' },
-  { name: 'Покупка', way: '/buy' },
-  { name: 'Корзина', way: '/basket' },
-  { name: 'Избранное', way: '/like' },
-];
+// const pages: Page[] = [
+//   { name: 'Информация', way: '/' },
+//   { name: 'Аренда', way: '/rent' },
+//   { name: 'Покупка', way: '/buy' },
+//   { name: 'Корзина', way: '/basket' },
+//   { name: 'Избранное', way: '/like' },
+// ];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {
