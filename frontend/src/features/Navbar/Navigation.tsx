@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,10 +12,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { Page } from './types/Page';
 import './Nav.css';
-import { RootState, useAppDispatch } from '../../store';
+import { useAppDispatch } from '../../store';
 import { logout } from '../auth/apireg';
 import { Setting } from './types/Setting';
 
