@@ -1,29 +1,29 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Item from '../cards/types/Item';
 import * as api from './apiBasket';
 import BasketData from './types/BasketData';
 import BasketState from './types/BasketState';
 
 const initialState = {
-    basket: []
+  basket: []
 };
 
 // eslint-disable-next-line import/prefer-default-export
 export const loadBasket = createAsyncThunk(
-    'basket/loadBasket',
-    () => api.loadBasket()
-  );
+  'basket/loadBasket',
+  () => api.loadBasket()
+);
 
-  export const sendToBasket = createAsyncThunk(
-    'basket/sendToBasket',
-    async (basData: BasketData): Promise<{ item?: Item, error?: string } > => {
-      const newBasketItem = await api.sendToBasket(basData);
-      if (newBasketItem.item) {
-        return { item: newBasketItem.item };
-      }
-      return newBasketItem;
+export const sendToBasket = createAsyncThunk(
+  'basket/sendToBasket',
+  async (basData: BasketData): Promise<{ item?: Item, error?: string }> => {
+    const newBasketItem = await api.sendToBasket(basData);
+    if (newBasketItem.item) {
+      return { item: newBasketItem.item };
     }
-  );
+    return newBasketItem;
+  }
+);
 
   export const removeFromBasket = createAsyncThunk(
     'basket/removeFromBasket',
@@ -54,6 +54,8 @@ const basketSlice = createSlice({
           });
 } });
 
+
+// eslint-disable-next-line no-empty-pattern
 export const { } = basketSlice.actions;
 
 export default basketSlice.reducer;

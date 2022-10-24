@@ -11,5 +11,3 @@ export default interface Info {
   root?: Root;
   paper?: Paper;
 }
-
-

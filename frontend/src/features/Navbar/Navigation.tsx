@@ -28,6 +28,7 @@ import { logout } from '../auth/authSlice';
 //   { name: 'Корзина', way: '/basket' },
 //   { name: 'Избранное', way: '/like' },
 // ];
+
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation(): JSX.Element {
@@ -140,7 +141,7 @@ function Navigation(): JSX.Element {
             >
               {!user ? (
                 <div>
-                <MenuItem onClick={() => navigatePage('/')}>
+                <MenuItem onClick={() => navigatePage('/info')}>
                   <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
@@ -152,7 +153,7 @@ function Navigation(): JSX.Element {
                 </div>
               ) : (
                 <div>
-                <MenuItem onClick={() => navigatePage('/')}>
+                <MenuItem onClick={() => navigatePage('/info')}>
                   <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
@@ -193,7 +194,7 @@ function Navigation(): JSX.Element {
             {!user ? (
               <div>
               <Button
-                onClick={() => navigatePage('/')}
+                onClick={() => navigatePage('/info')}
                 sx={{ color: 'white' }}
               >
                 информация
@@ -214,7 +215,7 @@ function Navigation(): JSX.Element {
               ) : (
                 <div>
                 <Button
-                  onClick={() => navigatePage('/')}
+                  onClick={() => navigatePage('/info')}
                   sx={{ color: 'white' }}
                 >
                 информация
