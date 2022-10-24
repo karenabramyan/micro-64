@@ -11,13 +11,15 @@ import brand from './Img/999.svg';
 export default function Footer():JSX.Element {
   return (
     <footer>
-      <Container style={{ backgroundColor: 'grey' }} className="footer">
-        <Box py={1} display="flex" flexWrap="wrap" alignItems="center" className="footBox">
+      <Container style={{ backgroundColor: 'grey',height:150 }} className="footer">
+        <Box py={0} display="flex" flexWrap="wrap" alignItems="center" className="footBox">
           <Box component="nav" className="foot">
           <Link href="#" color="inherit" underline="none">
             <img style={{ borderRadius: '50%' }} src={brand}/>
           </Link>
-          <h4>Микронаушник №1 В Саратове.</h4>
+          </Box>
+          <Box component="nav" className="foot">
+          <h4>Микронаушники №1 В Саратове.</h4>
           <h6>Продажа|Аренда</h6>
           <Link href="https://t.me/89173102111"><img src={telega} alt="" /></Link>
           <Link href="https://vk.com/away.php?to=https%3A%2F%2Finstagram.com%2F_micro_64%3Figshid%3DYmMyMTA2M2Y%3D&cc_key="><img src={insta} alt="" /></Link>
