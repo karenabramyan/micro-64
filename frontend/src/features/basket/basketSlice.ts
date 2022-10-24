@@ -5,7 +5,8 @@ import BasketData from './types/BasketData';
 import BasketState from './types/BasketState';
 
 const initialState = {
-  basket: []
+  basket: [],
+  totalItems: []
 };
 
 // eslint-disable-next-line import/prefer-default-export
@@ -16,6 +17,17 @@ export const loadBasket = createAsyncThunk(
 
 export const sendToBasket = createAsyncThunk(
   'basket/sendToBasket',
+  async (basData: BasketData): Promise<{ item?: Item, error?: string }> => {
+    const newBasketItem = await api.sendToBasket(basData);
+    if (newBasketItem.item) {
+      return { item: newBasketItem.item };
+    }
+    return newBasketItem;
+  }
+);
+
+export const addFromBasketToBasket = createAsyncThunk(
+  'basket/addFromBasketToBasket',
   async (basData: BasketData): Promise<{ item?: Item, error?: string }> => {
     const newBasketItem = await api.sendToBasket(basData);
     if (newBasketItem.item) {
@@ -41,19 +53,52 @@ const basketSlice = createSlice({
         builder
           .addCase(loadBasket.fulfilled, (state: BasketState, action) => {
               state.basket = action.payload;
-            })
+              state.totalItems = [];
+              state.basket.forEach((basItem) => {
+                const curItem = state.totalItems.findIndex((el) => el.title === basItem.title);
+                if (curItem !== -1) {
+                  state.totalItems[curItem].count += 1;
+                } else {
+                  state.totalItems.push({ ...basItem, count: 1 });
+                }
+              });
+            },
+            )
           .addCase(sendToBasket.fulfilled, (state: BasketState, action) => {
             if (action.payload.item) {
             state.basket.push(action.payload.item);
             }
           })
-          .addCase(removeFromBasket.fulfilled, (state, action) => {
-            state.basket = state.basket.filter(
-              (s) => s !== action.payload
+          .addCase(addFromBasketToBasket.fulfilled, (state: BasketState, action) => {
+            if (action.payload.item) {
+            state.basket.push(action.payload.item);
+            const curItem = state.totalItems.findIndex((el) =>
+            el.title === action.payload.item!.title);
+            if (curItem !== -1) {
+              state.totalItems[curItem].count += 1;
+            } else {
+              state.totalItems.push({ ...action.payload.item, count: 1 });
+            }
+            }
+          })
+          .addCase(removeFromBasket.fulfilled, (state: BasketState, action) => {
+            const itemForRemove = state.basket.findIndex(
+              (s) => s.id === action.payload
             );
-          });
+            state.basket = state.basket.filter((el, i) => i !== itemForRemove);
+            const curItem = state.totalItems.findIndex((el) =>
+            el.id === action.payload);
+            if (curItem !== -1) {
+              state.totalItems[curItem].count -= 1;
+              if (state.totalItems[curItem].count === 0) {
+                state.totalItems = state.totalItems.filter((el, i) => i !== curItem);
+              }
+            } else {
+              state.totalItems = state.totalItems.filter((el, i) => i !== curItem);
+            }
+            }
+          );
 } });
-
 
 // eslint-disable-next-line no-empty-pattern
 export const { } = basketSlice.actions;

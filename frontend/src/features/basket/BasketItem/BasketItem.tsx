@@ -1,16 +1,17 @@
-import { CardActions, FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Card, CardActions, FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSelector } from 'react-redux';
 import Item from '../../cards/types/Item';
 import './BasketItem.css';
-import { removeFromBasket, sendToBasket } from '../basketSlice';
+import { addFromBasketToBasket, removeFromBasket, sendToBasket } from '../basketSlice';
 import { useAppDispatch } from '../../../store';
 import User from '../../auth/types/User';
 import { selectUser } from '../../auth/selectors';
+import ItemInBasket from '../types/ItemInBasket';
 
-function BasketItem({ item }: { item: Item }): JSX.Element {
+function BasketItem({ item }: { item: ItemInBasket }): JSX.Element {
   const dispatch = useAppDispatch();
   const [days, setDays] = React.useState('1');
 
@@ -31,7 +32,7 @@ function BasketItem({ item }: { item: Item }): JSX.Element {
   const selectUs = useSelector(selectUser);
 
   function addToBasket(user: User | undefined, itemId: number): any {
-    dispatch(sendToBasket({ user, itemId }));
+    dispatch(addFromBasketToBasket({ user, itemId }));
   }
 
   function deleteFromBasket(user: User | undefined, itemId: number): any {
@@ -39,7 +40,7 @@ function BasketItem({ item }: { item: Item }): JSX.Element {
   }
 
   return (
-    <div className="basket-item">
+    <Card className="basket-item">
       <img src={item.img} alt={item.title} className="basket-item-img" />
         <Typography className="basket-item-title">{item.title}</Typography>
         {(item.type === 'Аренда') && (
@@ -74,12 +75,12 @@ function BasketItem({ item }: { item: Item }): JSX.Element {
 )}
 <CardActions>
 <IconButton onClick={() => addToBasket(selectUs, item.id)}><AddIcon /></IconButton>
-<Typography> 1</Typography>
+<Typography>{item.count}</Typography>
 <IconButton onClick={() => deleteFromBasket(selectUs, item.id)}><RemoveIcon /></IconButton>
 </CardActions>
         <Typography className="basket-item-type">{item.type}</Typography>
         <Typography className="basket-item-price">{cutPrice(item.price)}</Typography>
-    </div>
+    </Card>
   );
 }
 
