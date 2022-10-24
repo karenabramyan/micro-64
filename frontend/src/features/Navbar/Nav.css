@@ -1,5 +1,6 @@
 .Navi{
     background-color: black;
+    max-width: none!important
 }
 .foot{
     /* display: flex;
@@ -8,5 +9,9 @@
 }
 .footBox{
         display: flex;
-        justify-content: center;
+        justify-content: space-around;;
+}
+
+.footer{
+    max-width: none!important;
 }

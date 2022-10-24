@@ -89,7 +89,7 @@ function Navigation(): JSX.Element {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl" className="Navi">
+      <Container className="Navi">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
