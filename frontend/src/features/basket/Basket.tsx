@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
@@ -25,8 +25,7 @@ function Basket(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadBasket());
-  }, []);
-  console.log(totalItems)
+  }, [dispatch]);
 
   useEffect(() => {
     const total = basketItems
@@ -35,15 +34,24 @@ function Basket(): JSX.Element {
     setTotalPrice(total);
   }, [basketItems]);
 
-
   return (
     <div>
         <Typography variant="h5">Корзина</Typography>
         <br />
-        {totalItems.map((item: ItemInBasket) => <BasketItem item={item} />)}
-        <br />
-        <Typography variant="h6">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
-        <br />
+        {(totalItems.length > 0) ?
+         (
+<div>
+          {totalItems.map((item: ItemInBasket) => <BasketItem item={item} />)}
+          <br />
+          <Typography variant="h6">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
+          <br />
+          <Button size="large" color="inherit" variant="outlined">Оформить заказ</Button>
+          <br />
+          <br />
+</div>
+)
+          : (<Typography variant="h6">Вы пока ничего не добавили в корзину!</Typography>)}
+
     </div>
   );
 }

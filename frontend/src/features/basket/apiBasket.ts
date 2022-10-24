@@ -7,7 +7,7 @@ export async function loadBasket(): Promise<Item[]> {
   return response.json();
 }
 
-export async function sendToBasket(basData: BasketData): Promise<{ item?: Item, error: string }> {
+export async function sendToBasket(basData: BasketData): Promise<{ item?: Item, status: string }> {
     const response = await fetch('/api/basket', {
       method: 'POST',
       body: JSON.stringify(basData),
@@ -20,7 +20,21 @@ export async function sendToBasket(basData: BasketData): Promise<{ item?: Item, 
     return data;
 }
 
-export async function removeFromBasket(basData: BasketData): 
+export async function removeFromBasket(basData: BasketData):
+Promise<{ itemId?: number, status: string }> {
+  const response = await fetch('/api/basket', {
+    method: 'DELETE',
+    body: JSON.stringify(basData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+export async function makeOrder(basData: BasketData):
 Promise<{ itemId?: number, status: string }> {
   const response = await fetch('/api/basket', {
     method: 'DELETE',

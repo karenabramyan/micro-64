@@ -10,3 +10,11 @@ export const selectBasket = (
 export const selectTotalItems = (
   state: RootState
 ): ItemInBasket[] => state.basket.totalItems;
+
+export const selectAddError = (
+  state: RootState
+): string | undefined => state.basket.addError;
+
+export const selectDeleteError = (
+  state: RootState
+): string | undefined => state.basket.deleteError;

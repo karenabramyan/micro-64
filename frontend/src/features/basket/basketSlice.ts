@@ -4,9 +4,9 @@ import * as api from './apiBasket';
 import BasketData from './types/BasketData';
 import BasketState from './types/BasketState';
 
-const initialState = {
+const initialState: BasketState = {
   basket: [],
-  totalItems: []
+  totalItems: [],
 };
 
 // eslint-disable-next-line import/prefer-default-export
@@ -22,7 +22,7 @@ export const sendToBasket = createAsyncThunk(
     if (newBasketItem.item) {
       return { item: newBasketItem.item };
     }
-    return newBasketItem;
+    throw new Error(newBasketItem.status);
   }
 );
 
@@ -33,7 +33,7 @@ export const addFromBasketToBasket = createAsyncThunk(
     if (newBasketItem.item) {
       return { item: newBasketItem.item };
     }
-    return newBasketItem;
+    throw new Error(newBasketItem.status);
   }
 );
 
@@ -42,6 +42,7 @@ export const addFromBasketToBasket = createAsyncThunk(
     async (basData: BasketData) => {
      const data = await api.removeFromBasket(basData);
       if (data.itemId) return data.itemId;
+      throw new Error(data.status);
     }
   );
 
@@ -64,12 +65,17 @@ const basketSlice = createSlice({
               });
             },
             )
+          .addCase(sendToBasket.rejected, (state, action) => {
+              state.sendError = action.error.message;
+            })
           .addCase(sendToBasket.fulfilled, (state: BasketState, action) => {
+            state.sendError = undefined;
             if (action.payload.item) {
             state.basket.push(action.payload.item);
             }
           })
           .addCase(addFromBasketToBasket.fulfilled, (state: BasketState, action) => {
+            state.addError = undefined;
             if (action.payload.item) {
             state.basket.push(action.payload.item);
             const curItem = state.totalItems.findIndex((el) =>
@@ -81,7 +87,11 @@ const basketSlice = createSlice({
             }
             }
           })
+          .addCase(addFromBasketToBasket.rejected, (state, action) => {
+            state.addError = action.error.message;
+          })
           .addCase(removeFromBasket.fulfilled, (state: BasketState, action) => {
+            state.deleteError = undefined;
             const itemForRemove = state.basket.findIndex(
               (s) => s.id === action.payload
             );
@@ -97,7 +107,10 @@ const basketSlice = createSlice({
               state.totalItems = state.totalItems.filter((el, i) => i !== curItem);
             }
             }
-          );
+          )
+          .addCase(removeFromBasket.rejected, (state, action) => {
+            state.deleteError = action.error.message;
+          });
 } });
 
 // eslint-disable-next-line no-empty-pattern
