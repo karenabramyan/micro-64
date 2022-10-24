@@ -150,6 +150,9 @@ function Navigation(): JSX.Element {
                 <MenuItem onClick={() => navigatePage('/buy')}>
                 <Typography textAlign="center">ПОКУПКА</Typography>
                 </MenuItem>
+                <MenuItem onClick={() => navigatePage('/contacts')}>
+                <Typography textAlign="center">Контакты</Typography>
+                </MenuItem>
                 </div>
               ) : (
                 <div>
@@ -161,6 +164,9 @@ function Navigation(): JSX.Element {
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/buy')}>
                 <Typography textAlign="center">ПОКУПКА</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigatePage('/contacts')}>
+                <Typography textAlign="center">Контакты</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/basket')}>
                     <Typography textAlign="center">КОРЗИНА</Typography>
@@ -210,6 +216,12 @@ function Navigation(): JSX.Element {
                 sx={{ color: 'white' }}
               >
                 покупка
+              </Button>
+              <Button
+                onClick={() => navigatePage('/contacts')}
+                sx={{ color: 'white' }}
+              >
+                контакты
               </Button>
               </div>
               ) : (

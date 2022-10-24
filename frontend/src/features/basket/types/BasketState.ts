@@ -1,5 +1,10 @@
-import Item from '../../cards/types/Item';
+import ItemInBasket from './ItemInBasket';
+import OrderData from './OrderData';
 
 export default interface BasketState {
-    basket: Item[]
+    basket: OrderData[],
+    totalItems: ItemInBasket[],
+    sendError?: string,
+    addError?: string,
+    deleteError?: string,
 }
