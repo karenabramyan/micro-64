@@ -13,6 +13,7 @@ import { useAppDispatch } from '../store';
 import { getUser } from '../features/auth/authSlice';
 import Basket from '../features/basket/Basket';
 import InfoList from '../features/Infopages/InfopagesList/InfoList';
+import Like from '../features/favorites/likes/Like';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ function App(): JSX.Element {
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/like" element={<Like />} />
         </Route>
       </Routes>
     </>
