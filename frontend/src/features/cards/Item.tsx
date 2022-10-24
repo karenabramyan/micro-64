@@ -28,9 +28,6 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
   }
 
   function addToBasket(user: User | undefined, itemId: number): any {
-    console.log('first');
-    console.log(user, itemId);
-
     dispatch(sendToBasket({ user, itemId }));
   }
 
@@ -58,7 +55,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
         <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
           {cutTitle(item.title)}
         </Typography>
-        <Typography gutterBottom variant="h4" component="div">
+        <Typography gutterBottom variant="h3" component="h3">
           {cutPrice(item.price)}
           <CurrencyRubleIcon />
         </Typography>

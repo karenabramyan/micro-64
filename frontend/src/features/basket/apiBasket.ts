@@ -19,3 +19,17 @@ export async function sendToBasket(basData: BasketData): Promise<{ item?: Item, 
     const data = await response.json();
     return data;
 }
+
+export async function removeFromBasket(basData: BasketData): 
+Promise<{ itemId?: number, status: string }> {
+  const response = await fetch('/api/basket', {
+    method: 'DELETE',
+    body: JSON.stringify(basData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}

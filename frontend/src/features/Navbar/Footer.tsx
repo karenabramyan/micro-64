@@ -7,7 +7,7 @@ import Link from '@mui/material/Link';
 export default function Footer():JSX.Element {
   return (
     <footer>
-      <Container maxWidth="xl" style={{ backgroundColor: 'grey' }}>
+      <Container maxWidth="xl" style={{ backgroundColor: 'grey' }} className="footer">
         <Box py={1} display="flex" flexWrap="wrap" alignItems="center" className="footBox">
           <Link href="#" color="inherit" underline="none">
             {/* {brand} */}

@@ -5,20 +5,22 @@ router
   .route('/')
   .get(async (req, res) => {
     const { user } = res.locals;
-    const basket = await Basket.findAll({
-      where: {
-        userId: user.id,
-        orderStatus: true,
-      },
-      raw: true,
-    });
     if (user) {
-      const items = basket.map(async (item) => {
-        const curItem = await Item.findAll({ where: { id: item.itemId }, raw: true });
-        return curItem[0];
+      const basket = await Basket.findAll({
+        where: {
+          userId: user.id,
+          orderStatus: true,
+        },
+        raw: true,
       });
-      const data = await Promise.all(items);
-      return res.json(data);
+      if (basket) {
+        const items = basket.map(async (item) => {
+          const curItem = await Item.findAll({ where: { id: item.itemId }, raw: true });
+          return curItem[0];
+        });
+        const data = await Promise.all(items);
+        return res.json(data);
+      }
     }
     const data = [];
     return res.json(data);
@@ -36,6 +38,18 @@ router
       return res.json({ item, status: 'success' });
     }
     return res.json({ status: 'Для оформления заказа необходимо зарегистрироваться' });
+  })
+  .delete(async (req, res) => {
+    const { user, itemId } = req.body;
+    if (user) {
+      const itemForRemove = await Basket.findOne({ where: { userId: user.id, itemId } });
+      if (itemForRemove) {
+        await Basket.destroy({ where: { id: itemForRemove.id } });
+        return res.json({ itemId, status: 'success' });
+      }
+      return res.json({ status: 'Товар не найден' });
+    }
+    return res.json({ status: 'Пожалуйста, войдите в личный кабинет для удаления из корзины товаров' });
   });
 
 module.exports = router;
