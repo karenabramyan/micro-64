@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     orderStatus: {
       type: DataTypes.BOOLEAN,
     },
+    days: {
+      type: DataTypes.INTEGER,
+    },
   }, {
     sequelize,
     modelName: 'Basket',
