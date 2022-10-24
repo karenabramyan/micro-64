@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  min-width: 100vh;
+}
+
+.footer {
+  margin-bottom: 0;
 }
 
 .App-logo {

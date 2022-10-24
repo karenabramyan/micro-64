@@ -25,20 +25,32 @@ export const loadBasket = createAsyncThunk(
     }
   );
 
+  export const removeFromBasket = createAsyncThunk(
+    'basket/removeFromBasket',
+    async (basData: BasketData) => {
+     const data = await api.removeFromBasket(basData);
+      if (data.itemId) return data.itemId;
+    }
+  );
+
 const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(loadBasket.fulfilled, (state: BasketState, action) => {
-              console.log(action.payload)
+          .addCase(loadBasket.fulfilled, (state: BasketState, action) => {
               state.basket = action.payload;
             })
           .addCase(sendToBasket.fulfilled, (state: BasketState, action) => {
             if (action.payload.item) {
             state.basket.push(action.payload.item);
             }
+          })
+          .addCase(removeFromBasket.fulfilled, (state, action) => {
+            state.basket = state.basket.filter(
+              (s) => s !== action.payload
+            );
           });
 } });
 
