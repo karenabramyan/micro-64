@@ -1,5 +1,5 @@
-import BasketData from './BasketData';
+import Item from '../../cards/types/Item';
 
-export default interface OrderData extends BasketData {
-    days: string | number
+export default interface OrderData extends Item {
+    days: string | number | undefined,
 }

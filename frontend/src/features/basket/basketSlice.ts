@@ -3,6 +3,7 @@ import Item from '../cards/types/Item';
 import * as api from './apiBasket';
 import BasketData from './types/BasketData';
 import BasketState from './types/BasketState';
+import OrderData from './types/OrderData';
 
 const initialState: BasketState = {
   basket: [],
@@ -17,10 +18,10 @@ export const loadBasket = createAsyncThunk(
 
 export const sendToBasket = createAsyncThunk(
   'basket/sendToBasket',
-  async (basData: BasketData): Promise<{ item?: Item, error?: string }> => {
+  async (basData: BasketData): Promise<{ item?: Item, error?: string, days?: string | number }> => {
     const newBasketItem = await api.sendToBasket(basData);
     if (newBasketItem.item) {
-      return { item: newBasketItem.item };
+      return { item: newBasketItem.item, days: basData.days };
     }
     throw new Error(newBasketItem.status);
   }
@@ -28,10 +29,10 @@ export const sendToBasket = createAsyncThunk(
 
 export const addFromBasketToBasket = createAsyncThunk(
   'basket/addFromBasketToBasket',
-  async (basData: BasketData): Promise<{ item?: Item, error?: string }> => {
+  async (basData: BasketData): Promise<{ item?: Item, error?: string, days?: string | number }> => {
     const newBasketItem = await api.sendToBasket(basData);
     if (newBasketItem.item) {
-      return { item: newBasketItem.item };
+      return { item: newBasketItem.item, days: basData.days };
     }
     throw new Error(newBasketItem.status);
   }
@@ -44,6 +45,11 @@ export const addFromBasketToBasket = createAsyncThunk(
       if (data.itemId) return data.itemId;
       throw new Error(data.status);
     }
+  );
+
+  export const makeOrderBasket = createAsyncThunk(
+    'basket/makeOrder',
+    (data: OrderData[]) => api.makeOrder(data)
   );
 
 const basketSlice = createSlice({
@@ -71,13 +77,37 @@ const basketSlice = createSlice({
           .addCase(sendToBasket.fulfilled, (state: BasketState, action) => {
             state.sendError = undefined;
             if (action.payload.item) {
-            state.basket.push(action.payload.item);
-            }
-          })
+            state.basket.push({
+              id: action.payload.item.id,
+              title: action.payload.item.title,
+              category: action.payload.item.category,
+              img: action.payload.item.img,
+              type: action.payload.item.type,
+              price: action.payload.item.price,
+              capacity: action.payload.item.capacity,
+              range: action.payload.item.range,
+              amount: action.payload.item.amount,
+              days: action.payload.days
+
+          });
+}
+})
           .addCase(addFromBasketToBasket.fulfilled, (state: BasketState, action) => {
             state.addError = undefined;
             if (action.payload.item) {
-            state.basket.push(action.payload.item);
+              state.basket.push({
+                id: action.payload.item.id,
+                title: action.payload.item.title,
+                category: action.payload.item.category,
+                img: action.payload.item.img,
+                type: action.payload.item.type,
+                price: action.payload.item.price,
+                capacity: action.payload.item.capacity,
+                range: action.payload.item.range,
+                amount: action.payload.item.amount,
+                days: action.payload.days
+
+            });
             const curItem = state.totalItems.findIndex((el) =>
             el.title === action.payload.item!.title);
             if (curItem !== -1) {
@@ -110,6 +140,9 @@ const basketSlice = createSlice({
           )
           .addCase(removeFromBasket.rejected, (state, action) => {
             state.deleteError = action.error.message;
+          })
+          .addCase(makeOrderBasket.fulfilled, (state) => {
+            state.basket = [];
           });
 } });
 

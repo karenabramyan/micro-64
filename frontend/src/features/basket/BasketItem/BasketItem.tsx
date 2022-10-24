@@ -49,13 +49,13 @@ function cutPrice(price: string): string | number {
   function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): any {
     if (!selectAdd) {
-    dispatch(addFromBasketToBasket({ user, itemId }));
+    dispatch(addFromBasketToBasket({ user, itemId, days: 0 }));
     }
     handleClickPopover(event);
   }
 
   function deleteFromBasket(user: User | undefined, itemId: number): any {
-    dispatch(removeFromBasket({ user, itemId }));
+    dispatch(removeFromBasket({ user, itemId, days: 0 }));
   }
 
   return (

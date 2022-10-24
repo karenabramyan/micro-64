@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
 import BasketItem from './BasketItem/BasketItem';
-import { loadBasket } from './basketSlice';
+import { loadBasket, makeOrderBasket } from './basketSlice';
 import { selectBasket, selectTotalItems } from './selectBasket';
 import ItemInBasket from './types/ItemInBasket';
+import * as api from './apiBasket';
 
 function Basket(): JSX.Element {
   const basketItems = useSelector(selectBasket);
@@ -25,7 +26,7 @@ function Basket(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadBasket());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const total = basketItems
@@ -34,6 +35,10 @@ function Basket(): JSX.Element {
     setTotalPrice(total);
   }, [basketItems]);
 
+  function makeOrder(items: any): void {
+    dispatch(makeOrderBasket(items)).then(() => dispatch(loadBasket()));
+  }
+
   return (
     <div>
         <Typography variant="h5">Корзина</Typography>
@@ -41,11 +46,11 @@ function Basket(): JSX.Element {
         {(totalItems.length > 0) ?
          (
 <div>
-          {totalItems.map((item: ItemInBasket) => <BasketItem item={item} />)}
+          {totalItems.map((item: ItemInBasket) => <BasketItem item={item} key={item.id} />)}
           <br />
           <Typography variant="h6">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
           <br />
-          <Button size="large" color="inherit" variant="outlined">Оформить заказ</Button>
+          <Button size="large" color="inherit" variant="outlined" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
           <br />
           <br />
 </div>

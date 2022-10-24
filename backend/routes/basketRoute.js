@@ -16,7 +16,7 @@ router
       if (basket) {
         const items = basket.map(async (item) => {
           const curItem = await Item.findAll({ where: { id: item.itemId }, raw: true });
-          return curItem[0];
+          return { ...curItem[0], days: item.days };
         });
         const data = await Promise.all(items);
         return res.json(data);
@@ -38,6 +38,7 @@ router
           itemId: item.id,
           userId: currentUser.id,
           orderStatus: true,
+          days: 0,
         });
         item.amount -= 1;
         await item.save();

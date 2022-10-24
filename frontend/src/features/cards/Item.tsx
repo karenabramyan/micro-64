@@ -57,7 +57,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
 
 function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): void {
-      dispatch(sendToBasket({ user, itemId }));
+      dispatch(sendToBasket({ user, itemId, days: 0 }));
       handleClickPopover(event);
       // if ('error' in result) {
       //   setError(result.error.message);
