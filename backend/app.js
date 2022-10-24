@@ -10,6 +10,7 @@ const itemsRouter = require('./routes/itemsRoute');
 const regRouter = require('./routes/registrationRoute');
 const loginRouter = require('./routes/loginRoute');
 const basketRouter = require('./routes/basketRoute');
+const adminItemRouter = require('./routes/itemsFromAdminRoute');
 
 const PORT = process.env.PORT ?? 4000;
 const app = express();
@@ -21,6 +22,7 @@ app.use('/api/items', itemsRouter);
 app.use('/api/registration', regRouter);
 app.use('/api/auth', loginRouter);
 app.use('/api/basket', basketRouter);
+app.use('/api/admin-item', adminItemRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
