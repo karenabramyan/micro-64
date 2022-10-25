@@ -15,6 +15,7 @@ import InfoPage from '../features/Infopages/InfopagesList/InfoPage';
 import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
+import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,20 +26,21 @@ function App(): JSX.Element {
   return (
 
     <Routes>
-        <Route path="/" element={<Main />}>
-          <Route path="/info" element={<InfoList />} />
-          <Route path="/" element={<ItemList />} />
-          <Route path="/rent" element={<RentItemList />} />
-          <Route path="/buy" element={<BuyItemList />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/basket" element={<Basket />} />
-          <Route path="/info/infopage/:id" element={<InfoPage />} />
-          <Route path="/admincab" element={<AdminCab />} />
-          <Route path="/adminorders" element={<AdminOrders />} />
-          <Route path="/contacts" element={<ContactPage />} />
-          
-        </Route>
+      <Route path="/" element={<Main />}>
+        <Route path="/info" element={<InfoList />} />
+        <Route path="/" element={<ItemList />} />
+        <Route path="/rent" element={<RentItemList />} />
+        <Route path="/buy" element={<BuyItemList />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/info/infopage/:id" element={<InfoPage />} />
+        <Route path="/admincab" element={<AdminCab />} />
+        <Route path="/adminorders" element={<AdminOrders />} />
+        <Route path="/contacts" element={<ContactPage />} />
+        <Route path="/commodity-matrix" element={<CommodityMatrix />} />
+
+      </Route>
     </Routes>
   );
 }
