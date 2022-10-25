@@ -7,12 +7,19 @@ import { loadBasket, makeOrderBasket } from './basketSlice';
 import { selectBasket, selectTotalItems } from './selectBasket';
 import ItemInBasket from './types/ItemInBasket';
 import * as api from './apiBasket';
+import ModalWindowOrder from './ModaWindowOrder';
 
 function Basket(): JSX.Element {
+  const [open, setOpen] = React.useState(false);
+
   const basketItems = useSelector(selectBasket);
   const totalItems = useSelector(selectTotalItems);
   const dispatch = useAppDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
+
+
+  const handleOpen = (): void => setOpen(true);
+  const handleClose = (): void => setOpen(false);
 
   function cutPrice(price: number): string | number {
     const text = price.toString();
@@ -37,6 +44,7 @@ function Basket(): JSX.Element {
 
   function makeOrder(items: any): void {
     dispatch(makeOrderBasket(items)).then(() => dispatch(loadBasket()));
+    handleOpen();
   }
 
   return (
@@ -53,10 +61,11 @@ function Basket(): JSX.Element {
           <Button size="large" color="inherit" variant="outlined" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
           <br />
           <br />
+
 </div>
 )
           : (<Typography variant="h6">Вы пока ничего не добавили в корзину!</Typography>)}
-
+    <ModalWindowOrder open={open} handleClose={handleClose} />
     </div>
   );
 }

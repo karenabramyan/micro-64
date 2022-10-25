@@ -14,7 +14,6 @@ router
           where: {
             userId: user.id,
             itemId: order.id,
-            days: order.days,
           },
           raw: true,
         });
@@ -27,7 +26,7 @@ router
         await Order.create({
           userId: user.id,
           itemId: order.id,
-          days: order.days,
+          days: Number(order.days),
           status: 'Заказ оформлен',
         });
       }
