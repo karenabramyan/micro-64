@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import ItemState from '../cards/types/ItemState';
 // eslint-disable-next-line import/no-cycle
-import AdminItem from './AdminItem';
+// import AdminItem from './AdminItem';
 import * as api from './apiAdmin';
 
 const initialState: ItemState = {
