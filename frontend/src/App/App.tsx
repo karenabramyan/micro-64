@@ -24,19 +24,19 @@ function App(): JSX.Element {
   }, [dispatch]);
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Main />}>
-          <Route path="/info" element={<InfoList />} />
-          <Route path="/" element={<ItemList />} />
-          <Route path="/rent" element={<RentItemList />} />
-          <Route path="/buy" element={<BuyItemList />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/basket" element={<Basket />} />
-          <Route path="/info/infopage/:id" element={<InfoPage />} />
-          <Route path="/contacts" element={<ContactPage />} />
-        </Route>
-      </Routes>
+    //   <Routes>
+    //     <Route path="/" element={<Main />}>
+    //       <Route path="/info" element={<InfoList />} />
+    //       <Route path="/" element={<ItemList />} />
+    //       <Route path="/rent" element={<RentItemList />} />
+    //       <Route path="/buy" element={<BuyItemList />} />
+    //       <Route path="/register" element={<Registration />} />
+    //       <Route path="/login" element={<Login />} />
+    //       <Route path="/basket" element={<Basket />} />
+    //       <Route path="/info/infopage/:id" element={<InfoPage />} />
+    //       <Route path="/contacts" element={<ContactPage />} />
+    //     </Route>
+    //   </Routes>
     </>
   );
 }
