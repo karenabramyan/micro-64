@@ -49,8 +49,7 @@ const basketSlice = createSlice({
           })
           .addCase(removeFromBasket.fulfilled, (state, action) => {
             state.basket = state.basket.filter(
-              (s) => s !== action.payload
-            );
+              (s) => s !== action.payload);
           });
 } });
 

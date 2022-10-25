@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import Item from '../cards/types/Item';
 import Like from './types/Like';

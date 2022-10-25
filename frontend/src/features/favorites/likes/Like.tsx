@@ -23,9 +23,7 @@ function Like(): JSX.Element {
 
   return (
     <div className="container">
-      <h1>избр</h1>
-      {/* <button type="button" onClick={() => addLike(1, 2)} /> */}
-      {likeSelect.map((item) => <Item item={item} key={item.id} />)}
+      {(likeSelect.length !== 0) && likeSelect.map((item) => <Item item={item} key={item.id} />)}
     </div>
   );
 }

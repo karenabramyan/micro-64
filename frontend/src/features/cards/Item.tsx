@@ -20,7 +20,7 @@ import { useAppDispatch } from '../../store';
 import { selectUser } from '../auth/selectors';
 import { sendToBasket } from '../basket/basketSlice';
 import User from '../auth/types/User';
-import { createLikes } from '../favorites/likes/likeSlice';
+import { createLikes, removeLike } from '../favorites/likes/likeSlice';
 import { selectLikes } from '../favorites/selectLikes';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
