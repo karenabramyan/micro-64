@@ -9,3 +9,7 @@ export const selectItems = (
 export const selectUserId = (
   state: RootState
 ): number | undefined => state.auth.user?.id;
+
+export const selectSendError = (
+  state: RootState
+): string | undefined => state.basket?.sendError;
