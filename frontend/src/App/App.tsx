@@ -16,7 +16,7 @@ import InfoList from '../features/Infopages/InfopagesList/InfoList';
 import InfoPage from '../features/Infopages/InfopagesList/InfoPage';
 import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
-
+import AdminOrders from '../features/adminCab/AdminOrders';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,8 +25,7 @@ function App(): JSX.Element {
     dispatch(getUser());
   }, [dispatch]);
   return (
-    <>
-      <Routes>
+    <Routes>
         <Route path="/" element={<Main />}>
           <Route path="/info" element={<InfoList />} />
           <Route path="/" element={<ItemList />} />
@@ -37,10 +36,11 @@ function App(): JSX.Element {
           <Route path="/basket" element={<Basket />} />
           <Route path="/info/infopage/:id" element={<InfoPage />} />
           <Route path="/admincab" element={<AdminCab />} />
+          <Route path="/adminorders" element={<AdminOrders />} />
           <Route path="/contacts" element={<ContactPage />} />
+          
         </Route>
-      </Routes>
-    </>
+    </Routes>
   );
 }
 

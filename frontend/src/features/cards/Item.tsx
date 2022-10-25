@@ -8,7 +8,7 @@ import Item from './types/Item';
 import ModalWindow from './ModaWindow';
 import { useAppDispatch } from '../../store';
 import { selectUser } from '../auth/selectors';
-import { sendToBasket } from '../basket/basketSlice';
+import { sendToBasket, resetSendError } from '../basket/basketSlice';
 import User from '../auth/types/User';
 import { selectSendError } from './selectItems';
 
@@ -25,6 +25,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
     };
 
     const handleClosePopover = (): void => {
+      dispatch(resetSendError());
       setAnchorEl(null);
     };
 
@@ -98,18 +99,20 @@ function addToBasket(user: User | undefined, itemId: number,
       </CardContent>
       <CardActions className="button-container">
         <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)}>Заказать</Button>
-        <Popover
-          id={id}
-          open={openPopover}
-          anchorEl={anchorEl}
-          onClose={handleClosePopover}
-          anchorOrigin={{
+        {selectSendErr && (
+<Popover
+  id={id}
+  open={openPopover}
+  anchorEl={anchorEl}
+  onClose={handleClosePopover}
+  anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        >
-        <Typography sx={{ p: 2 }}>{selectSendErr}</Typography>
-        </Popover>
+>
+          <Typography sx={{ p: 2 }}>{selectSendErr}</Typography>
+</Popover>
+)}
 
         <ModalWindow open={open} handleClose={handleClose} />
         <IconButton size="medium" color="inherit" onClick={handleOpen}><FavoriteBorderIcon /></IconButton>

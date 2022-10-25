@@ -55,7 +55,24 @@ export const addFromBasketToBasket = createAsyncThunk(
 const basketSlice = createSlice({
     name: 'basket',
     initialState,
-    reducers: {},
+    reducers: {
+      resetSendError: (state) => {
+        state.sendError = undefined;
+      },
+      resetAddError: (state) => {
+        state.addError = undefined;
+      },
+      resetRemoveError: (state) => {
+        state.deleteError = undefined;
+      },
+      changeDays: (state, action) => {
+        const oldItem = state.basket.map((x) =>
+          x.id === action.payload.id ? { ...x, days: action.payload.days } : x
+        );
+        state.basket = oldItem;
+      },
+
+    },
     extraReducers: (builder) => {
         builder
           .addCase(loadBasket.fulfilled, (state: BasketState, action) => {
@@ -147,6 +164,6 @@ const basketSlice = createSlice({
 } });
 
 // eslint-disable-next-line no-empty-pattern
-export const { } = basketSlice.actions;
+export const { resetAddError, resetRemoveError, resetSendError, changeDays } = basketSlice.actions;
 
 export default basketSlice.reducer;

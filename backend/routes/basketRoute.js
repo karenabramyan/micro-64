@@ -34,12 +34,21 @@ router
       const item = await Item.findOne({ where: { id: Number(itemId) } });
       const currentUser = await User.findOne({ where: { id: Number(user.id) } });
       if (item.amount > 0) {
-        await Basket.create({
-          itemId: item.id,
-          userId: currentUser.id,
-          orderStatus: true,
-          days: 0,
-        });
+        if (item.type === 'Аренда') {
+          await Basket.create({
+            itemId: item.id,
+            userId: currentUser.id,
+            orderStatus: true,
+            days: 1,
+          });
+        } else {
+          await Basket.create({
+            itemId: item.id,
+            userId: currentUser.id,
+            orderStatus: true,
+            days: 0,
+          });
+        }
         item.amount -= 1;
         await item.save();
         return res.json({ item, status: 'success' });

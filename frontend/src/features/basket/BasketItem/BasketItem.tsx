@@ -1,10 +1,10 @@
 import { Card, CardActions, FormControl, IconButton, InputLabel, MenuItem, Popover, Select, SelectChangeEvent, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSelector } from 'react-redux';
 import './BasketItem.css';
-import { addFromBasketToBasket, removeFromBasket } from '../basketSlice';
+import { addFromBasketToBasket, changeDays, removeFromBasket, resetAddError, resetRemoveError } from '../basketSlice';
 import { useAppDispatch } from '../../../store';
 import User from '../../auth/types/User';
 import { selectUser } from '../../auth/selectors';
@@ -13,7 +13,7 @@ import { selectAddError, selectDeleteError } from '../selectBasket';
 
 function BasketItem({ item }: { item: ItemInBasket }): JSX.Element {
   const dispatch = useAppDispatch();
-  const [days, setDays] = React.useState('1');
+  const [days, setDays] = useState('1');
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const openPopover = Boolean(anchorEl);
@@ -26,10 +26,12 @@ function BasketItem({ item }: { item: ItemInBasket }): JSX.Element {
 
   const handleClosePopover = (): void => {
       setAnchorEl(null);
+      dispatch(resetAddError());
   };
 
 function handleChangeDays(inputDays: string): void {
     setDays(inputDays);
+    dispatch(changeDays({ id: item.id, days: inputDays }));
   }
 
 function cutPrice(price: string): string | number {
@@ -44,18 +46,15 @@ function cutPrice(price: string): string | number {
 
   const selectUs = useSelector(selectUser);
   const selectAdd = useSelector(selectAddError);
-  const selectDelete = useSelector(selectDeleteError);
 
   function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): any {
-    if (!selectAdd) {
-    dispatch(addFromBasketToBasket({ user, itemId, days: 0 }));
-    }
+    dispatch(addFromBasketToBasket({ user, itemId, days }));
     handleClickPopover(event);
   }
 
   function deleteFromBasket(user: User | undefined, itemId: number): any {
-    dispatch(removeFromBasket({ user, itemId, days: 0 }));
+    dispatch(removeFromBasket({ user, itemId, days }));
   }
 
   return (
@@ -73,10 +72,10 @@ function cutPrice(price: string): string | number {
           <MenuItem value="1">1</MenuItem>
           <MenuItem value="2">2</MenuItem>
           <MenuItem value="3">3</MenuItem>
-          <MenuItem value="3">4</MenuItem>
-          <MenuItem value="3">5</MenuItem>
-          <MenuItem value="3">6</MenuItem>
-          <MenuItem value="3">7</MenuItem>
+          <MenuItem value="4">4</MenuItem>
+          <MenuItem value="5">5</MenuItem>
+          <MenuItem value="6">6</MenuItem>
+          <MenuItem value="7">7</MenuItem>
         </Select>
 </FormControl>
 )}
@@ -94,7 +93,7 @@ function cutPrice(price: string): string | number {
 )}
 <CardActions>
 <IconButton onClick={(event) => addToBasket(selectUs, item.id, event)}><AddIcon /></IconButton>
-{(selectAdd || selectDelete) && (
+{(selectAdd) && (
 <Popover
   id={id}
   open={openPopover}

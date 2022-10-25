@@ -9,7 +9,7 @@ export async function loadBasket(): Promise<OrderData[]> {
 }
 
 export async function sendToBasket(basData: BasketData):
- Promise<{ item?: Item, status: string, days: string | number }> {
+ Promise<{ item?: Item, status: string, days: string }> {
     const response = await fetch('/api/basket', {
       method: 'POST',
       body: JSON.stringify(basData),
@@ -45,7 +45,7 @@ Promise<any> {
       'Content-Type': 'application/json',
     },
   });
-
   const data = await response.json();
   return data;
 }
+

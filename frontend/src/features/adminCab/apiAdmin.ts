@@ -1,4 +1,5 @@
 import CredentialsItem from './types/CredentialsItem';
+import OrderAdminData from './types/OrderAdminData';
 
 // eslint-disable-next-line import/prefer-default-export
 export async function addItem(newItem: CredentialsItem): Promise<void> {
@@ -17,4 +18,9 @@ export async function addItem(newItem: CredentialsItem): Promise<void> {
   }
 
     return data;
+}
+
+export async function loadOrders(): Promise<OrderAdminData[]> {
+  const response = await fetch('/api/admin/orders');
+  return response.json();
 }
