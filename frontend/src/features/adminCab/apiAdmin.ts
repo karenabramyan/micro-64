@@ -1,14 +1,13 @@
-import CredentialsItem from './types/CredentialsItem';
 import OrderAdminData from './types/OrderAdminData';
 
 // eslint-disable-next-line import/prefer-default-export
-export async function addItem(newItem: CredentialsItem): Promise<void> {
+export async function addItem(newItem: any): Promise<void> {
   const response = await fetch('/api/admin-item', {
     method: 'POST',
-    body: JSON.stringify(newItem),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    body: newItem,
+    // headers: {
+    //   'Content-Type': 'multipart/form-data',
+    // },
   });
 
   const data = await response.json();

@@ -10,16 +10,16 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-        },
+        // references: {
+        //   model: 'Users',
+        // },
         onDelete: 'cascade',
       },
       itemId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Items',
-        },
+        // references: {
+        //   model: 'Items',
+        // },
         onDelete: 'cascade',
       },
       createdAt: {

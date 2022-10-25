@@ -3,5 +3,7 @@ export default interface OrderAdminData {
     userPhone: string,
     itemTitle: string,
     days: number,
+    type: string,
+    price: string,
     orderStatus: string,
   }

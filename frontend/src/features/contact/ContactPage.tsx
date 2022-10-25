@@ -1,17 +1,18 @@
 import React from 'react';
-import { YMaps, Map, Placemark } from "react-yandex-maps";
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './contact.css';
+
 const mapData = {
     center: [51.5405600, 46.0086100],
     zoom: 9,
   };
 
   const coordinates = [
-    [51.531271,46.021474],
+    [51.531271, 46.021474],
     // [57.684758, 39.738521]
   ];
 
-function ContactPage() {
+function ContactPage(): JSX.Element {
     return (
         <div className="contactCont">
             <h2>Контакты</h2>
@@ -21,7 +22,7 @@ function ContactPage() {
             <p>Телефон для связи: +7(917)310-21-11 </p>
             <YMaps>
             <Map defaultState={mapData}>
-            {coordinates.map(coordinate => <Placemark geometry={coordinate} />)}
+            {coordinates.map((coordinate) => <Placemark geometry={coordinate} />)}
             </Map>
             </YMaps>
         </div>
