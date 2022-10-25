@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-
 import { Route, Routes } from 'react-router-dom';
-
 import Main from './Main';
 import RentItemList from '../features/cards/ItemList/RentItemList';
 import BuyItemList from '../features/cards/ItemList/BuyItemList';
@@ -25,6 +23,7 @@ function App(): JSX.Element {
     dispatch(getUser());
   }, [dispatch]);
   return (
+
     <Routes>
         <Route path="/" element={<Main />}>
           <Route path="/info" element={<InfoList />} />
