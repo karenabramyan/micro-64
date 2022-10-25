@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 export default function InfoCard({ props }:any): JSX.Element {
   function cutBody(text: string): string {
@@ -13,6 +14,13 @@ export default function InfoCard({ props }:any): JSX.Element {
     }
       return text;
   }
+
+  const navigate = useNavigate();
+  function navigatePage(way: string): void {
+    navigate(way);
+  }
+  console.log(props);
+
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -24,7 +32,7 @@ export default function InfoCard({ props }:any): JSX.Element {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" id={props.id} onClick={() => navigatePage(`/info/infopage/${props.id}`)}>Learn More</Button>
       </CardActions>
     </Card>
   );

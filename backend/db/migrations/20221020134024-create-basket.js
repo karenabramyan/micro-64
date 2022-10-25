@@ -24,6 +24,9 @@ module.exports = {
         // },
         // onDelete: 'cascade',
       },
+      days: {
+        type: Sequelize.INTEGER,
+      },
       orderStatus: {
         type: Sequelize.BOOLEAN,
       },
