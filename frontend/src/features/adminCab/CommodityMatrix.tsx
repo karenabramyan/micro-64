@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import itemSlice, { loadCards } from '../cards/itemSlice';
 import { selectAdminItems } from './selectAdminItems';
 import AdminItem from './AdminItem';
