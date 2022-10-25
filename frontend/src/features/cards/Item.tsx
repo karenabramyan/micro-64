@@ -1,21 +1,9 @@
 import React from 'react';
-import {
-  CardMedia,
-  Card,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  IconButton,
-} from '@mui/material';
-
 import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButton, Popover } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import { useSelector } from 'react-redux';
-import { create } from 'domain';
-import { idText } from 'typescript';
 import Item from './types/Item';
 import ModalWindow from './ModaWindow';
 import { useAppDispatch } from '../../store';
@@ -23,11 +11,12 @@ import { selectUser } from '../auth/selectors';
 import { sendToBasket, resetSendError } from '../basket/basketSlice';
 import User from '../auth/types/User';
 
-import { createLikes, removeLike } from '../favorites/likes/likeSlice';
-import { selectLikes } from '../favorites/selectLikes';
+import { createLikes } from '../favorites/likes/likeSlice';
+// import { selectLikes } from '../favorites/selectLikes';
 import { selectSendError } from './selectItems';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
+  const dispatch = useAppDispatch();
     const [open, setOpen] = React.useState(false);
     // const [error, setError] = React.useState<string | undefined>(undefined);
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -44,9 +33,8 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
       setAnchorEl(null);
     };
 
-    const handleOpen = (): void => setOpen(true);
     const handleClose = (): void => setOpen(false);
-    const likeSelect = useSelector(selectLikes);
+    // const likeSelect = useSelector(selectLikes);
     const selectUs = useSelector(selectUser);
     const selectSendErr = useSelector(selectSendError);
   // из likeSlice

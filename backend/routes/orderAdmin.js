@@ -15,20 +15,19 @@ router
       if (ordersData) {
         for (const order of ordersData) {
           const item = await Item.findOne({ where: { id: order.itemId }, raw: true });
-          console.log(item);
           const userFromOrder = await User.findOne({ where: { id: order.userId }, raw: true });
-          console.log(userFromOrder);
           const orderForAdmin = {
             userId: userFromOrder.id,
             userPhone: userFromOrder.phone,
             itemTitle: item.title,
+            type: item.type,
             days: order.days,
-            orderStatus: orders.status,
+            price: item.price,
+            orderStatus: order.status,
           };
-          order.push(orderForAdmin);
+          orders.push(orderForAdmin);
         }
       }
-      console.log(orders);
       return res.json(orders);
     }
   });

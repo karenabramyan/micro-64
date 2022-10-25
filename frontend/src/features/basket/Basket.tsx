@@ -17,7 +17,6 @@ function Basket(): JSX.Element {
   const dispatch = useAppDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
 
-
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 

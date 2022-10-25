@@ -137,9 +137,6 @@ const basketSlice = createSlice({
           .addCase(addFromBasketToBasket.rejected, (state, action) => {
             state.addError = action.error.message;
           })
-          .addCase(removeFromBasket.fulfilled, (state, action) => {
-            state.basket = state.basket.filter(
-              (s) => s !== action.payload);
           .addCase(removeFromBasket.fulfilled, (state: BasketState, action) => {
             state.deleteError = undefined;
             const itemForRemove = state.basket.findIndex(

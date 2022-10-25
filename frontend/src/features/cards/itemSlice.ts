@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const loadCards = createAsyncThunk(
-  'students/loadStudents',
+  'items/loadItems',
   () => api.loadItems()
 );
 
