@@ -39,7 +39,7 @@ router
     const { itemId } = req.body;
     const adminItemForRemove = await Item.findOne({ where: { id: itemId } });
     if (adminItemForRemove) {
-      console.log(adminItemForRemove)
+      console.log(adminItemForRemove);
       await Item.destroy({ where: { id: adminItemForRemove.id } });
       return res.json({ itemId });
     }
