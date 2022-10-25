@@ -1,18 +1,14 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
-import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButton, Popover } from '@mui/material';
+import { CardMedia, Card, CardContent, Typography, CardActions, Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
-import { useSelector } from 'react-redux';
 import Item from '../cards/types/Item';
-import ModalWindow from '../cards/ModaWindow';
 import { useAppDispatch } from '../../store';
-import { selectUser } from '../auth/selectors';
-import { sendToBasket, resetSendError } from '../basket/basketSlice';
-import User from '../auth/types/User';
-import { selectSendError } from '../cards/selectItems';
-import { removeItem} from './adminItemSlice';
+// import { sendToBasket, resetSendError } from '../basket/basketSlice';
+// import User from '../auth/types/User';
+// import { selectSendError } from '../cards/selectItems';
+import { removeItem } from './adminItemSlice';
 
 // написать функцию на удаление карточки
 // добавить кнопку на изменение и написать на нее функци
