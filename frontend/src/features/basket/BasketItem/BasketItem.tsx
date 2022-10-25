@@ -4,12 +4,12 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSelector } from 'react-redux';
 import './BasketItem.css';
-import { addFromBasketToBasket, changeDays, removeFromBasket, resetAddError, resetRemoveError } from '../basketSlice';
+import { addFromBasketToBasket, changeDays, removeFromBasket, resetAddError } from '../basketSlice';
 import { useAppDispatch } from '../../../store';
 import User from '../../auth/types/User';
 import { selectUser } from '../../auth/selectors';
 import ItemInBasket from '../types/ItemInBasket';
-import { selectAddError, selectDeleteError } from '../selectBasket';
+import { selectAddError } from '../selectBasket';
 
 function BasketItem({ item }: { item: ItemInBasket }): JSX.Element {
   const dispatch = useAppDispatch();

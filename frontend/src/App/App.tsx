@@ -17,7 +17,6 @@ import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
 
-
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -40,7 +39,6 @@ function App(): JSX.Element {
           <Route path="/admincab" element={<AdminCab />} />
           <Route path="/adminorders" element={<AdminOrders />} />
           <Route path="/contacts" element={<ContactPage />} />
-          
 
         </Route>
     </Routes>
