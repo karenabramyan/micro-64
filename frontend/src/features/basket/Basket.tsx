@@ -6,7 +6,6 @@ import BasketItem from './BasketItem/BasketItem';
 import { loadBasket, makeOrderBasket } from './basketSlice';
 import { selectBasket, selectTotalItems } from './selectBasket';
 import ItemInBasket from './types/ItemInBasket';
-import * as api from './apiBasket';
 import ModalWindowOrder from './ModaWindowOrder';
 
 function Basket(): JSX.Element {

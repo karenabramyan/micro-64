@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Action } from '@remix-run/router';
 import Item from '../../cards/Item';
-import { RootState, useAppDispatch } from '../../../store';
+import { useAppDispatch } from '../../../store';
 import { loadLikes } from './likeSlice';
-import { selectLikes, selectItems } from '../selectLikes';
-import { loadItems } from '../../cards/api';
+import { selectLikes } from '../selectLikes';
 
 function Like(): JSX.Element {
   const dispatch = useAppDispatch();

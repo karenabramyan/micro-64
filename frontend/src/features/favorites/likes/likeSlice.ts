@@ -15,7 +15,7 @@ export const loadLikes = createAsyncThunk('likes/loadLikes', () =>
 
 export const createLikes = createAsyncThunk(
   'likes/createLikes',
-  async (likData: LikData): Promise<{like?: Like, status?: string, itemId?: number}> => {
+  async (likData: LikData): Promise<{ like?: Like, status?: string, itemId?: number }> => {
     const newLike = await api.createLike(likData);
     if (newLike.like) {
       return newLike;
@@ -47,14 +47,14 @@ const likeSlice = createSlice({
         // console.log(action.payload);
 
         if (action.payload.like) {
-          console.log(action.payload.like)
-          console.log(state.likes)
+          console.log(action.payload.like);
+          console.log(state.likes);
           // state.likes.push();
         }
         if (action.payload.status === 'destroy') {
           state.likes = state.likes.filter((l) => l.id !== action.payload.itemId);
         }
-      })
+      });
       // .addCase(removeLike.fulfilled, (state, action) => {
       //   state.likes = state.likes.filter((l) => l !== action.payload);
       // });

@@ -6,7 +6,7 @@ function InfoPage(): JSX.Element {
     const { id } = useParams();
     // const [count, setCount] = useState(Number(id));
     // console.log(count);
-    
+
     // function handleClicPlus():void {
     //     if(count >= 5){
     //         setCount(1)
@@ -26,12 +26,12 @@ function InfoPage(): JSX.Element {
     //     }
     // }
     const navigate = useNavigate();
-    function navigatePage(way: string) {
-        if(Number(way) >= 6){
+    function navigatePage(way: string): void {
+        if (Number(way) >= 6) {
             navigate(`/info/infopage/${1}`);
-        }else if(Number(way) <= 0){
+        } else if (Number(way) <= 0) {
             navigate(`/info/infopage/${5}`);
-        }else{
+        } else {
             navigate(`/info/infopage/${way}`);
         }
     }
@@ -40,7 +40,7 @@ function InfoPage(): JSX.Element {
         <div className="container">
             <div className="topCont">{oneItem[0].name}</div>
             <div className="botCont">{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
-            <button onClick={()=> navigatePage(`${Number(id)-1}`)}>Предыдущая статья</button><button onClick={()=> navigatePage(`${Number(id) + 1}`)}>Следующая статья</button>
+            <button type="button" onClick={() => navigatePage(`${Number(id) - 1}`)}>Предыдущая статья</button><button type="button" onClick={() => navigatePage(`${Number(id) + 1}`)}>Следующая статья</button>
         </div>
     );
 }
