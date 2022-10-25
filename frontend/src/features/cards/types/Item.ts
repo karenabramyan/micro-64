@@ -9,3 +9,5 @@ export default interface Item {
     range?: string,
     amount?: number
 }
+
+export type ItemId = Item['id'];

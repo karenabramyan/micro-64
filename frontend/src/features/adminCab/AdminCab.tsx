@@ -1,6 +1,6 @@
 import { Button, TextField, Typography, Container, FormGroup } from '@mui/material';
 // import { type } from 'os';
-import { useState } from 'react';
+import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CredentialsItem from './types/CredentialsItem';
@@ -18,17 +18,20 @@ function AdminCab(): JSX.Element {
   const [type, setType] = useState<string>('');
   const [capacity, setCapacity] = useState<number>(0);
   const [range, setRange] = useState<number>(0);
-  const [img, setImg] = useState<string>('');
+  const [img, setImg] = useState<any>(null);
   const [amount, setAmount] = useState<number>(0);
 
-  function handleItemSubmit(): void {
+  function handleItemSubmit(event: React.FormEvent<HTMLFormElement>): void {
     // eslint-disable-next-line no-restricted-globals
     event!.preventDefault();
-    const newItem: CredentialsItem = {
-      title, category, price, description, type, capacity, range, img, amount
-    };
-    api.addItem(newItem);
-    navigate('/');
+    // const newItem: CredentialsItem = {
+    //   title, category, price, description, type, capacity, range, img, amount
+    // };
+
+    const data = new FormData(event.target as HTMLFormElement);
+    // data.append('1', img)
+    api.addItem(data);
+    // navigate('/');
   }
 
   function handleTitleChange(inputTitle: string): void {
@@ -67,32 +70,33 @@ function AdminCab(): JSX.Element {
 
   return (
     <Container>
-      <form className="form-item" onSubmit={handleItemSubmit}>
+      <form className="form-item" onSubmit={handleItemSubmit} encType="multipart/form-data">
         <FormGroup>
           <Typography variant="h6"> Добавить новый товар</Typography>
 
-          <TextField variant="outlined" margin="dense" label="Название" type="text" value={title} onChange={(event) => handleTitleChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Название" name="title" type="text" value={title} onChange={(event) => handleTitleChange(event.target.value)} />
 
-          <TextField variant="outlined" margin="dense" label="Категория" type="text" value={category} onChange={(event) => handleCategoryChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Категория" name="category" type="text" value={category} onChange={(event) => handleCategoryChange(event.target.value)} />
 
-          <TextField variant="outlined" margin="dense" label="Цена" type="number" value={price} onChange={(event) => handlePriceChange(Number(event.target.value))} />
+          <TextField variant="outlined" margin="dense" label="Цена" name="price" type="number" value={price} onChange={(event) => handlePriceChange(Number(event.target.value))} />
 
-          <TextField variant="outlined" margin="dense" label="Описание" type="text" value={description} onChange={(event) => handleDescriptionChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Описание" name="description" type="text" value={description} onChange={(event) => handleDescriptionChange(event.target.value)} />
 
-          <TextField variant="outlined" margin="dense" label="Тип сделки" type="text" value={type} onChange={(event) => handleTypeChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Тип сделки" name="type" type="text" value={type} onChange={(event) => handleTypeChange(event.target.value)} />
 
-          <TextField variant="outlined" margin="dense" label="Время работы аккумулятора" type="number" value={capacity} onChange={(event) => handleCapacityChange(Number(event.target.value))} />
+          <TextField variant="outlined" margin="dense" label="Время работы аккумулятора" name="capacity" type="number" value={capacity} onChange={(event) => handleCapacityChange(Number(event.target.value))} />
 
-          <TextField variant="outlined" margin="dense" label="Дальность работы" type="number" value={range} onChange={(event) => handleRangeChange(Number(event.target.value))} />
+          <TextField variant="outlined" margin="dense" label="Дальность работы" name="range" type="number" value={range} onChange={(event) => handleRangeChange(Number(event.target.value))} />
 
-          <TextField variant="outlined" margin="dense" label="Изображение" type="text" value={img} onChange={(event) => handleImgChange(event.target.value)} />
-
-          <TextField variant="outlined" margin="dense" label="Количество" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
+          {/* <input type="file" name="image"/> */}
+          <TextField variant="outlined" margin="dense" name="image" type="file"> </TextField>
+          <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
           <Button type="submit">Добавить</Button>
         </FormGroup>
 
       </form>
     </Container>
+    //  onChange={event => setImg(event.target.files![0])
   );
 }
 
