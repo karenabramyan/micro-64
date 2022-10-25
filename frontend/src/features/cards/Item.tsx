@@ -1,15 +1,30 @@
 import React from 'react';
+import {
+  CardMedia,
+  Card,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  IconButton,
+} from '@mui/material';
+
 import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButton, Popover } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import { useSelector } from 'react-redux';
+import { create } from 'domain';
+import { idText } from 'typescript';
 import Item from './types/Item';
 import ModalWindow from './ModaWindow';
 import { useAppDispatch } from '../../store';
 import { selectUser } from '../auth/selectors';
 import { sendToBasket, resetSendError } from '../basket/basketSlice';
 import User from '../auth/types/User';
+
+import { createLikes, removeLike } from '../favorites/likes/likeSlice';
+import { selectLikes } from '../favorites/selectLikes';
 import { selectSendError } from './selectItems';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
@@ -31,17 +46,21 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
 
     const handleOpen = (): void => setOpen(true);
     const handleClose = (): void => setOpen(false);
-
+    const likeSelect = useSelector(selectLikes);
     const selectUs = useSelector(selectUser);
     const selectSendErr = useSelector(selectSendError);
-
-    const dispatch = useAppDispatch();
+  // из likeSlice
+  function addLike(): void {
+    if (selectUs) {
+      dispatch(createLikes({ userId: selectUs.id, itemId: item.id }));
+    }
+  }
 
   function cutTitle(text: string): string {
     if (text.length > 48) {
       return `${text.slice(0, 48)}...`;
     }
-      return text;
+    return text;
   }
 
   // const addToBasket = React.useCallback(
@@ -85,19 +104,25 @@ function addToBasket(user: User | undefined, itemId: number,
         className="image-micro"
       />
       <CardContent>
-      {/* <Typography variant="body2" color="text.secondary">
+        {/* <Typography variant="body2" color="text.secondary">
           {item.category}
         </Typography> */}
-        <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          className="item-title"
+          title={item.title}
+        >
           {cutTitle(item.title)}
         </Typography>
         <Typography gutterBottom variant="h3" component="h3">
           {cutPrice(item.price)}
           <CurrencyRubleIcon />
         </Typography>
-
       </CardContent>
       <CardActions className="button-container">
+
         <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)}>Заказать</Button>
         {selectSendErr && (
 <Popover
@@ -115,7 +140,9 @@ function addToBasket(user: User | undefined, itemId: number,
 )}
 
         <ModalWindow open={open} handleClose={handleClose} />
-        <IconButton size="medium" color="inherit" onClick={handleOpen}><FavoriteBorderIcon /></IconButton>
+        <IconButton size="medium" color="inherit" onClick={addLike}>
+          <FavoriteBorderIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );

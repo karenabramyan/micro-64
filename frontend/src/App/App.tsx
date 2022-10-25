@@ -11,10 +11,12 @@ import { useAppDispatch } from '../store';
 import { getUser } from '../features/auth/authSlice';
 import Basket from '../features/basket/Basket';
 import InfoList from '../features/Infopages/InfopagesList/InfoList';
+import Like from '../features/favorites/likes/Like';
 import InfoPage from '../features/Infopages/InfopagesList/InfoPage';
 import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -33,11 +35,13 @@ function App(): JSX.Element {
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/like" element={<Like />} />
           <Route path="/info/infopage/:id" element={<InfoPage />} />
           <Route path="/admincab" element={<AdminCab />} />
           <Route path="/adminorders" element={<AdminOrders />} />
           <Route path="/contacts" element={<ContactPage />} />
           
+
         </Route>
     </Routes>
   );
