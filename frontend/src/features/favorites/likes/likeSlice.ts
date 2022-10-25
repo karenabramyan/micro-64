@@ -9,37 +9,38 @@ const initialState = {
   likes: [],
 };
 
-export const loadLikes = createAsyncThunk(
-    'likes/loadLikes',
-    () => api.loadLikes()
+export const loadLikes = createAsyncThunk('likes/loadLikes', () =>
+  api.loadLikes()
 );
 
 export const createLikes = createAsyncThunk(
-    'likes/createLikes',
-    async (likData: LikData): Promise<{ like?: Like }> => {
-        const newLike = await api.createLike(likData);
-        if (newLike.like) {
-            return { like: newLike.like };
-        }
-        return newLike;
+  'likes/createLikes',
+  async (likData: LikData): Promise<Like> => {
+    const newLike = await api.createLike(likData);
+    if (newLike.itemId) {
+      return newLike;
     }
+    return newLike;
+  }
 );
 
 const likeSlice = createSlice({
-    name: 'likes',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(loadLikes.fulfilled, (state: LikeState, action) => {
-            state.likes = action.payload;
-        })
-        .addCase(createLikes.fulfilled, (state: LikeState, action) => {
-            if (action.payload.like) {
-                state.likes.push(action.payload.like);
-            }
-        });
-    }
+  name: 'likes',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadLikes.fulfilled, (state: LikeState, action) => {
+        state.likes = action.payload;
+      })
+      .addCase(createLikes.fulfilled, (state: LikeState, action) => {
+        console.log(action.payload);
+        
+        if (action.payload) {
+          state.likes.push(action.payload);
+        }
+      });
+  },
 });
 
 export default likeSlice.reducer;

@@ -5,3 +5,4 @@ export default interface User {
     email: string,
     role: string
 }
+export type UserId = User['id'];

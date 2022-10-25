@@ -10,3 +10,6 @@ export const selectLikes = (
 export const selectItems = (
     state: RootState
 ): Item[] => state.like.likes;
+
+export const selectUserId = (state: RootState): number | undefined =>
+state.auth.user?.id;

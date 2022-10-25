@@ -11,7 +11,7 @@ function Like(): JSX.Element {
   const dispatch = useAppDispatch();
   const likeSelect = useSelector(selectLikes);
   // const itemSelect = useSelector(selectItems);
-  console.log(likeSelect);
+  // console.log(likeSelect);
 
   // function addLike(userId: number, itemId: number):void {
   // dispatch(createLikes({ userId, itemId }));

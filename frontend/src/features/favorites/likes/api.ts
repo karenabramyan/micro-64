@@ -8,7 +8,9 @@ export async function loadLikes(): Promise<Like[]> {
   return response.json();
 }
 
-export async function createLike(likData: LikData) : Promise<{ like?: Like }> {
+export async function createLike(likData: LikData) : Promise<Like> {
+  // console.log(likData);
+  
   const response = await fetch('/api/likes', {
     method: 'POST',
     body: JSON.stringify(likData),
