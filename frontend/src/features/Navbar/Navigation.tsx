@@ -246,13 +246,13 @@ function Navigation(): JSX.Element {
               </Button>
               <Button
                 onClick={() => navigatePage('/basket')}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ color: 'white'}}
               >
                 корзина
               </Button>
               <Button
                 onClick={() => navigatePage('/like')}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ color: 'white'}}
               >
               избранное
               </Button>
