@@ -17,7 +17,16 @@ export const removeItem = createAsyncThunk(
   async (itemId: number) => {
     const data = await apiAdmin.deleteAdminItem(itemId);
     if (data.itemId) return data.itemId;
-    // throw new Error(data.status)
+  }
+);
+
+export const changeItem = createAsyncThunk(
+  'items/changeItem',
+  async (itemData:
+    { itemId: number, price: string, amount: number }) => {
+    const data = await apiAdmin.changeItem(itemData);
+    if (data.itemId) return data;
+    throw new Error(data.error);
   }
 );
 
@@ -32,6 +41,10 @@ const cardSlice = createSlice({
       })
       .addCase(removeItem.fulfilled, (state: ItemState, action) => {
         state.items = state.items.filter((i) => i.id !== Number(action.payload));
+      })
+      .addCase(changeItem.fulfilled, (state: ItemState, action) => {
+        state.items = state.items.map((el) => (el.id === action.payload.itemId) ?
+        { ...el, price: action.payload.price, amount: action.payload.amount } : el);
       });
   },
   }
