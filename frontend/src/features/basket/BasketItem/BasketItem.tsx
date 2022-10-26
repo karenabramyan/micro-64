@@ -35,7 +35,13 @@ function handleChangeDays(inputDays: string): void {
   }
 
 function cutPrice(price: string): string | number {
-    const text = price.toString();
+  let newPrice: any;
+  if (Number(days) > 0) {
+    newPrice = Number(price) * Number(days);
+  } else {
+    newPrice = Number(price);
+  }
+    const text = newPrice.toString();
     if (text.length > 3) {
       const secondPart = text.slice(-3);
       const firstPart = text.slice(0, text.length - 3);

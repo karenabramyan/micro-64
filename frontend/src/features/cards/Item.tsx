@@ -40,6 +40,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
   // из likeSlice
   function addLike(): void {
     if (selectUs) {
+
       dispatch(createLikes({ userId: selectUs.id, itemId: item.id }));
     }
   }
@@ -65,6 +66,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
 
 function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): void {
+      console.log(user)
       dispatch(sendToBasket({ user, itemId, days: 0 }));
       handleClickPopover(event);
       // if ('error' in result) {
