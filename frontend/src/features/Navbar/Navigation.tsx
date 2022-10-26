@@ -18,9 +18,7 @@ import React from 'react';
 import './Nav.css';
 import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/authSlice';
-
 // import { Setting } from './types/Setting';
-
 // const pages: Page[] = [
 //   { name: 'Информация', way: '/' },
 //   { name: 'Аренда', way: '/rent' },
@@ -28,9 +26,7 @@ import { logout } from '../auth/authSlice';
 //   { name: 'Корзина', way: '/basket' },
 //   { name: 'Избранное', way: '/like' },
 // ];
-
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -39,22 +35,18 @@ function Navigation(): JSX.Element {
   //   { name: 'Войти', way: '/login' },
   //   { name: 'Зарегистрироваться', way: '/register' },
   // ];
-
   function navigatePage(way: string): void {
     navigate(way);
     handleCloseNavMenu();
   }
-
   // async function handleLogout() {
   //   await dispatch(logout);
   //   handleCloseUserMenu();
   //   navigate('/');
   // }
-
   const handleLogout = React.useCallback(
     async (event: React.MouseEvent) => {
       event.preventDefault();
-
       const dispatchResult = await dispatch(logout());
       if (logout.fulfilled.match(dispatchResult)) {
         navigate('/');
@@ -62,31 +54,25 @@ function Navigation(): JSX.Element {
     },
     [dispatch, navigate]
   );
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = (): void => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = (): void => {
     setAnchorElUser(null);
   };
-
   const user = useSelector((state: RootState) => state.auth.user);
-
   return (
     <AppBar position="static">
       <Container className="Navi">
@@ -109,7 +95,6 @@ function Navigation(): JSX.Element {
           >
             MICRO64
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -235,7 +220,7 @@ function Navigation(): JSX.Element {
                 >
                   контакты
                 </Button>
-
+</div>
               ) : (user && user.role !== 'Admin') ? (
               <div>
              <Button
@@ -295,36 +280,8 @@ function Navigation(): JSX.Element {
            >
              заказы клиентов
            </Button>
-
              </div>
               )}
-              <Button
-                onClick={() => navigatePage('/buy')}
-                sx={{ color: 'white' }}
-              >
-                покупка
-              </Button>
-              <Button
-                onClick={() => navigatePage('/contacts')}
-                sx={{ color: 'white' }}
-              >
-                контакты
-              </Button>
-              <Button
-                onClick={() => navigatePage('/basket')}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                корзина
-              </Button>
-
-              <Button
-                onClick={() => navigatePage('/like')}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-              избранное
-              </Button>
-                </div>
-            )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -369,5 +326,4 @@ function Navigation(): JSX.Element {
     </AppBar>
   );
 }
-
 export default Navigation;
