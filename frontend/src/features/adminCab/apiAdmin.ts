@@ -51,3 +51,18 @@ export async function changeOrderStatus(statusData:
 
   return data;
 }
+
+export async function changeItem(itemData:
+  { itemId: number, price: string, amount: number }):
+   Promise<{ itemId?: number, price: string, amount?: number, error?: string }> {
+  const response = await fetch('/api/admin-item', {
+    method: 'PUT',
+    body: JSON.stringify(itemData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}

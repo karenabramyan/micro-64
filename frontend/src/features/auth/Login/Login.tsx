@@ -6,7 +6,7 @@ import { Button, Container, FormGroup, TextField, Typography } from '@mui/materi
 // import { selectLoginFormError } from './selectors';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../store';
-import { login } from '../authSlice';
+import { login, resetLoginFormError } from '../authSlice';
 import './Login.css';
 import { selectAuth, selectLoginFormError } from '../selectors';
 
@@ -26,6 +26,7 @@ function handleSubmit(event: React.FormEvent): void {
           password,
         })
       );
+      dispatch(resetLoginFormError());
 }
 
 useEffect(() => {
@@ -35,23 +36,24 @@ useEffect(() => {
 }, [selector, navigate]);
 
   function handleEmailChange(inputEmail: string): void {
-    setEmail(inputEmail);
+  setEmail(inputEmail);
 }
 
-function handlePasswordChange(inputPassword: string): void {
+  function handlePasswordChange(inputPassword: string): void {
   setPassword(inputPassword);
 }
 
   return (
-    <Container>
+    <Container className="container-login">
       <form onSubmit={handleSubmit}>
       <FormGroup className="form-group">
         <Typography variant="h5">Вход</Typography>
+        <br />
         <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
         <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePasswordChange(event.target.value)} />
 
         <br />
-        <Button type="submit">Вход</Button>
+        <Button type="submit" size="large" color="error" variant="contained">Вход</Button>
       </FormGroup>
       </form>
       {errorLog && (<Typography className="err-form-error" variant="overline">{errorLog}</Typography>)}
