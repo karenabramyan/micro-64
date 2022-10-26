@@ -16,6 +16,8 @@ import InfoPage from '../features/Infopages/InfopagesList/InfoPage';
 import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
+import Carousel from '../features/slider/Slider';
+
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 
 function App(): JSX.Element {
@@ -29,7 +31,7 @@ function App(): JSX.Element {
     <Routes>
       <Route path="/" element={<Main />}>
         <Route path="/info" element={<InfoList />} />
-        <Route path="/" element={<ItemList />} />
+        <Route path="/" element={<Carousel />} />
         <Route path="/rent" element={<RentItemList />} />
         <Route path="/buy" element={<BuyItemList />} />
         <Route path="/register" element={<Registration />} />
@@ -43,6 +45,7 @@ function App(): JSX.Element {
         <Route path="/commodity-matrix" element={<CommodityMatrix />} />
 
       </Route>
+>>>>>>> origin/dev
 
     </Routes>
   );

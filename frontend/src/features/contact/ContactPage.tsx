@@ -14,6 +14,7 @@ const mapData = {
 
 function ContactPage(): JSX.Element {
     return (
+      <>
         <div className="contactCont">
             <h2>Контакты</h2>
             <h3>Тел: +7(917)310-21-11</h3>
@@ -26,6 +27,7 @@ function ContactPage(): JSX.Element {
             </Map>
             </YMaps>
         </div>
+        </>
     );
 }
 
