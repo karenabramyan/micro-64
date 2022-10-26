@@ -39,9 +39,23 @@ router
     const { itemId } = req.body;
     const adminItemForRemove = await Item.findOne({ where: { id: itemId } });
     if (adminItemForRemove) {
-      console.log(adminItemForRemove);
       await Item.destroy({ where: { id: adminItemForRemove.id } });
       return res.json({ itemId });
+    }
+  })
+  .put(async (req, res) => {
+    try {
+      const { itemId, amount, price } = req.body;
+      const adminItemForChange = await Item.findOne({ where: { id: itemId } });
+      if (adminItemForChange) {
+        adminItemForChange.amount = amount;
+        adminItemForChange.price = price;
+        await adminItemForChange.save();
+        return res.json({ itemId, amount, price });
+      }
+      return res.json({ error: 'Не удалось изменить товар', amount, price });
+    } catch (err) {
+      return res.json({ error: err.message });
     }
   });
 

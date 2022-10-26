@@ -1,20 +1,21 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import { CardMedia, Card, CardContent, Typography, CardActions, Button } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
-import Item from '../cards/types/Item';
-import { useAppDispatch } from '../../store';
-// import { sendToBasket, resetSendError } from '../basket/basketSlice';
-// import User from '../auth/types/User';
-// import { selectSendError } from '../cards/selectItems';
-import { removeItem } from '../cards/itemSlice';
+import Item from '../../cards/types/Item';
+import { useAppDispatch } from '../../../store';
+import { removeItem } from '../../cards/itemSlice';
+import './AdminItem.css';
+import ModalItemAdmin from './ModaItemAdmin';
 
-// написать функцию на удаление карточки
 // добавить кнопку на изменение и написать на нее функци
 // создать файл слайс для удалений и изменений без обновлений
 
 function AdminItem({ item }: { item: Item }): JSX.Element {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = (): void => setOpen(true);
+  const handleClose = (): void => setOpen(false);
+
   const dispatch = useAppDispatch();
 
   function cutTitle(text: string): string {
@@ -52,15 +53,24 @@ function AdminItem({ item }: { item: Item }): JSX.Element {
         <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
           {cutTitle(item.title)}
         </Typography>
-        <Typography gutterBottom variant="h3" component="h3">
-          {cutPrice(item.price)}
-          <CurrencyRubleIcon />
+        <Typography gutterBottom variant="h6" component="h3">
+          {`Цена: ${cutPrice(item.price)} руб.`}
         </Typography>
-
+        <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
+         На складе: {item.amount} шт.
+        </Typography>
       </CardContent>
-      <CardActions className="button-container">
-        <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={() => removeItems(item.id)}>удалить</Button>
+      <CardActions className="button-container-admin">
+      <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>изменить</Button>
+        <Button size="medium" color="inherit" variant="outlined" onClick={() => removeItems(item.id)}>удалить</Button>
       </CardActions>
+      <ModalItemAdmin
+        open={open}
+        handleClose={handleClose}
+        amountStart={item.amount}
+        priceStart={item.price}
+        itemId={item.id}
+      />
     </Card>
   );
 }

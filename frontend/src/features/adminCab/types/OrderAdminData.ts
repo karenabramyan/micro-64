@@ -1,9 +1,10 @@
 export default interface OrderAdminData {
-    userId: number,
+    id: number,
     userPhone: string,
     itemTitle: string,
     days: number,
     type: string,
     price: string,
+    date: string,
     orderStatus: string,
   }
