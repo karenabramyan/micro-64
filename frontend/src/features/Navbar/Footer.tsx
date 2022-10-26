@@ -28,9 +28,9 @@ export default function Footer(): JSX.Element {
           <Box component="nav" display="flex" flexDirection="column" className="foot">
             <Link href="/" variant="body1" color="textPrimary">Главная</Link> {' '}
             <Link href="/info" variant="body1" color="textPrimary">Статьи</Link> {' '}
-            <Link href="rent" variant="body1" color="textPrimary">Аренда</Link> {' '}
-            <Link href="buy" variant="body1" color="textPrimary">Покупка</Link> {' '}
-            <Link href="buy" variant="body1" color="textPrimary">Контакты</Link> {' '}
+            <Link href="/rent" variant="body1" color="textPrimary">Аренда</Link> {' '}
+            <Link href="/buy" variant="body1" color="textPrimary">Покупка</Link> {' '}
+            <Link href="/contacts" variant="body1" color="textPrimary">Контакты</Link> {' '}
           </Box>
           {/* <Typography color="textSecondary" component="p" variant="caption"
           gutterBottom={false} /> */}
