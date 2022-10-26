@@ -17,30 +17,29 @@ import { selectSendError } from './selectItems';
 
 function ItemCard({ item }: { item: Item }): JSX.Element {
   const dispatch = useAppDispatch();
-    const [open, setOpen] = React.useState(false);
-    // const [error, setError] = React.useState<string | undefined>(undefined);
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-    const openPopover = Boolean(anchorEl);
+  const [open, setOpen] = React.useState(false);
+  // const [error, setError] = React.useState<string | undefined>(undefined);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const openPopover = Boolean(anchorEl);
 
-    const id = openPopover ? 'simple-popover' : undefined;
+  const id = openPopover ? 'simple-popover' : undefined;
 
-    const handleClickPopover = (event: React.MouseEvent<HTMLButtonElement>): void => {
-      setAnchorEl(event.currentTarget);
-    };
+  const handleClickPopover = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    const handleClosePopover = (): void => {
-      dispatch(resetSendError());
-      setAnchorEl(null);
-    };
+  const handleClosePopover = (): void => {
+    dispatch(resetSendError());
+    setAnchorEl(null);
+  };
 
-    const handleClose = (): void => setOpen(false);
-    // const likeSelect = useSelector(selectLikes);
-    const selectUs = useSelector(selectUser);
-    const selectSendErr = useSelector(selectSendError);
+  const handleClose = (): void => setOpen(false);
+  // const likeSelect = useSelector(selectLikes);
+  const selectUs = useSelector(selectUser);
+  const selectSendErr = useSelector(selectSendError);
   // из likeSlice
   function addLike(): void {
     if (selectUs) {
-
       dispatch(createLikes({ userId: selectUs.id, itemId: item.id }));
     }
   }
@@ -64,16 +63,16 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
   //   [dispatch, navigate]
   // );
 
-function addToBasket(user: User | undefined, itemId: number,
+  function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): void {
-      console.log(user)
-      dispatch(sendToBasket({ user, itemId, days: 0 }));
-      handleClickPopover(event);
-      // if ('error' in result) {
-      //   setError(result.error.message);
-      //   console.log(error)
-      //   handleClickPopover(event);
-      // }
+    console.log(user);
+    dispatch(sendToBasket({ user, itemId, days: 0 }));
+    handleClickPopover(event);
+    // if ('error' in result) {
+    //   setError(result.error.message);
+    //   console.log(error)
+    //   handleClickPopover(event);
+    // }
   }
 
   function cutPrice(price: string): string | number {
@@ -115,19 +114,19 @@ function addToBasket(user: User | undefined, itemId: number,
 
         <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)}>Заказать</Button>
         {selectSendErr && (
-<Popover
-  id={id}
-  open={openPopover}
-  anchorEl={anchorEl}
-  onClose={handleClosePopover}
-  anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
->
-          <Typography sx={{ p: 2 }}>{selectSendErr}</Typography>
-</Popover>
-)}
+          <Popover
+            id={id}
+            open={openPopover}
+            anchorEl={anchorEl}
+            onClose={handleClosePopover}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+          >
+            <Typography sx={{ p: 2 }}>{selectSendErr}</Typography>
+          </Popover>
+        )}
 
         <ModalWindow open={open} handleClose={handleClose} />
         <IconButton size="medium" color="inherit" onClick={addLike}>
