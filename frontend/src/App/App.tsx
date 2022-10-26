@@ -16,7 +16,7 @@ import InfoPage from '../features/Infopages/InfopagesList/InfoPage';
 import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
-
+import Carousel from '../features/slider/Slider';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ function App(): JSX.Element {
     <Routes>
         <Route path="/" element={<Main />}>
           <Route path="/info" element={<InfoList />} />
-          <Route path="/" element={<ItemList />} />
+          <Route path="/" element={<Carousel />} />
           <Route path="/rent" element={<RentItemList />} />
           <Route path="/buy" element={<BuyItemList />} />
           <Route path="/register" element={<Registration />} />
