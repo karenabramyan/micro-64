@@ -13,14 +13,14 @@ module.exports = {
         // references: {
         //   model: 'Users',
         // },
-        onDelete: 'cascade',
+        // onDelete: 'cascade',
       },
       itemId: {
         type: Sequelize.INTEGER,
         // references: {
         //   model: 'Items',
         // },
-        onDelete: 'cascade',
+        // onDelete: 'cascade',
       },
       createdAt: {
         allowNull: false,
