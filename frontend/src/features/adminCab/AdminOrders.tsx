@@ -16,7 +16,7 @@ function AdminOrders(): JSX.Element {
       }, [dispatch]);
 
   return (
-    <div className="container">
+    <div className="container-orders">
         <Typography variant="h5">Заказы клиентов</Typography>
         <br />
         <Card className="basket-item">
@@ -26,6 +26,7 @@ function AdminOrders(): JSX.Element {
           <Typography className="admin-order-days" variant="h6">Дни</Typography>
           <Typography className="admin-order-type" variant="h6">Тип заказа</Typography>
           <Typography className="admin-order-price" variant="h6">Цена</Typography>
+          <Typography className="admin-order-date" variant="h6">Дата</Typography>
           <Typography className="admin-order-status" variant="h6">Статус заказа</Typography>
         </Card>
     {orders.map((order) => <OrderForAdmin order={order} key={order.itemTitle} />)}
