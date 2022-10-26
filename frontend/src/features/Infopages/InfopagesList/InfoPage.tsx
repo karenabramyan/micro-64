@@ -1,6 +1,9 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { infoArr } from './InfoArr';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import './Info.css';
 
 function InfoPage(): JSX.Element {
     const { id } = useParams();
@@ -37,10 +40,10 @@ function InfoPage(): JSX.Element {
     }
     const oneItem = infoArr.filter((el) => el.id === Number(id));
     return (
-        <div className="container">
+        <div className="container" >
             <div className="topCont">{oneItem[0].name}</div>
-            <div className="botCont">{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
-            <button type="button" onClick={() => navigatePage(`${Number(id) - 1}`)}>Предыдущая статья</button><button type="button" onClick={() => navigatePage(`${Number(id) + 1}`)}>Следующая статья</button>
+            <div className="botCont" style={{height: '400px', textAlign: 'justify'}}>{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
+            <Button color="error" variant="outlined" type="button" onClick={() => navigatePage(`${Number(id) - 1}`)}>Предыдущая статья</Button><Button type="button" variant="outlined" color="success" onClick={() => navigatePage(`${Number(id) + 1}`)}>Следующая статья</Button>
         </div>
     );
 }
