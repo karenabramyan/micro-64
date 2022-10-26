@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, FormGroup, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  Container,
+  FormGroup,
+  TextField,
+  Typography,
+} from '@mui/material';
 // import { login, resetLoginFormError } from './authSlice';
 // import { selectLoginFormError } from './selectors';
 import { useSelector } from 'react-redux';
@@ -29,13 +35,17 @@ function handleSubmit(event: React.FormEvent): void {
       dispatch(resetLoginFormError());
 }
 
-useEffect(() => {
-  if (selector!.user) {
-  navigate('/rent');
-}
-}, [selector, navigate]);
+  useEffect(() => {
+    if (selector!.user) {
+      navigate('/rent');
+    }
+    if (selector!.user?.role === 'Admin') {
+      navigate('/commodity-matrix');
+    }
+  }, [selector, navigate]);
 
   function handleEmailChange(inputEmail: string): void {
+
   setEmail(inputEmail);
 }
 
@@ -46,6 +56,7 @@ useEffect(() => {
   return (
     <Container className="container-login">
       <form onSubmit={handleSubmit}>
+
       <FormGroup className="form-group">
         <Typography variant="h5">Вход</Typography>
         <br />
@@ -56,7 +67,11 @@ useEffect(() => {
         <Button type="submit" size="large" color="error" variant="contained">Вход</Button>
       </FormGroup>
       </form>
-      {errorLog && (<Typography className="err-form-error" variant="overline">{errorLog}</Typography>)}
+      {errorLog && (
+        <Typography className="err-form-error" variant="overline">
+          {errorLog}
+        </Typography>
+      )}
     </Container>
   );
 }
