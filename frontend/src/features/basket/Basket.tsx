@@ -7,8 +7,12 @@ import { loadBasket, makeOrderBasket } from './basketSlice';
 import { selectBasket, selectTotalItems } from './selectBasket';
 import ItemInBasket from './types/ItemInBasket';
 import ModalWindowOrder from './ModaWindowOrder';
+import { selectUser } from '../auth/selectors';
+import sendApplication from './telegramApi';
 
 function Basket(): JSX.Element {
+  const selectUs = useSelector(selectUser);
+
   const [open, setOpen] = React.useState(false);
 
   const basketItems = useSelector(selectBasket);
@@ -41,29 +45,32 @@ function Basket(): JSX.Element {
   }, [basketItems]);
 
   function makeOrder(items: any): void {
+    console.log(items, 777777777777);
+    console.log(selectUs);
     dispatch(makeOrderBasket(items)).then(() => dispatch(loadBasket()));
+    sendApplication(selectUs, items[0]);
     handleOpen();
   }
 
   return (
     <div>
-        <Typography variant="h5">Корзина</Typography>
-        <br />
-        {(totalItems.length > 0) ?
-         (
-<div>
-          {totalItems.map((item: ItemInBasket) => <BasketItem item={item} key={item.id} />)}
-          <br />
-          <Typography variant="h6">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
-          <br />
-          <Button size="large" color="inherit" variant="outlined" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
-          <br />
-          <br />
+      <Typography variant="h5">Корзина</Typography>
+      <br />
+      {(totalItems.length > 0) ?
+        (
+          <div>
+            {totalItems.map((item: ItemInBasket) => <BasketItem item={item} key={item.id} />)}
+            <br />
+            <Typography variant="h6">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
+            <br />
+            <Button size="large" color="inherit" variant="outlined" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
+            <br />
+            <br />
 
-</div>
-)
-          : (<Typography variant="h6">Вы пока ничего не добавили в корзину!</Typography>)}
-    <ModalWindowOrder open={open} handleClose={handleClose} />
+          </div>
+        )
+        : (<Typography variant="h6">Вы пока ничего не добавили в корзину!</Typography>)}
+      <ModalWindowOrder open={open} handleClose={handleClose} />
     </div>
   );
 }
