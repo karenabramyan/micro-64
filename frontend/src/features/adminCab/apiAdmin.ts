@@ -1,9 +1,7 @@
-import CredentialsItem from './types/CredentialsItem';
 import OrderAdminData from './types/OrderAdminData';
 
 // eslint-disable-next-line import/prefer-default-export
 export async function addItem(newItem: any): Promise<void> {
-  console.log(newItem)
   const response = await fetch('/api/admin-item', {
     method: 'POST',
     body: newItem,
@@ -18,8 +16,24 @@ export async function addItem(newItem: any): Promise<void> {
     throw error;
   }
 
-    return data;
+  return data;
 }
+
+export async function deleteAdminItem(itemId: number): Promise<{ itemId?: number }> {
+  console.log(itemId);
+  const response = await fetch('/api/admin-item', {
+    method: 'DELETE',
+    body: JSON.stringify({ itemId }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}
+
+// написать фетчи на удаление и на изменение
 
 export async function loadOrders(): Promise<OrderAdminData[]> {
   const response = await fetch('/api/admin/orders');

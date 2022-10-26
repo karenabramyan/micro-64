@@ -2,12 +2,12 @@ import { Button, TextField, Typography, Container, FormGroup } from '@mui/materi
 // import { type } from 'os';
 import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import CredentialsItem from './types/CredentialsItem';
+// import { useNavigate } from 'react-router-dom';
+// import CredentialsItem from './types/CredentialsItem';
 import * as api from './apiAdmin';
 
 function AdminCab(): JSX.Element {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const dispatch = useDispatch();
 
   const [title, setTitle] = useState<string>('');
@@ -18,7 +18,7 @@ function AdminCab(): JSX.Element {
   const [type, setType] = useState<string>('');
   const [capacity, setCapacity] = useState<number>(0);
   const [range, setRange] = useState<number>(0);
-  const [img, setImg] = useState<any>(null);
+  // const [img, setImg] = useState<any>(null);
   const [amount, setAmount] = useState<number>(0);
 
   function handleItemSubmit(event: React.FormEvent<HTMLFormElement>): void {
@@ -60,9 +60,9 @@ function AdminCab(): JSX.Element {
     setRange(inputRange);
   }
 
-  function handleImgChange(inputImg: string): void {
-    setImg(inputImg);
-  }
+  // function handleImgChange(inputImg: string): void {
+  //   setImg(inputImg);
+  // }
 
   function handleAmountChange(inputAmount: number): void {
     setAmount(inputAmount);
@@ -89,7 +89,7 @@ function AdminCab(): JSX.Element {
           <TextField variant="outlined" margin="dense" label="Дальность работы" name="range" type="number" value={range} onChange={(event) => handleRangeChange(Number(event.target.value))} />
 
           {/* <input type="file" name="image"/> */}
-          <TextField variant="outlined" margin="dense" name="image" type="file"></TextField>
+          <TextField variant="outlined" margin="dense" name="image" type="file" />
           <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
           <Button type="submit">Добавить</Button>
         </FormGroup>

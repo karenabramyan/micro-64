@@ -33,6 +33,16 @@ router
       amount: data.amount,
     });
     res.json(items);
+  })
+  // eslint-disable-next-line consistent-return
+  .delete(async (req, res) => {
+    const { itemId } = req.body;
+    const adminItemForRemove = await Item.findOne({ where: { id: itemId } });
+    if (adminItemForRemove) {
+      console.log(adminItemForRemove);
+      await Item.destroy({ where: { id: adminItemForRemove.id } });
+      return res.json({ itemId });
+    }
   });
 
 module.exports = router;

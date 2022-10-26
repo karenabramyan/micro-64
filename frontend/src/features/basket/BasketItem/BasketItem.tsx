@@ -4,12 +4,12 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSelector } from 'react-redux';
 import './BasketItem.css';
-import { addFromBasketToBasket, changeDays, removeFromBasket, resetAddError, resetRemoveError } from '../basketSlice';
+import { addFromBasketToBasket, changeDays, removeFromBasket, resetAddError } from '../basketSlice';
 import { useAppDispatch } from '../../../store';
 import User from '../../auth/types/User';
 import { selectUser } from '../../auth/selectors';
 import ItemInBasket from '../types/ItemInBasket';
-import { selectAddError, selectDeleteError } from '../selectBasket';
+import { selectAddError } from '../selectBasket';
 
 function BasketItem({ item }: { item: ItemInBasket }): JSX.Element {
   const dispatch = useAppDispatch();
@@ -35,7 +35,13 @@ function handleChangeDays(inputDays: string): void {
   }
 
 function cutPrice(price: string): string | number {
-    const text = price.toString();
+  let newPrice: any;
+  if (Number(days) > 0) {
+    newPrice = Number(price) * Number(days);
+  } else {
+    newPrice = Number(price);
+  }
+    const text = newPrice.toString();
     if (text.length > 3) {
       const secondPart = text.slice(-3);
       const firstPart = text.slice(0, text.length - 3);

@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate({ User, Item }) {
-      Order.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
+      // Order.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
       // Order.hasMany(Item, { foreignKey: 'itemId', onDelete: 'cascade' });
     }
   }
@@ -17,13 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         type: DataTypes.INTEGER,
-        references: {
-          model: 'User',
-        },
+        // references: {
+        //   model: 'User',
+        // },
       },
       itemId: {
         type: DataTypes.INTEGER,
-        references: { model: 'Items' },
+        // references: { model: 'Items' },
       },
       days: {
         type: DataTypes.INTEGER,
