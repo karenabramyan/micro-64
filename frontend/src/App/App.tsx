@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import Main from './Main';
 import RentItemList from '../features/cards/ItemList/RentItemList';
 import BuyItemList from '../features/cards/ItemList/BuyItemList';
-import ItemList from '../features/cards/ItemList/ItemList';
 import Registration from '../features/auth/Registration';
 import Login from '../features/auth/Login/Login';
 import { useAppDispatch } from '../store';
@@ -45,8 +44,6 @@ function App(): JSX.Element {
         <Route path="/commodity-matrix" element={<CommodityMatrix />} />
 
       </Route>
->>>>>>> origin/dev
-
     </Routes>
   );
 }
