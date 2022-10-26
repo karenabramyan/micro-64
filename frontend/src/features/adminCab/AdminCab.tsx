@@ -1,4 +1,4 @@
-import { Button, TextField, Typography, Container, FormGroup } from '@mui/material';
+import { Button, TextField, Typography, Container, FormGroup, OutlinedInput } from '@mui/material';
 // import { type } from 'os';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -90,7 +90,7 @@ function AdminCab(): JSX.Element {
           <TextField variant="outlined" margin="dense" label="Дальность работы" name="range" type="number" value={range} onChange={(event) => handleRangeChange(Number(event.target.value))} />
 
           {/* <input type="file" name="image"/> */}
-          <OutlinedInput variant="outlined" margin="dense" name="image" type="file" />
+          <TextField variant="outlined" margin="dense" name="image" type="file" />
           <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
           <br />
           <Button type="submit" size="large" color="error" variant="contained">Добавить</Button>
