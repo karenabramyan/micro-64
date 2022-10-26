@@ -17,11 +17,12 @@ router
           const item = await Item.findOne({ where: { id: order.itemId }, raw: true });
           const userFromOrder = await User.findOne({ where: { id: order.userId }, raw: true });
           const orderForAdmin = {
-            userId: userFromOrder.id,
+            id: order.id,
             userPhone: userFromOrder.phone,
             itemTitle: item.title,
             type: item.type,
             days: order.days,
+            date: order.updatedAt,
             price: item.price,
             orderStatus: order.status,
           };
@@ -30,6 +31,16 @@ router
       }
       return res.json(orders);
     }
+  })
+  .put(async (req, res) => {
+    const { status, orderId } = req.body;
+    const currentOrder = await Order.findOne({ where: { id: orderId } });
+    if (currentOrder) {
+      currentOrder.status = status;
+      await currentOrder.save();
+      return res.json({ status: currentOrder.status, orderId: currentOrder.id });
+    }
+    return res.json({ status, error: 'Не удалось изменить статус заказа' });
   });
 
 module.exports = router;
