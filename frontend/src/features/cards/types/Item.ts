@@ -7,7 +7,8 @@ export default interface Item {
     price: string,
     capacity?: string,
     range?: string,
-    amount?: number
+    amount?: number,
+    description?: string,
 }
 
 export type ItemId = Item['id'];

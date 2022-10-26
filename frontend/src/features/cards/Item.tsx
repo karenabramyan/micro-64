@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import { useSelector } from 'react-redux';
 import Item from './types/Item';
-import ModalWindow from './ModaWindow';
+import ModalWindow from './ModalWindow/ModaWindow';
 import { useAppDispatch } from '../../store';
 import { selectUser } from '../auth/selectors';
 import { sendToBasket, resetSendError } from '../basket/basketSlice';
@@ -33,6 +33,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
     setAnchorEl(null);
   };
 
+  const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   // const likeSelect = useSelector(selectLikes);
   const selectUs = useSelector(selectUser);
@@ -128,7 +129,14 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
           </Popover>
         )}
 
-        <ModalWindow open={open} handleClose={handleClose} />
+        <ModalWindow
+          open={open}
+          handleClose={handleClose}
+          item={item}
+          addToBasket={addToBasket}
+          addLike={addLike}
+        />
+        <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>Подробнее</Button>
         <IconButton size="medium" color="inherit" onClick={addLike}>
           <FavoriteBorderIcon />
         </IconButton>

@@ -42,7 +42,7 @@ function InfoPage(): JSX.Element {
     return (
         <div className="container" >
             <div className="topCont">{oneItem[0].name}</div>
-            <div className="botCont" style={{height: '400px', textAlign: 'justify'}}>{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
+            <div className="botCont" style={{height: '400px', textAlign: 'justify', whiteSpace: 'pre-wrap' }}>{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
             <Button color="error" variant="outlined" type="button" onClick={() => navigatePage(`${Number(id) - 1}`)}>Предыдущая статья</Button><Button type="button" variant="outlined" color="success" onClick={() => navigatePage(`${Number(id) + 1}`)}>Следующая статья</Button>
         </div>
     );
