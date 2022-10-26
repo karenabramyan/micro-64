@@ -43,10 +43,7 @@ function App(): JSX.Element {
         <Route path="/adminorders" element={<AdminOrders />} />
         <Route path="/contacts" element={<ContactPage />} />
         <Route path="/commodity-matrix" element={<CommodityMatrix />} />
-
       </Route>
->>>>>>> origin/dev
-
     </Routes>
   );
 }

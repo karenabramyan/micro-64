@@ -245,11 +245,18 @@ function Navigation(): JSX.Element {
                 покупка
               </Button>
               <Button
+                onClick={() => navigatePage('/contacts')}
+                sx={{ color: 'white' }}
+              >
+                контакты
+              </Button>
+              <Button
                 onClick={() => navigatePage('/basket')}
                 // sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 корзина
               </Button>
+
               <Button
                 onClick={() => navigatePage('/like')}
                 // sx={{ my: 2, color: 'white', display: 'block' }}
