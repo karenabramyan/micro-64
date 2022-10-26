@@ -94,6 +94,6 @@ const authSlice = createSlice({
           });
 } });
 
-// export const { } = authSlice.actions;
+export const {resetLoginFormError, resetRegisterFormError } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,13 +1,14 @@
-import { Button, TextField, Typography, Container, FormGroup } from '@mui/material';
+import { Button, TextField, Typography, Container, FormGroup, OutlinedInput } from '@mui/material';
 // import { type } from 'os';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 // import CredentialsItem from './types/CredentialsItem';
 import * as api from './apiAdmin';
 
 function AdminCab(): JSX.Element {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const dispatch = useDispatch();
 
   const [title, setTitle] = useState<string>('');
@@ -31,7 +32,7 @@ function AdminCab(): JSX.Element {
     const data = new FormData(event.target as HTMLFormElement);
     // data.append('1', img)
     api.addItem(data);
-    // navigate('/');
+    navigate('/commodity-matrix');
   }
 
   function handleTitleChange(inputTitle: string): void {
@@ -72,8 +73,8 @@ function AdminCab(): JSX.Element {
     <Container>
       <form className="form-item" onSubmit={handleItemSubmit} encType="multipart/form-data">
         <FormGroup>
-          <Typography variant="h6"> Добавить новый товар</Typography>
-
+          <Typography variant="h5"> Новый товар</Typography>
+          <br />
           <TextField variant="outlined" margin="dense" label="Название" name="title" type="text" value={title} onChange={(event) => handleTitleChange(event.target.value)} />
 
           <TextField variant="outlined" margin="dense" label="Категория" name="category" type="text" value={category} onChange={(event) => handleCategoryChange(event.target.value)} />
@@ -91,7 +92,8 @@ function AdminCab(): JSX.Element {
           {/* <input type="file" name="image"/> */}
           <TextField variant="outlined" margin="dense" name="image" type="file" />
           <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
-          <Button type="submit">Добавить</Button>
+          <br />
+          <Button type="submit" size="large" color="error" variant="contained">Добавить</Button>
         </FormGroup>
 
       </form>

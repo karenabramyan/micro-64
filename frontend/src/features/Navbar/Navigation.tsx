@@ -235,7 +235,7 @@ function Navigation(): JSX.Element {
                 >
                   контакты
                 </Button>
-</div>
+
               ) : (user && user.role !== 'Admin') ? (
               <div>
              <Button
@@ -298,6 +298,33 @@ function Navigation(): JSX.Element {
 
              </div>
               )}
+              <Button
+                onClick={() => navigatePage('/buy')}
+                sx={{ color: 'white' }}
+              >
+                покупка
+              </Button>
+              <Button
+                onClick={() => navigatePage('/contacts')}
+                sx={{ color: 'white' }}
+              >
+                контакты
+              </Button>
+              <Button
+                onClick={() => navigatePage('/basket')}
+                // sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                корзина
+              </Button>
+
+              <Button
+                onClick={() => navigatePage('/like')}
+                // sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+              избранное
+              </Button>
+                </div>
+            )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

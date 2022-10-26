@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { MuiTelInput } from 'mui-tel-input';
 import RegisterData from './types/RegisterData';
 import { RootState, useAppDispatch } from '../../store';
-import { register } from './authSlice';
+import { register, resetRegisterFormError } from './authSlice';
 
 function Registration(): JSX.Element {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Registration(): JSX.Element {
   console.log(selector);
   const [login, setLogin] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
+  const [phone, setPhone] = useState<string>('+79');
   const [password, setPassword] = useState<string>('');
   const [secPassword, setSecPassword] = useState<string>('');
 
@@ -26,6 +26,7 @@ function Registration(): JSX.Element {
         login, email, phone, password, secPassword
       };
       dispatch(register(newUser));
+      dispatch(resetRegisterFormError());
     }
 
     useEffect(() => {
@@ -55,16 +56,18 @@ function Registration(): JSX.Element {
     }
 
   return (
-    <Container>
+    <Container className="container-register">
     <form className="form-group" onSubmit={handleSubmit}>
       <FormGroup>
-      <Typography variant="h5">Регистрация</Typography>
+      <Typography variant="h4">Регистрация</Typography>
+      <br />
       <TextField variant="outlined" margin="dense" label="Имя" type="text" value={login} onChange={(event) => handleLoginChange(event.target.value)} />
       <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
       <MuiTelInput variant="outlined" margin="dense" label="Номер телефона" value={phone} onChange={(event) => handlePhoneChange(event)} />
       <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePassChange(event.target.value)} />
       <TextField variant="outlined" margin="dense" label="Повторите пароль" type="password" value={secPassword} onChange={(event) => handleSecPassChange(event.target.value)} />
-      <Button type="submit">Зарегистрироваться</Button>
+      <br />
+      <Button type="submit" size="large" color="error" variant="contained">Зарегистрироваться</Button>
       </FormGroup>
     </form>
     {errorReg && (<Typography className="err-form-error" variant="overline">{errorReg}</Typography>)}

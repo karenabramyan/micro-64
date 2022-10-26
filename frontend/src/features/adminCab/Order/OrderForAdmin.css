@@ -47,9 +47,32 @@
 }
 
 .admin-order-status {
-    width: 90px;
-    max-width: 90px;
-    min-width:90px;
+    width: 180px;
+    max-width: 180px;
+    min-width:180px;
     text-align: center;
     overflow: hidden;
 }
+
+.basket-item-days {
+    width: 200px;
+    max-width: 200px;
+    min-width:200px;
+    text-align: center;
+    overflow: hidden;
+}
+
+ .admin-order-status {
+    width: 200px;
+    max-width: 200px;
+    min-width:200px;
+    text-align: center;
+    overflow: hidden;
+ }
+
+ .container-orders {
+    text-align: center;
+    height: 70vh;
+    margin-top: 0;
+    overflow: scroll;
+ }

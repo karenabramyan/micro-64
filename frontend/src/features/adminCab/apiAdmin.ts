@@ -20,7 +20,6 @@ export async function addItem(newItem: any): Promise<void> {
 }
 
 export async function deleteAdminItem(itemId: number): Promise<{ itemId?: number }> {
-  console.log(itemId);
   const response = await fetch('/api/admin-item', {
     method: 'DELETE',
     body: JSON.stringify({ itemId }),
@@ -33,9 +32,37 @@ export async function deleteAdminItem(itemId: number): Promise<{ itemId?: number
   return data;
 }
 
-// написать фетчи на удаление и на изменение
-
 export async function loadOrders(): Promise<OrderAdminData[]> {
   const response = await fetch('/api/admin/orders');
   return response.json();
+}
+
+export async function changeOrderStatus(statusData:
+  { status: string, orderId: number }):
+   Promise<{ status: string, orderId?: number, error?: string }> {
+  const response = await fetch('/api/admin/orders', {
+    method: 'PUT',
+    body: JSON.stringify(statusData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}
+
+export async function changeItem(itemData:
+  { itemId: number, price: string, amount: number }):
+   Promise<{ itemId?: number, price: string, amount?: number, error?: string }> {
+  const response = await fetch('/api/admin-item', {
+    method: 'PUT',
+    body: JSON.stringify(itemData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+
+  return data;
 }
