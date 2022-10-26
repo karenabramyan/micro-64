@@ -45,10 +45,12 @@ function Basket(): JSX.Element {
   }, [basketItems]);
 
   function makeOrder(items: any): void {
-    console.log(items, 777777777777);
-    console.log(selectUs);
     dispatch(makeOrderBasket(items)).then(() => dispatch(loadBasket()));
-    sendApplication(selectUs, items[0]);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of items) {
+      sendApplication(selectUs, item);
+    }
+    // sendApplication(selectUs, items[0]);
     handleOpen();
   }
 
