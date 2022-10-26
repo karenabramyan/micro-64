@@ -40,10 +40,12 @@ function InfoPage(): JSX.Element {
     }
     const oneItem = infoArr.filter((el) => el.id === Number(id));
     return (
-        <div className="container" >
+        <div className="containerInfo" >
             <div className="topCont">{oneItem[0].name}</div>
-            <div className="botCont" style={{height: '400px', textAlign: 'justify'}}>{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
+            <div className="botCont" >{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
+            <div>
             <Button color="error" variant="outlined" type="button" onClick={() => navigatePage(`${Number(id) - 1}`)}>Предыдущая статья</Button><Button type="button" variant="outlined" color="success" onClick={() => navigatePage(`${Number(id) + 1}`)}>Следующая статья</Button>
+        </div>
         </div>
     );
 }

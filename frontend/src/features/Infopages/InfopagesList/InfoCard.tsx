@@ -32,7 +32,7 @@ export default function InfoCard({ props }:any): JSX.Element {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" id={props.id} onClick={() => navigatePage(`/info/infopage/${props.id}`)}>Learn More</Button>
+        <Button size="small" id={props.id} onClick={() => navigatePage(`/info/infopage/${props.id}`)}>Подробнее..</Button>
       </CardActions>
     </Card>
   );

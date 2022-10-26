@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import telega from './Img/icons8-app.svg';
 import insta from './Img/icons8-instagram.svg';
 import vk from './Img/icons8-vk-в-круге.svg';
-import brand from './Img/999.svg';
+import brand from './Img/logo.png';
 
 export default function Footer(): JSX.Element {
   return (

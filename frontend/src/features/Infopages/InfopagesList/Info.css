@@ -1,4 +1,16 @@
 .botCont{
-    height: '400px';
-    text-align: 'justify';
+    text-align:justify !important;
+    margin: 30px;
+    white-space: pre-wrap;
+}
+.topCont{
+    margin: 30px;
+    width: 95%;
+    height: 50px;
+}
+.containerInfo{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+
 }
