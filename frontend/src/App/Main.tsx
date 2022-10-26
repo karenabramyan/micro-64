@@ -8,7 +8,6 @@ export default function Main(): JSX.Element {
   return (
     <div className="App">
       <Navigation />
-      <br />
       <Outlet />
       <Footer />
     </div>
