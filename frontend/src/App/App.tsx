@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import Main from './Main';
 import RentItemList from '../features/cards/ItemList/RentItemList';
 import BuyItemList from '../features/cards/ItemList/BuyItemList';
-import ItemList from '../features/cards/ItemList/ItemList';
 import Registration from '../features/auth/Registration';
 import Login from '../features/auth/Login/Login';
 import { useAppDispatch } from '../store';
@@ -16,6 +15,8 @@ import InfoPage from '../features/Infopages/InfopagesList/InfoPage';
 import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
+import Carousel from '../features/slider/Slider';
+
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 
 function App(): JSX.Element {
@@ -29,7 +30,7 @@ function App(): JSX.Element {
     <Routes>
       <Route path="/" element={<Main />}>
         <Route path="/info" element={<InfoList />} />
-        <Route path="/" element={<ItemList />} />
+        <Route path="/" element={<Carousel />} />
         <Route path="/rent" element={<RentItemList />} />
         <Route path="/buy" element={<BuyItemList />} />
         <Route path="/register" element={<Registration />} />
@@ -41,9 +42,7 @@ function App(): JSX.Element {
         <Route path="/adminorders" element={<AdminOrders />} />
         <Route path="/contacts" element={<ContactPage />} />
         <Route path="/commodity-matrix" element={<CommodityMatrix />} />
-
       </Route>
-
     </Routes>
   );
 }
