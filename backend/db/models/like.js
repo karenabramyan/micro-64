@@ -2,8 +2,8 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Like extends Model {
-    static associate({ User, Item }) {
-      Like.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
+    static associate({}) {
+      // Like.belongsTo(User, { foreignKey: 'userId', onDelete: 'cascade' });
       // Like.belongsTo(Item, { foreignKey: 'itemId', onDelete: 'cascade' });
     }
   }
@@ -17,15 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         type: DataTypes.INTEGER,
-        references: {
-          model: 'Users',
-        },
+        // references: {
+        //   model: 'Users',
+        // },
       },
       itemId: {
         type: DataTypes.INTEGER,
-        references: {
-          model: 'Items',
-        },
+        // references: {
+        //   model: 'Items',
+        // },
       },
     },
     {

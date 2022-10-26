@@ -27,12 +27,15 @@ router
   })
   .post(async (req, res) => {
     const { user, itemId } = req.body;
+    console.log(req.body);
     if (!user) {
       return res.json({ status: 'Для оформления заказа необходимо зарегистрироваться' });
     }
     if (user) {
       const item = await Item.findOne({ where: { id: Number(itemId) } });
+      console.log(item)
       const currentUser = await User.findOne({ where: { id: Number(user.id) } });
+      console.log(currentUser)
       if (item.amount > 0) {
         if (item.type === 'Аренда') {
           await Basket.create({

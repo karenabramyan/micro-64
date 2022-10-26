@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../store';
 // import { sendToBasket, resetSendError } from '../basket/basketSlice';
 // import User from '../auth/types/User';
 // import { selectSendError } from '../cards/selectItems';
-import { removeItem } from './adminItemSlice';
+import { removeItem } from '../cards/itemSlice';
 
 // написать функцию на удаление карточки
 // добавить кнопку на изменение и написать на нее функци

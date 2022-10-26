@@ -15,9 +15,9 @@
 }
 
 .admin-item-title {
-    width: 500px;
-    max-width: 500px;
-    min-width: 500px;
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
     text-align: center;
     overflow: hidden;
 }

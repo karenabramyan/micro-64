@@ -6,14 +6,12 @@ import basketSlice from './features/basket/basketSlice';
 import adminSlice from './features/adminCab/adminSlice';
 import likeSlice from './features/favorites/likes/likeSlice';
 // eslint-disable-next-line import/no-cycle
-import adminItemSlice from './features/adminCab/adminItemSlice';
 
 const store = configureStore({
   reducer: {
     items: cardSlice,
     auth: authSlice,
     basket: basketSlice,
-    adminItem: adminItemSlice,
     orders: adminSlice,
     like: likeSlice,
   }
