@@ -5,7 +5,7 @@ router
   .route('/')
   .get(async (req, res) => {
     const { user } = res.locals;
-    const likes = await Like.findAll({ where: { userId: user.id }, raw: true });
+    const likes = await Like.findAll({ where: { userId: user?.id }, raw: true });
     if (likes) {
       const items = likes.map(async (item) => {
         const curItem = await Item.findAll({

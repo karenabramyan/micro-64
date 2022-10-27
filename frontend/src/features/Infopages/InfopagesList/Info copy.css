@@ -1,0 +1,34 @@
+.botCont{
+    text-align:justify !important;
+    margin: 30px;
+    white-space: pre-wrap;
+    line-height: 30px;
+
+}
+.topCont{
+    /* margin: 30px; */
+    width: 97%;
+    height: 50px;
+    font-size: 20px;
+    letter-spacing: 5px;
+    text-decoration: underline;
+}
+.containerInfo{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://thumb.cloud.mail.ru/weblink/thumb/xw1/ae5o/pXoM6ksEA/%D0%A1%20%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%BC/7.JPEG');
+
+}
+.infoList{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btnDiv{
+    margin-bottom: 50px;
+}
+.headH1{
+    display: flex;
+    justify-content: center;
+}

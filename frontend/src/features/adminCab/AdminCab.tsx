@@ -89,8 +89,8 @@ function AdminCab(): JSX.Element {
 
           <TextField variant="outlined" margin="dense" label="Дальность работы" name="range" type="number" value={range} onChange={(event) => handleRangeChange(Number(event.target.value))} />
 
-          {/* <input type="file" name="image"/> */}
           <TextField variant="outlined" margin="dense" name="image" type="file" />
+          
           <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
           <br />
           <Button type="submit" size="large" color="error" variant="contained">Добавить</Button>
