@@ -49,7 +49,9 @@ const infoArr = [
 export default function InfoList(): JSX.Element {
    return (
     <>
+    <div className='headH1'>
      <h1>Статьи</h1>
+     </div>
      <div className='infoList'>
        <Grid container spacing={4} style={{marginBottom: '30px'}} >
         <Grid item xs={12} md={6}>

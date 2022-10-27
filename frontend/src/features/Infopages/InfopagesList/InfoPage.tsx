@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { infoArr } from './InfoArr';
 import './Info.css';
+import Carousel from '../../slider/Slider';
 
 function InfoPage(): JSX.Element {
     const { id } = useParams();
@@ -41,6 +42,7 @@ function InfoPage(): JSX.Element {
     const oneItem = infoArr.filter((el) => el.id === Number(id));
     return (
         <div className="containerInfo">
+            {/* <Carousel /> */}
             <div className="topCont">{oneItem[0].name}</div>
             <div className="botCont">{oneItem[0].bodyTwo}{oneItem[0].bodyOne}</div>
             <div className='btnDiv'>
