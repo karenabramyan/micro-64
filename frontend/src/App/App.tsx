@@ -17,7 +17,7 @@ import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
 import Carousel from '../features/slider/Slider';
-import FranchisePage from '../features/franchise/FranchisePage'
+import FranchisePage from '../features/franchise/FranchisePage';
 
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 import { selectUser } from '../features/auth/selectors';

@@ -6,8 +6,8 @@ import Link from '@mui/material/Link';
 import telega from './Img/icons8-app.svg';
 import insta from './Img/icons8-instagram.svg';
 import vk from './Img/icons8-vk-в-круге.svg';
-import brand from './Img/logo.png';
-import './Nav.css'
+// import brand from './Img/logo.png';
+import './Nav.css';
 
 export default function Footer(): JSX.Element {
   return (
@@ -18,12 +18,12 @@ export default function Footer(): JSX.Element {
             <div className='leftbox'>
               <h4 className='footTitle'>Микронаушники №1 В Саратове.</h4>
               <p className='copy'>© «Micro-64», 2022.</p>
+              <Link style={ {color: 'white'}}href="/fran" variant="body1" color="textPrimary">Франшиза</Link> {' '}
             </div>
             <div>
               <Link href="https://t.me/89173102111"><img src={telega} alt="" /></Link>
               <Link href="https://vk.com/away.php?to=https%3A%2F%2Finstagram.com%2F_micro_64%3Figshid%3DYmMyMTA2M2Y%3D&cc_key="><img src={insta} alt="" /></Link>
               <Link href="https://vk.com/micronaushnik_v_saratove"><img src={vk} alt="" /></Link>
-              <Link href="/fran" variant="body1" color="textPrimary">Франшиза</Link> {' '}
             </div>
           </Box>
         </Box>

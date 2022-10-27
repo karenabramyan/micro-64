@@ -6,12 +6,12 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import { useSelector } from 'react-redux';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 // import { Page } from './types/Page';
@@ -142,7 +142,7 @@ function Navigation(): JSX.Element {
               ) : (user && user.role !== 'Admin') ? (
                 <div>
                   <MenuItem onClick={() => navigatePage('/info')}>
-                  <Typography textAlign="center">Статьи</Typography>
+                  <Typography textAlign="center">СТАТЬИ</Typography>
                   </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
                   <Typography textAlign="center">АРЕНДА</Typography>

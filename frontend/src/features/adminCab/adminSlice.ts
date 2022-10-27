@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Action } from '@remix-run/router';
 import AdminOrderState from './types/AdminOrderState';
 import * as api from './apiAdmin';
 

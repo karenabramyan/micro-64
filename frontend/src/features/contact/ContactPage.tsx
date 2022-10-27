@@ -20,7 +20,7 @@ function ContactPage(): JSX.Element {
       <p>Адрес: улица Сакко и Ванцетти, 62, г.Саратов</p>
       <p>E-mail: Micro64saratov@yandex.ru</p>
       <p>Телефон для связи: +7(917)310-21-11 </p>
-      <YMaps>
+      <YMaps className='mapCont'>
         <Map defaultState={mapData}>
           {coordinates.map((coordinate) => <Placemark geometry={coordinate} />)}
         </Map>
