@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import { useSelector } from 'react-redux';
 import Item from './types/Item';
-import ModalWindow from './ModaWindow';
+import ModalWindow from './ModalWindow/ModaWindow';
 import { useAppDispatch } from '../../store';
 import { selectUser } from '../auth/selectors';
 import { sendToBasket, resetSendError } from '../basket/basketSlice';
@@ -33,6 +33,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
     setAnchorEl(null);
   };
 
+  const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   // const likeSelect = useSelector(selectLikes);
   const selectUs = useSelector(selectUser);
@@ -65,7 +66,6 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
 
   function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): void {
-    console.log(user);
     dispatch(sendToBasket({ user, itemId, days: 0 }));
     handleClickPopover(event);
     // if ('error' in result) {
@@ -86,6 +86,9 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
   }
   return (
     <Card className="card-micro">
+      <IconButton size="medium" color="inherit" onClick={addLike}>
+          <FavoriteBorderIcon className="item-like-button" />
+      </IconButton>
       <CardMedia
         component="img"
         image={item.img}
@@ -110,9 +113,9 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
           <CurrencyRubleIcon />
         </Typography>
       </CardContent>
-      <CardActions className="button-container">
+      <CardActions className="button-container-item">
 
-        <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)}>Заказать</Button>
+        <Button size="medium" color="inherit" variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)} className="button-buy-item">Заказать</Button>
         {selectSendErr && (
           <Popover
             id={id}
@@ -128,10 +131,15 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
           </Popover>
         )}
 
-        <ModalWindow open={open} handleClose={handleClose} />
-        <IconButton size="medium" color="inherit" onClick={addLike}>
-          <FavoriteBorderIcon />
-        </IconButton>
+        <ModalWindow
+          open={open}
+          handleClose={handleClose}
+          item={item}
+          addToBasket={addToBasket}
+          addLike={addLike}
+        />
+        <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>Подробнее</Button>
+      
       </CardActions>
     </Card>
   );
