@@ -8,11 +8,13 @@ import { useAppDispatch } from '../../../store';
 import { loadRentCards, sortDown, sortUp } from '../itemSlice';
 import { selectItems } from '../selectItems';
 import './ItemList.css';
+import { selectLikes } from '../../favorites/selectLikes';
 
 function RentItemList(): JSX.Element {
     const dispatch = useAppDispatch();
 
     const items = useSelector(selectItems);
+    const likes = useSelector(selectLikes);
 
     function sortItemRentUp(): void {
       dispatch(sortUp());
@@ -37,7 +39,13 @@ function RentItemList(): JSX.Element {
           <KeyboardDoubleArrowUpIcon />
       </IconButton>
     <div className="container">
-    {items.map((item) => <Item item={item} key={item.id} />)}
+    {items.map((item) => (
+<Item
+  item={item}
+  key={item.id}
+  liked={(likes.filter((likeItem) => likeItem.id === item.id)).length > 0}
+/>
+))}
     </div>
     </div>
   );

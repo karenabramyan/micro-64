@@ -37,9 +37,9 @@ function handleChangeDays(inputDays: string): void {
 function cutPrice(price: string): string | number {
   let newPrice: any;
   if (Number(days) > 0) {
-    newPrice = Number(price) * Number(days);
+    newPrice = Number(price) * Number(days) * Number(item.count);
   } else {
-    newPrice = Number(price);
+    newPrice = Number(price) * Number(item.count);
   }
     const text = newPrice.toString();
     if (text.length > 3) {

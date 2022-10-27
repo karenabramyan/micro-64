@@ -77,7 +77,7 @@ function Navigation(): JSX.Element {
     <AppBar position="sticky">
       <Container className="Navi">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -151,7 +151,7 @@ function Navigation(): JSX.Element {
                 <Typography textAlign="center">ПОКУПКА</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/contacts')}>
-                <Typography textAlign="center">Контакты</Typography>
+                <Typography textAlign="center">КОНТАКТЫ</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/basket')}>
                     <Typography textAlign="center">КОРЗИНА</Typography>
@@ -174,7 +174,7 @@ function Navigation(): JSX.Element {
               )}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap

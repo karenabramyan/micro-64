@@ -21,7 +21,13 @@ function Like(): JSX.Element {
 
   return (
     <div className="container">
-      {(likeSelect.length !== 0) && likeSelect.map((item) => <Item item={item} key={item.id} />)}
+      {(likeSelect.length !== 0) && likeSelect.map((item) => (
+<Item
+  item={item}
+  key={item.id}
+  liked={(likeSelect.filter((likeItem) => likeItem.id === item.id)).length > 0}
+/>
+))}
     </div>
   );
 }

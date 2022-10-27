@@ -39,7 +39,12 @@ function Basket(): JSX.Element {
 
   useEffect(() => {
     const total = basketItems
-      .map((item) => item.price)
+      .map((item) => {
+        if (Number(item.days) === 0) {
+          return Number(item.price);
+        }
+      return Number(item.price) * Number(item.days);
+})
       .reduce(((totally, itemPrice) => totally + Number(itemPrice)), 0);
     setTotalPrice(total);
   }, [basketItems]);
