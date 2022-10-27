@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CardMedia, Card, CardContent, Typography, CardActions, Button, IconButton, Popover } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useSelector } from 'react-redux';
 import Item from './types/Item';
 import ModalWindow from './ModalWindow/ModaWindow';
@@ -12,13 +12,12 @@ import { sendToBasket, resetSendError } from '../basket/basketSlice';
 import User from '../auth/types/User';
 
 import { createLikes } from '../favorites/likes/likeSlice';
-// import { selectLikes } from '../favorites/selectLikes';
 import { selectSendError } from './selectItems';
 
-function ItemCard({ item }: { item: Item }): JSX.Element {
+function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element {
   const dispatch = useAppDispatch();
   const [open, setOpen] = React.useState(false);
-  // const [error, setError] = React.useState<string | undefined>(undefined);
+  const [like, setLike] = useState(liked);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const openPopover = Boolean(anchorEl);
 
@@ -33,6 +32,15 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
     setAnchorEl(null);
   };
 
+//   useEffect(() => {
+//     const info = likes.filter((likeItem) => likeItem.id === item.id);
+//     if (info.length > 0) {
+//       setLike(true);
+//     } else {
+//       setLike(false);
+//     }
+// }, []);
+
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   // const likeSelect = useSelector(selectLikes);
@@ -43,6 +51,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
     if (selectUs) {
       dispatch(createLikes({ userId: selectUs.id, itemId: item.id }));
     }
+    setLike(!like);
   }
 
   function cutTitle(text: string): string {
@@ -52,27 +61,10 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
     return text;
   }
 
-  // const addToBasket = React.useCallback(
-  //   async (event: React.MouseEvent) => {
-  //     event.preventDefault();
-
-  //     const dispatchResult = await dispatch(sendToBasket({ user, itemId }));
-  //     if (sendToBasket.rejected.match(dispatchResult)) {
-  //       handleClickPopover(event)
-  //     }
-  //   },
-  //   [dispatch, navigate]
-  // );
-
   function addToBasket(user: User | undefined, itemId: number,
     event: React.MouseEvent<HTMLButtonElement>): void {
     dispatch(sendToBasket({ user, itemId, days: 0 }));
     handleClickPopover(event);
-    // if ('error' in result) {
-    //   setError(result.error.message);
-    //   console.log(error)
-    //   handleClickPopover(event);
-    // }
   }
 
   function cutPrice(price: string): string | number {
@@ -86,8 +78,8 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
   }
   return (
     <Card className="card-micro">
-      <IconButton size="medium" color="inherit" onClick={addLike}>
-          <FavoriteBorderIcon className="item-like-button" />
+      <IconButton size="medium" color="error" onClick={addLike} className="item-like-button">
+      {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </IconButton>
       <CardMedia
         component="img"
@@ -96,9 +88,6 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
         className="image-micro"
       />
       <CardContent>
-        {/* <Typography variant="body2" color="text.secondary">
-          {item.category}
-        </Typography> */}
         <Typography
           gutterBottom
           variant="h6"
@@ -108,7 +97,7 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
         >
           {cutTitle(item.title)}
         </Typography>
-        <Typography gutterBottom variant="h3" component="h3">
+        <Typography gutterBottom variant="h4" component="h4" className="item-price">
           {cutPrice(item.price)}
           <CurrencyRubleIcon />
         </Typography>
@@ -139,7 +128,6 @@ function ItemCard({ item }: { item: Item }): JSX.Element {
           addLike={addLike}
         />
         <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>Подробнее</Button>
-      
       </CardActions>
     </Card>
   );

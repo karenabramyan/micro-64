@@ -20,6 +20,7 @@ import Carousel from '../features/slider/Slider';
 
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 import { selectUser } from '../features/auth/selectors';
+import { loadLikes } from '../features/favorites/likes/likeSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,6 +29,10 @@ function App(): JSX.Element {
 
   React.useEffect(() => {
     dispatch(getUser());
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    dispatch(loadLikes());
   }, [dispatch]);
   return (
 
