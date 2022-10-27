@@ -1,4 +1,4 @@
-import { Card, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Card, FormControl, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch } from '../../../store';
 import { changeOrders } from '../adminSlice';

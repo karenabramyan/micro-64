@@ -1,4 +1,4 @@
-import { Card, CardActions, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Popover, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Card, CardActions, FormControl, IconButton, MenuItem, Popover, Select, SelectChangeEvent, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -21,26 +21,26 @@ function BasketItem({ item }: { item: ItemInBasket }): JSX.Element {
   const id = openPopover ? 'simple-popover' : undefined;
 
   const handleClickPopover = (event: React.MouseEvent<HTMLButtonElement>): void => {
-      setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClosePopover = (): void => {
-      setAnchorEl(null);
-      dispatch(resetAddError());
+    setAnchorEl(null);
+    dispatch(resetAddError());
   };
 
-function handleChangeDays(inputDays: string): void {
+  function handleChangeDays(inputDays: string): void {
     setDays(inputDays);
     dispatch(changeDays({ id: item.id, days: inputDays }));
   }
 
-function cutPrice(price: string): string | number {
-  let newPrice: any;
-  if (Number(days) > 0) {
-    newPrice = Number(price) * Number(days) * Number(item.count);
-  } else {
-    newPrice = Number(price) * Number(item.count);
-  }
+  function cutPrice(price: string): string | number {
+    let newPrice: any;
+    if (Number(days) > 0) {
+      newPrice = Number(price) * Number(days) * Number(item.count);
+    } else {
+      newPrice = Number(price) * Number(item.count);
+    }
     const text = newPrice.toString();
     if (text.length > 3) {
       const secondPart = text.slice(-3);
@@ -66,59 +66,61 @@ function cutPrice(price: string): string | number {
   return (
     <Card className="basket-item">
       <img src={item.img} alt={item.title} className="basket-item-img" />
-        <Typography className="basket-item-title">{item.title}</Typography>
-        {(item.type === 'Аренда') && (
-<FormControl className="basket-item-days" sx={{ minWidth: 100 }}>
-        {/* <InputLabel>Дни</InputLabel> */}
-        <Select
-          value={days}
-          // label="Дни"
-          onChange={(event: SelectChangeEvent) => handleChangeDays(event?.target.value)}
-        >
-          <MenuItem value="1">1</MenuItem>
-          <MenuItem value="2">2</MenuItem>
-          <MenuItem value="3">3</MenuItem>
-          <MenuItem value="4">4</MenuItem>
-          <MenuItem value="5">5</MenuItem>
-          <MenuItem value="6">6</MenuItem>
-          <MenuItem value="7">7</MenuItem>
-        </Select>
-</FormControl>
-)}
-{(item.type === 'Покупка') && (
-<FormControl className="basket-item-days" sx={{ minWidth: 100 }} >
-         {/* <InputLabel>Дни</InputLabel> */}
-        <Select
-          value={days}
-          // label="Дни"
-          onChange={(event: SelectChangeEvent) => handleChangeDays(event?.target.value)}
-        >
-          <MenuItem value="-">-</MenuItem>
-        </Select>
-</FormControl>
-)}
-<CardActions>
-<IconButton onClick={(event) => addToBasket(selectUs, item.id, event)}><AddIcon /></IconButton>
-{(selectAdd) && (
-<Popover
-  id={id}
-  open={openPopover}
-  anchorEl={anchorEl}
-  onClose={handleClosePopover}
-  anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
->
-        <Typography sx={{ p: 2 }}>{selectAdd}</Typography>
-        {/* <Typography sx={{ p: 2 }}>{selectDelete}</Typography> */}
-</Popover>
-)}
-<Typography>{item.count}</Typography>
-<IconButton onClick={() => deleteFromBasket(selectUs, item.id)}><RemoveIcon /></IconButton>
-</CardActions>
-        <Typography className="basket-item-type">{item.type}</Typography>
-        <Typography className="basket-item-price">{cutPrice(item.price)}</Typography>
+      <Typography className="basket-item-title">{item.title}</Typography>
+      {(item.type === 'Аренда') && (
+        <FormControl className="basket-item-days" sx={{ minWidth: 100 }}>
+          {/* <InputLabel>Дни</InputLabel> */}
+          <Select
+            value={days}
+            // label="Дни"
+            onChange={(event: SelectChangeEvent) => handleChangeDays(event?.target.value)}
+          >
+            <MenuItem value="1">1</MenuItem>
+            <MenuItem value="2">2</MenuItem>
+            <MenuItem value="3">3</MenuItem>
+            <MenuItem value="4">4</MenuItem>
+            <MenuItem value="5">5</MenuItem>
+            <MenuItem value="6">6</MenuItem>
+            <MenuItem value="7">7</MenuItem>
+          </Select>
+        </FormControl>
+      )}
+      {(item.type === 'Покупка') && (
+        <FormControl className="basket-item-days" sx={{ minWidth: 100 }}>
+          {/* <InputLabel>Дни</InputLabel> */}
+          <Select
+            value={days}
+            // label="Дни"
+            onChange={(event: SelectChangeEvent) => handleChangeDays(event?.target.value)}
+          >
+            <MenuItem value="-">-</MenuItem>
+          </Select>
+        </FormControl>
+      )}
+      <CardActions>
+        <IconButton onClick={(event) => addToBasket(selectUs, item.id, event)}>
+          <AddIcon />
+        </IconButton>
+        {(selectAdd) && (
+          <Popover
+            id={id}
+            open={openPopover}
+            anchorEl={anchorEl}
+            onClose={handleClosePopover}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+          >
+            <Typography sx={{ p: 2 }}>{selectAdd}</Typography>
+            {/* <Typography sx={{ p: 2 }}>{selectDelete}</Typography> */}
+          </Popover>
+        )}
+        <Typography>{item.count}</Typography>
+        <IconButton onClick={() => deleteFromBasket(selectUs, item.id)}><RemoveIcon /></IconButton>
+      </CardActions>
+      <Typography className="basket-item-type">{item.type}</Typography>
+      <Typography className="basket-item-price">{cutPrice(item.price)}</Typography>
     </Card>
   );
 }

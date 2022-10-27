@@ -40,6 +40,7 @@ function Basket(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadBasket());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -48,8 +49,8 @@ function Basket(): JSX.Element {
         if (Number(item.days) === 0) {
           return Number(item.price);
         }
-      return Number(item.price) * Number(item.days);
-})
+        return Number(item.price) * Number(item.days);
+      })
       .reduce(((totally, itemPrice) => totally + Number(itemPrice)), 0);
     setTotalPrice(total);
   }, [basketItems]);
