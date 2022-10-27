@@ -142,7 +142,7 @@ function Navigation(): JSX.Element {
               ) : (user && user.role !== 'Admin') ? (
                 <div>
                   <MenuItem onClick={() => navigatePage('/info')}>
-                  <Typography textAlign="center">Статьи</Typography>
+                  <Typography textAlign="center">СТАТЬИ</Typography>
                   </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
                   <Typography textAlign="center">АРЕНДА</Typography>
