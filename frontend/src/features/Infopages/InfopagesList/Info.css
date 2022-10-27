@@ -2,11 +2,15 @@
     text-align:justify !important;
     margin: 30px;
     white-space: pre-wrap;
+    line-height: 30px;
 }
 .topCont{
-    margin: 30px;
-    width: 95%;
+    /* margin: 30px; */
+    width: 97%;
     height: 50px;
+    font-size: 20px;
+    letter-spacing: 5px;
+    text-decoration: underline;
 }
 .containerInfo{
     display: flex !important;
@@ -19,6 +23,10 @@
     padding-right: 30px;
 }
 
-.btnDiv:first-child{
-    margin-right: 40px;
+.btnDiv{
+    margin-bottom: 50px;
+}
+.headH1{
+    display: flex;
+    justify-content: center;
 }

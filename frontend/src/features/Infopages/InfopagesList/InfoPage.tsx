@@ -39,6 +39,7 @@ function InfoPage(): JSX.Element {
     }
   }
   const oneItem = infoArr.filter((el) => el.id === Number(id));
+
   return (
     <div className="containerInfo">
       <div className="topCont">{oneItem[0].name}</div>

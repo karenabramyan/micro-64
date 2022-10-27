@@ -7,7 +7,6 @@ router
     const { user } = res.locals;
     if (user) {
       const likes = await Like.findAll({ where: { userId: user.id }, raw: true });
-
       if (likes) {
         const items = likes.map(async (item) => {
           const curItem = await Item.findAll({
