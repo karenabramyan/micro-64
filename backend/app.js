@@ -14,7 +14,7 @@ const likesRouter = require('./routes/likesRoute');
 const adminItemRouter = require('./routes/itemsFromAdminRoute');
 const orderRouter = require('./routes/orderRoute');
 const adminOrderRouter = require('./routes/orderAdmin');
-
+const telegramRouter = require('./routes/telegramRoute');
 
 const PORT = process.env.PORT ?? 4000;
 const app = express();
@@ -30,7 +30,7 @@ app.use('/api/likes', likesRouter);
 app.use('/api/admin-item', adminItemRouter);
 app.use('/api/admin/orders', adminOrderRouter);
 app.use('/api/order', orderRouter);
-
+app.use('/api/telegram', telegramRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
