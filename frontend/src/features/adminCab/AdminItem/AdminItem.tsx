@@ -53,11 +53,11 @@ function AdminItem({ item }: { item: Item }): JSX.Element {
         <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
           {cutTitle(item.title)}
         </Typography>
-        <Typography gutterBottom variant="h6" component="h3">
+        <Typography gutterBottom variant="h6" component="div" className="item-price">
           {`Цена: ${cutPrice(item.price)} руб.`}
         </Typography>
-        <Typography gutterBottom variant="h6" component="h3">
-          статус {item.type}
+        <Typography gutterBottom variant="h6" component="h3" className="item-type">
+          Тип сделки {item.type} 
         </Typography>
         <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
          На складе: {item.amount} шт.
