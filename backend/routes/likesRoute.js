@@ -5,17 +5,20 @@ router
   .route('/')
   .get(async (req, res) => {
     const { user } = res.locals;
-    const likes = await Like.findAll({ where: { userId: user.id }, raw: true });
-    if (likes) {
-      const items = likes.map(async (item) => {
-        const curItem = await Item.findAll({
-          where: { id: item.itemId },
-          raw: true,
+    if (user) {
+      const likes = await Like.findAll({ where: { userId: user.id }, raw: true });
+
+      if (likes) {
+        const items = likes.map(async (item) => {
+          const curItem = await Item.findAll({
+            where: { id: item.itemId },
+            raw: true,
+          });
+          return curItem[0];
         });
-        return curItem[0];
-      });
-      const data = await Promise.all(items);
-      return res.json(data);
+        const data = await Promise.all(items);
+        return res.json(data);
+      }
     }
   })
   .post(async (req, res) => {

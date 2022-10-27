@@ -2,7 +2,7 @@ import { Card, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typ
 import React from 'react';
 import { useAppDispatch } from '../../../store';
 import { changeOrders } from '../adminSlice';
-import { changeOrderStatus } from '../apiAdmin';
+// import { changeOrderStatus } from '../apiAdmin';
 import OrderAdminData from '../types/OrderAdminData';
 import './OrderForAdmin.css';
 

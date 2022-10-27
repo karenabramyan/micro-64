@@ -2,10 +2,10 @@ import { Box, Button, CardActions, IconButton, Typography } from '@mui/material'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Modal from '@mui/material/Modal';
+import { useSelector } from 'react-redux';
 import User from '../../auth/types/User';
 import Item from '../types/Item';
 import './ModalWindow.css';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../../auth/selectors';
 
 const style = {
