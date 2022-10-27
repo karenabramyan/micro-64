@@ -3,8 +3,8 @@ import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './contact.css';
 
 const mapData = {
-  center: [51.5405600, 46.0086100],
-  zoom: 9,
+  center: [51.531271, 46.021474],
+  zoom: 15,
 };
 
 const coordinates = [
