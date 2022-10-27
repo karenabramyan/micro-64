@@ -14,10 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import logo from './Img/logo.png';
 // import { Page } from './types/Page';
 import './Nav.css';
 import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/authSlice';
+import { ImageListItem } from '@mui/material';
 // import { Setting } from './types/Setting';
 // const pages: Page[] = [
 //   { name: 'Статьи', way: '/' },
@@ -77,7 +79,11 @@ function Navigation(): JSX.Element {
     <AppBar position="sticky">
       <Container className="Navi">
         <Toolbar disableGutters>
+        {/* <img src={logo} alt="logo" className="logo" /> */}
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <ImageListItem sx={{ display: { xs: 'none', md: 'flex', width: '40px' } }}>
+            <img src={logo} alt="logo" />
+        </ImageListItem>
           <Typography
             variant="h6"
             noWrap
@@ -93,7 +99,7 @@ function Navigation(): JSX.Element {
               textDecoration: 'none',
             }}
           >
-            MICRO64
+            &nbsp;MICRO64
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -174,6 +180,9 @@ function Navigation(): JSX.Element {
               )}
             </Menu>
           </Box>
+          <ImageListItem sx={{ display: { xs: 'flex', md: 'none', width: '40px' } }} className="logo">
+            <img src={logo} alt="logo" className="logo" />
+          </ImageListItem>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
@@ -191,7 +200,7 @@ function Navigation(): JSX.Element {
               textDecoration: 'none',
             }}
           >
-            MICRO64
+            &nbsp;MICRO64
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {!user ? (
@@ -286,7 +295,7 @@ function Navigation(): JSX.Element {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <Button onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <p>Личный кабинет</p>
+                <p style={{ color: 'white' }}>Личный кабинет</p>
               </Button>
             </Tooltip>
             <Menu
