@@ -1,4 +1,4 @@
-import { Card, CardActions, FormControl, IconButton, InputLabel, MenuItem, Popover, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Card, CardActions, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Popover, Select, SelectChangeEvent, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -69,10 +69,10 @@ function cutPrice(price: string): string | number {
         <Typography className="basket-item-title">{item.title}</Typography>
         {(item.type === 'Аренда') && (
 <FormControl className="basket-item-days" sx={{ minWidth: 100 }}>
-        <InputLabel>Дни</InputLabel>
+        {/* <InputLabel>Дни</InputLabel> */}
         <Select
           value={days}
-          label="Дни"
+          // label="Дни"
           onChange={(event: SelectChangeEvent) => handleChangeDays(event?.target.value)}
         >
           <MenuItem value="1">1</MenuItem>
@@ -86,11 +86,11 @@ function cutPrice(price: string): string | number {
 </FormControl>
 )}
 {(item.type === 'Покупка') && (
-<FormControl className="basket-item-days" sx={{ minWidth: 100 }}>
-        <InputLabel>Дни</InputLabel>
+<FormControl className="basket-item-days" sx={{ minWidth: 100 }} >
+         {/* <InputLabel>Дни</InputLabel> */}
         <Select
           value={days}
-          label="Дни"
+          // label="Дни"
           onChange={(event: SelectChangeEvent) => handleChangeDays(event?.target.value)}
         >
           <MenuItem value="-">-</MenuItem>

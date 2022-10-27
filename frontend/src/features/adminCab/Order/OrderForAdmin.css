@@ -68,6 +68,7 @@
     min-width:200px;
     text-align: center;
     overflow: hidden;
+    margin-right: 5px;
  }
 
  .container-orders {

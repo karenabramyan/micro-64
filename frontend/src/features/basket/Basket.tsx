@@ -1,6 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
 import BasketItem from './BasketItem/BasketItem';
 import { loadBasket, makeOrderBasket } from './basketSlice';
@@ -11,6 +12,7 @@ import { selectUser } from '../auth/selectors';
 import sendApplication from './telegramApi';
 
 function Basket(): JSX.Element {
+  const navigate = useNavigate();
   const selectUs = useSelector(selectUser);
 
   const [open, setOpen] = React.useState(false);
@@ -21,7 +23,10 @@ function Basket(): JSX.Element {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleOpen = (): void => setOpen(true);
-  const handleClose = (): void => setOpen(false);
+  const handleClose = (): void => {
+    navigate('/');
+    setOpen(false);
+  };
 
   function cutPrice(price: number): string | number {
     const text = price.toString();
@@ -61,22 +66,22 @@ function Basket(): JSX.Element {
 
   return (
     <div>
-      <Typography variant="h5">Корзина</Typography>
+      <Typography className="center-text" variant="h5">Корзина</Typography>
       <br />
       {(totalItems.length > 0) ?
         (
           <div>
             {totalItems.map((item: ItemInBasket) => <BasketItem item={item} key={item.id} />)}
             <br />
-            <Typography variant="h6">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
+            <Typography variant="h6" className="center-text">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
             <br />
-            <Button size="large" color="inherit" variant="outlined" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
+            <Button size="large" color="inherit" variant="outlined" className="center-text" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
             <br />
             <br />
 
           </div>
         )
-        : (<Typography variant="h6">Вы пока ничего не добавили в корзину!</Typography>)}
+        : (<Typography variant="h6" className="center-text">Вы пока ничего не добавили в корзину!</Typography>)}
       <ModalWindowOrder open={open} handleClose={handleClose} />
     </div>
   );
