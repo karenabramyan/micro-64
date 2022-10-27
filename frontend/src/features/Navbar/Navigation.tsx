@@ -14,12 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { ImageListItem } from '@mui/material';
 import logo from './Img/logo.png';
 // import { Page } from './types/Page';
 import './Nav.css';
 import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/authSlice';
-import { ImageListItem } from '@mui/material';
 // import { Setting } from './types/Setting';
 // const pages: Page[] = [
 //   { name: 'Статьи', way: '/' },
@@ -79,11 +79,11 @@ function Navigation(): JSX.Element {
     <AppBar position="sticky">
       <Container className="Navi">
         <Toolbar disableGutters>
-        {/* <img src={logo} alt="logo" className="logo" /> */}
+          {/* <img src={logo} alt="logo" className="logo" /> */}
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <ImageListItem sx={{ display: { xs: 'none', md: 'flex', width: '40px' } }}>
             <img src={logo} alt="logo" />
-        </ImageListItem>
+          </ImageListItem>
           <Typography
             variant="h6"
             noWrap
@@ -132,50 +132,50 @@ function Navigation(): JSX.Element {
             >
               {!user ? (
                 <div>
-                <MenuItem onClick={() => navigatePage('/rent')}>
-                  <Typography textAlign="center">АРЕНДА</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigatePage('/buy')}>
-                <Typography textAlign="center">ПОКУПКА</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigatePage('/contacts')}>
-                <Typography textAlign="center">КОНТАКТЫ</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigatePage('/info')}>
-                  <Typography textAlign="center">СТАТЬИ</Typography>
-                </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/rent')}>
+                    <Typography textAlign="center">АРЕНДА</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/buy')}>
+                    <Typography textAlign="center">ПОКУПКА</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/contacts')}>
+                    <Typography textAlign="center">КОНТАКТЫ</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/info')}>
+                    <Typography textAlign="center">СТАТЬИ</Typography>
+                  </MenuItem>
                 </div>
               ) : (user && user.role !== 'Admin') ? (
                 <div>
-                <MenuItem onClick={() => navigatePage('/rent')}>
-                  <Typography textAlign="center">АРЕНДА</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigatePage('/buy')}>
-                <Typography textAlign="center">ПОКУПКА</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigatePage('/contacts')}>
-                <Typography textAlign="center">КОНТАКТЫ</Typography>
-                </MenuItem>
-                  <MenuItem onClick={() => navigatePage('/info')}>
-                  <Typography textAlign="center">СТАТЬИ</Typography>
+                  <MenuItem onClick={() => navigatePage('/rent')}>
+                    <Typography textAlign="center">АРЕНДА</Typography>
                   </MenuItem>
-                <MenuItem onClick={() => navigatePage('/basket')}>
+                  <MenuItem onClick={() => navigatePage('/buy')}>
+                    <Typography textAlign="center">ПОКУПКА</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/contacts')}>
+                    <Typography textAlign="center">КОНТАКТЫ</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/info')}>
+                    <Typography textAlign="center">СТАТЬИ</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/basket')}>
                     <Typography textAlign="center">КОРЗИНА</Typography>
-                </MenuItem><MenuItem onClick={() => navigatePage('/like')}>
-                      <Typography textAlign="center">ИЗБРАННОЕ</Typography>
-                           </MenuItem>
+                  </MenuItem><MenuItem onClick={() => navigatePage('/like')}>
+                    <Typography textAlign="center">ИЗБРАННОЕ</Typography>
+                             </MenuItem>
                 </div>
               ) : (
                 <div>
                   <MenuItem onClick={() => navigatePage('/admincab')}>
-                  <Typography textAlign="center">ДОБАВИТЬ НОВЫЙ ТОВАР</Typography>
+                    <Typography textAlign="center">ДОБАВИТЬ НОВЫЙ ТОВАР</Typography>
                   </MenuItem>
-                <MenuItem onClick={() => navigatePage('/commodity-matrix')}>
-                  <Typography textAlign="center">ТОВАРНАЯ МАТРИЦА</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigatePage('/adminorders')}>
-                <Typography textAlign="center">ЗАКАЗЫ КЛИЕНТОВ</Typography>
-                </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/commodity-matrix')}>
+                    <Typography textAlign="center">ТОВАРНАЯ МАТРИЦА</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigatePage('/adminorders')}>
+                    <Typography textAlign="center">ЗАКАЗЫ КЛИЕНТОВ</Typography>
+                  </MenuItem>
                 </div>
               )}
             </Menu>
@@ -204,13 +204,13 @@ function Navigation(): JSX.Element {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {!user ? (
-<div>
-                  <Button
-                    onClick={() => navigatePage('/rent')}
-                    sx={{ color: 'white' }}
-                  >
-                 АРЕНДА
-                  </Button>
+              <div>
+                <Button
+                  onClick={() => navigatePage('/rent')}
+                  sx={{ color: 'white' }}
+                >
+                  АРЕНДА
+                </Button>
                 <Button
                   onClick={() => navigatePage('/buy')}
                   sx={{ color: 'white' }}
@@ -229,68 +229,68 @@ function Navigation(): JSX.Element {
                 >
                   СТАТЬИ
                 </Button>
-</div>
-              ) : (user && user.role !== 'Admin') ? (
-              <div>
-             <Button
-               onClick={() => navigatePage('/rent')}
-               sx={{ color: 'white' }}
-             >
-            АРЕНДА
-             </Button>
-           <Button
-             onClick={() => navigatePage('/buy')}
-             sx={{ color: 'white' }}
-           >
-             ПОКУПКА
-           </Button>
-           <Button
-             onClick={() => navigatePage('/contacts')}
-             sx={{ color: 'white' }}
-           >
-            КОНТАКТЫ
-           </Button>
-           <Button
-             onClick={() => navigatePage('/basket')}
-             sx={{ color: 'white' }}
-           >
-             КОРЗИНА
-           </Button>
-           <Button
-             onClick={() => navigatePage('/like')}
-             sx={{ color: 'white' }}
-           >
-           ИЗБРАННОЕ
-           </Button>
-             <Button
-               onClick={() => navigatePage('/info')}
-               sx={{ color: 'white' }}
-             >
-             СТАТЬИ
-             </Button>
               </div>
-              ) : (
-             <div>
-             <Button
-               onClick={() => navigatePage('/admincab')}
-               sx={{ color: 'white' }}
-             >
-             ДОБАВИТЬ НОВЫЙ ТОВАР
-             </Button>
-             <Button
-               onClick={() => navigatePage('/commodity-matrix')}
-               sx={{ color: 'white' }}
-             >
-            ТОВАРНАЯ МАТРИЦА
-             </Button>
-           <Button
-             onClick={() => navigatePage('/adminorders')}
-             sx={{ color: 'white' }}
-           >
-             ЗАКАЗЫ КЛИЕНТОВ
-           </Button>
-             </div>
-              )}
+            ) : (user && user.role !== 'Admin') ? (
+              <div>
+                <Button
+                  onClick={() => navigatePage('/rent')}
+                  sx={{ color: 'white' }}
+                >
+                  АРЕНДА
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/buy')}
+                  sx={{ color: 'white' }}
+                >
+                  ПОКУПКА
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/contacts')}
+                  sx={{ color: 'white' }}
+                >
+                  КОНТАКТЫ
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/basket')}
+                  sx={{ color: 'white' }}
+                >
+                  КОРЗИНА
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/like')}
+                  sx={{ color: 'white' }}
+                >
+                  ИЗБРАННОЕ
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/info')}
+                  sx={{ color: 'white' }}
+                >
+                  СТАТЬИ
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  onClick={() => navigatePage('/admincab')}
+                  sx={{ color: 'white' }}
+                >
+                  ДОБАВИТЬ НОВЫЙ ТОВАР
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/commodity-matrix')}
+                  sx={{ color: 'white' }}
+                >
+                  ТОВАРНАЯ МАТРИЦА
+                </Button>
+                <Button
+                  onClick={() => navigatePage('/adminorders')}
+                  sx={{ color: 'white' }}
+                >
+                  ЗАКАЗЫ КЛИЕНТОВ
+                </Button>
+              </div>
+            )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
