@@ -63,7 +63,7 @@ function Login(): JSX.Element {
           <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePasswordChange(event.target.value)} />
 
           <br />
-          <Button type="submit" size="large" color="error" variant="contained">Вход</Button>
+          <Button type="submit" size="large" color="error" variant="outlined">Вход</Button>
         </FormGroup>
       </form>
       {errorLog && (
