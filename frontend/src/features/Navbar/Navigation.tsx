@@ -18,9 +18,7 @@ import React from 'react';
 import './Nav.css';
 import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/authSlice';
-
 // import { Setting } from './types/Setting';
-
 // const pages: Page[] = [
 //   { name: 'Информация', way: '/' },
 //   { name: 'Аренда', way: '/rent' },
@@ -28,9 +26,7 @@ import { logout } from '../auth/authSlice';
 //   { name: 'Корзина', way: '/basket' },
 //   { name: 'Избранное', way: '/like' },
 // ];
-
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -39,22 +35,18 @@ function Navigation(): JSX.Element {
   //   { name: 'Войти', way: '/login' },
   //   { name: 'Зарегистрироваться', way: '/register' },
   // ];
-
   function navigatePage(way: string): void {
     navigate(way);
     handleCloseNavMenu();
   }
-
   // async function handleLogout() {
   //   await dispatch(logout);
   //   handleCloseUserMenu();
   //   navigate('/');
   // }
-
   const handleLogout = React.useCallback(
     async (event: React.MouseEvent) => {
       event.preventDefault();
-
       const dispatchResult = await dispatch(logout());
       if (logout.fulfilled.match(dispatchResult)) {
         navigate('/');
@@ -62,31 +54,25 @@ function Navigation(): JSX.Element {
     },
     [dispatch, navigate]
   );
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = (): void => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = (): void => {
     setAnchorElUser(null);
   };
-
   const user = useSelector((state: RootState) => state.auth.user);
-
   return (
     <AppBar position="static">
       <Container className="Navi">
@@ -109,7 +95,6 @@ function Navigation(): JSX.Element {
           >
             MICRO64
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -154,11 +139,11 @@ function Navigation(): JSX.Element {
                 <Typography textAlign="center">Контакты</Typography>
                 </MenuItem>
                 </div>
-              ) : (
+              ) : (user && user.role !== 'Admin') ? (
                 <div>
-                <MenuItem onClick={() => navigatePage('/info')}>
+                  <MenuItem onClick={() => navigatePage('/info')}>
                   <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
-                </MenuItem>
+                  </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
                   <Typography textAlign="center">АРЕНДА</Typography>
                 </MenuItem>
@@ -173,6 +158,18 @@ function Navigation(): JSX.Element {
                 </MenuItem><MenuItem onClick={() => navigatePage('/like')}>
                       <Typography textAlign="center">ИЗБРАННОЕ</Typography>
                            </MenuItem>
+                </div>
+              ) : (
+                <div>
+                  <MenuItem onClick={() => navigatePage('/admincab')}>
+                  <Typography textAlign="center">ДОБАВИТЬ НОВЫЙ ТОВАР</Typography>
+                  </MenuItem>
+                <MenuItem onClick={() => navigatePage('/commodity-matrix')}>
+                  <Typography textAlign="center">ТОВАРНАЯ МАТРИЦА</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigatePage('/adminorders')}>
+                <Typography textAlign="center">ЗАКАЗЫ КЛИЕНТОВ</Typography>
+                </MenuItem>
                 </div>
               )}
             </Menu>
@@ -198,78 +195,98 @@ function Navigation(): JSX.Element {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {!user ? (
-              <div>
-              <Button
-                onClick={() => navigatePage('/info')}
-                sx={{ color: 'white' }}
-              >
-                информация
-              </Button>
-                <Button
-                  onClick={() => navigatePage('/rent')}
-                  sx={{ color: 'white' }}
-                >
-               аренда
-                </Button>
-              <Button
-                onClick={() => navigatePage('/buy')}
-                sx={{ color: 'white' }}
-              >
-                покупка
-              </Button>
-              <Button
-                onClick={() => navigatePage('/contacts')}
-                sx={{ color: 'white' }}
-              >
-                контакты
-              </Button>
-              </div>
-              ) : (
-                <div>
+<div>
                 <Button
                   onClick={() => navigatePage('/info')}
                   sx={{ color: 'white' }}
                 >
-                информация
+                  информация
                 </Button>
+                  <Button
+                    onClick={() => navigatePage('/rent')}
+                    sx={{ color: 'white' }}
+                  >
+                 аренда
+                  </Button>
                 <Button
-                  onClick={() => navigatePage('/rent')}
+                  onClick={() => navigatePage('/buy')}
                   sx={{ color: 'white' }}
                 >
-               аренда
+                  покупка
                 </Button>
-              <Button
-                onClick={() => navigatePage('/buy')}
-                sx={{ color: 'white' }}
-              >
-                покупка
-              </Button>
-              <Button
-                onClick={() => navigatePage('/contacts')}
-                sx={{ color: 'white' }}
-              >
-                контакты
-              </Button>
-              <Button
-                onClick={() => navigatePage('/basket')}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                корзина
-              </Button>
-
-              <Button
-                onClick={() => navigatePage('/like')}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-              избранное
-              </Button>
-                </div>
-            )}
+                <Button
+                  onClick={() => navigatePage('/contacts')}
+                  sx={{ color: 'white' }}
+                >
+                  контакты
+                </Button>
+</div>
+              ) : (user && user.role !== 'Admin') ? (
+              <div>
+             <Button
+               onClick={() => navigatePage('/info')}
+               sx={{ color: 'white' }}
+             >
+             информация
+             </Button>
+             <Button
+               onClick={() => navigatePage('/rent')}
+               sx={{ color: 'white' }}
+             >
+            аренда
+             </Button>
+           <Button
+             onClick={() => navigatePage('/buy')}
+             sx={{ color: 'white' }}
+           >
+             покупка
+           </Button>
+           <Button
+             onClick={() => navigatePage('/contacts')}
+             sx={{ color: 'white' }}
+           >
+                  контакты
+           </Button>
+           <Button
+             onClick={() => navigatePage('/basket')}
+             sx={{ color: 'white' }}
+           >
+             корзина
+           </Button>
+           <Button
+             onClick={() => navigatePage('/like')}
+             sx={{ color: 'white' }}
+           >
+           избранное
+           </Button>
+              </div>
+              ) : (
+             <div>
+             <Button
+               onClick={() => navigatePage('/admincab')}
+               sx={{ color: 'white' }}
+             >
+             добавить новый товар
+             </Button>
+             <Button
+               onClick={() => navigatePage('/commodity-matrix')}
+               sx={{ color: 'white' }}
+             >
+            товарная матрица
+             </Button>
+           <Button
+             onClick={() => navigatePage('/adminorders')}
+             sx={{ color: 'white' }}
+           >
+             заказы клиентов
+           </Button>
+             </div>
+              )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="/img/logo.png" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -294,7 +311,7 @@ function Navigation(): JSX.Element {
                     <Typography textAlign="center">РЕГИСТРАЦИЯ</Typography>
                   </MenuItem>
                   <MenuItem onClick={() => navigatePage('/login')}>
-                    <Typography textAlign="center">ЛОГИН</Typography>
+                    <Typography textAlign="center">ВОЙТИ</Typography>
                   </MenuItem>
                 </>
               ) : (
@@ -309,5 +326,4 @@ function Navigation(): JSX.Element {
     </AppBar>
   );
 }
-
 export default Navigation;
