@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Main from './Main';
 import RentItemList from '../features/cards/ItemList/RentItemList';
 import BuyItemList from '../features/cards/ItemList/BuyItemList';
@@ -18,9 +19,12 @@ import AdminOrders from '../features/adminCab/AdminOrders';
 import Carousel from '../features/slider/Slider';
 
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
+import { selectUser } from '../features/auth/selectors';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const user = useSelector(selectUser);
 
   React.useEffect(() => {
     dispatch(getUser());
@@ -35,13 +39,13 @@ function App(): JSX.Element {
         <Route path="/buy" element={<BuyItemList />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/like" element={<Like />} />
+        {user && (user.role === 'User') && <Route path="/basket" element={<Basket />} />}
+        {user && (user.role === 'User') && <Route path="/like" element={<Like />} />}
         <Route path="/info/infopage/:id" element={<InfoPage />} />
-        <Route path="/admincab" element={<AdminCab />} />
-        <Route path="/adminorders" element={<AdminOrders />} />
+        {user && (user.role === 'Admin') && <Route path="/admincab" element={<AdminCab />} />}
+        { user && (user.role === 'Admin') && <Route path="/adminorders" element={<AdminOrders />} />}
         <Route path="/contacts" element={<ContactPage />} />
-        <Route path="/commodity-matrix" element={<CommodityMatrix />} />
+        { user && (user.role === 'Admin') && <Route path="/commodity-matrix" element={<CommodityMatrix />} />}
       </Route>
     </Routes>
   );

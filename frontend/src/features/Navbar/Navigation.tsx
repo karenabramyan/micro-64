@@ -74,7 +74,7 @@ function Navigation(): JSX.Element {
   };
   const user = useSelector((state: RootState) => state.auth.user);
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container className="Navi">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -136,7 +136,7 @@ function Navigation(): JSX.Element {
                 <Typography textAlign="center">ПОКУПКА</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/contacts')}>
-                <Typography textAlign="center">Контакты</Typography>
+                <Typography textAlign="center">КОНТАКТЫ</Typography>
                 </MenuItem>
                 </div>
               ) : (user && user.role !== 'Admin') ? (
