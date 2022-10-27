@@ -16,6 +16,7 @@ import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
 import Carousel from '../features/slider/Slider';
+import FranchisePage from '../features/franchise/FranchisePage'
 
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 
@@ -42,6 +43,7 @@ function App(): JSX.Element {
         <Route path="/adminorders" element={<AdminOrders />} />
         <Route path="/contacts" element={<ContactPage />} />
         <Route path="/commodity-matrix" element={<CommodityMatrix />} />
+        <Route path="/fran" element={<FranchisePage />} />
       </Route>
     </Routes>
   );
