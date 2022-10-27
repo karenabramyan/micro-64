@@ -93,7 +93,7 @@ function AdminCab(): JSX.Element {
           <TextField variant="outlined" margin="dense" name="image" type="file" />
           <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
           <br />
-          <Button type="submit" size="large" color="error" variant="contained">Добавить</Button>
+          <Button type="submit" size="large" color="error" variant="outlined">Добавить</Button>
         </FormGroup>
 
       </form>
