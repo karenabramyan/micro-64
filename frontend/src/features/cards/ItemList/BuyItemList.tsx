@@ -8,11 +8,13 @@ import { useAppDispatch } from '../../../store';
 import { loadBuyCards, sortDown, sortUp } from '../itemSlice';
 import { selectItems } from '../selectItems';
 import './ItemList.css';
+import { selectLikes } from '../../favorites/selectLikes';
 
 function BuyItemList(): JSX.Element {
     const dispatch = useAppDispatch();
 
     const items = useSelector(selectItems);
+    const likes = useSelector(selectLikes);
 
     useEffect(() => {
         dispatch(loadBuyCards());
@@ -37,7 +39,13 @@ function BuyItemList(): JSX.Element {
           <KeyboardDoubleArrowUpIcon />
       </IconButton>
     <div className="container">
-    {rentItems.map((item) => <Item item={item} key={item.id} />)}
+    {rentItems.map((item) => (
+<Item
+  item={item}
+  key={item.id}
+  liked={(likes.filter((likeItem) => likeItem.id === item.id)).length > 0}
+/>
+))}
     </div>
     </div>
   );

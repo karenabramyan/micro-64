@@ -1,0 +1,36 @@
+.ftanchise{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.about{
+    text-align:justify !important;
+    margin: 90px;
+    white-space: pre-wrap;
+}
+.why{
+    margin: 0px;
+    width: 95%;
+    height: 100px;
+    
+    
+}
+.contact{
+
+    flex-direction: row;
+    align-items: center;
+
+}
+.gallery{
+    display: flex;
+    flex-direction: row;
+
+}
+.gallery img{
+    width: 600px;
+    height: 400px;
+    margin-right: 50px;
+    margin-left: 50px;
+    border: 1px solid #b6c0c4;
+}

@@ -23,6 +23,7 @@ export default function Footer(): JSX.Element {
               <Link href="https://t.me/89173102111"><img src={telega} alt="" /></Link>
               <Link href="https://vk.com/away.php?to=https%3A%2F%2Finstagram.com%2F_micro_64%3Figshid%3DYmMyMTA2M2Y%3D&cc_key="><img src={insta} alt="" /></Link>
               <Link href="https://vk.com/micronaushnik_v_saratove"><img src={vk} alt="" /></Link>
+              <Link href="/fran" variant="body1" color="textPrimary">Франшиза</Link> {' '}
             </div>
           </Box>
         </Box>
