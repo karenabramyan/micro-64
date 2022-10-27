@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 // import { Theme } from '@mui/material';
 import InfoCard from './InfoCard';
 // import Info from './types/Info';
+import './Info.css'
 
 const infoArr = [
   {
@@ -49,29 +50,7 @@ export default function InfoList(): JSX.Element {
    return (
     <>
      <h1>Статьи</h1>
-     <div>
-       {/* <Grid container spacing={3}>
-         <Grid item xs={12}>
-           <Paper><InfoCard /></Paper>
-         </Grid>
-         <Grid item xs={6}>
-          <Paper> <InfoCard /></Paper>
-         </Grid>
-         <Grid item xs={6}>
-           <Paper> <InfoCard /></Paper>
-         </Grid>         <Grid item xs={3}>
-           <Paper> <InfoCard /></Paper>
-                         </Grid>
-         <Grid item xs={3}>
-          <Paper> <InfoCard /></Paper>
-         </Grid>
-         <Grid item xs={3}>
-           <Paper> <InfoCard /></Paper>
-         </Grid>
-         <Grid item xs={3}>
-           <Paper> <InfoCard /></Paper>
-         </Grid>
-       </Grid> */}
+     <div className='infoList'>
        <Grid container spacing={4} style={{marginBottom: '30px'}} >
         <Grid item xs={12} md={6}>
           <InfoCard props={infoArr[0]} />

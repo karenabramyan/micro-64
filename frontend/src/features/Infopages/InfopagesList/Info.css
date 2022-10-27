@@ -14,3 +14,11 @@
     align-items: center;
 
 }
+.infoList{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btnDiv:first-child{
+    margin-right: 40px;
+}

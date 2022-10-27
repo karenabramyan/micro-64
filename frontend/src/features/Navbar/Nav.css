@@ -4,15 +4,32 @@
 
 }
 .foot{
-    /* display: flex;
-    justify-content: center;
+    display: flex;
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+    align-items: center;
+    /* justify-content: center;
     align-items: center; */
 }
 .footBox{
         display: flex;
-        justify-content: space-around;;
+        justify-content: space-around;
+        color: white;
 }
 
 .footer{
     max-width: none!important;
+    background-color: black;
+}
+.footTitle{
+    margin-bottom: 0px;
+}
+.copy{
+    margin-top: 0px;
+}
+.leftbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 300px;
 }
