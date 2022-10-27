@@ -2,6 +2,7 @@ import React from 'react';
 import './Slider.css';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import { Box, Typography } from '@mui/material';
 
 function Example(): JSX.Element {
   const images = [
@@ -11,6 +12,12 @@ function Example(): JSX.Element {
   ];
 
   return (
+    <>
+    <Box className="bunner">
+      <Typography variant="h2" gutterBottom>
+        Бренд №1 по аренде и продаже микронаушников в Саратове
+      </Typography>
+    </Box>
     <Slide>
       <div className="each-slide-effect">
         <div style={{ backgroundImage: `url(${images[0]})` }} />
@@ -22,6 +29,7 @@ function Example(): JSX.Element {
         <div style={{ backgroundImage: `url(${images[2]})` }} />
       </div>
     </Slide>
+    </>
   );
 }
 
