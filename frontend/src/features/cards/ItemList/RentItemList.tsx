@@ -1,8 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { IconButton } from '@mui/material';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import Item from '../Item';
 import { useAppDispatch } from '../../../store';
-import { loadCards } from '../itemSlice';
+import { loadRentCards, sortDown, sortUp } from '../itemSlice';
 import { selectItems } from '../selectItems';
 import './ItemList.css';
 
@@ -11,14 +14,31 @@ function RentItemList(): JSX.Element {
 
     const items = useSelector(selectItems);
 
+    function sortItemRentUp(): void {
+      dispatch(sortUp());
+    }
+
+    function sortItemRentDown(): void {
+      dispatch(sortDown());
+    }
+
     useEffect(() => {
-        dispatch(loadCards());
+        dispatch(loadRentCards());
       }, [dispatch]);
 
-    const rentItems = useMemo(() => items.filter((el) => el.type === 'Аренда'), [items]);
+    // const rentItems = useMemo(() => items.filter((el) => el.type === 'Аренда'), [items]);
   return (
+    <div>
+      <span>Сортировать по цене: </span>
+      <IconButton size="medium" color="inherit" onClick={sortItemRentUp}>
+          <KeyboardDoubleArrowDownIcon />
+      </IconButton>
+      <IconButton size="medium" color="inherit" onClick={sortItemRentDown}>
+          <KeyboardDoubleArrowUpIcon />
+      </IconButton>
     <div className="container">
-    {rentItems.map((item) => <Item item={item} key={item.id} />)}
+    {items.map((item) => <Item item={item} key={item.id} />)}
+    </div>
     </div>
   );
 }
