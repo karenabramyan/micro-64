@@ -56,6 +56,9 @@ function AdminItem({ item }: { item: Item }): JSX.Element {
         <Typography gutterBottom variant="h6" component="h3">
           {`Цена: ${cutPrice(item.price)} руб.`}
         </Typography>
+        <Typography gutterBottom variant="h6" component="h3">
+          статус {item.type}
+        </Typography>
         <Typography gutterBottom variant="h6" component="div" className="item-title" title={item.title}>
          На складе: {item.amount} шт.
         </Typography>
