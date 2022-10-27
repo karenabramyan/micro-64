@@ -20,7 +20,7 @@ import { RootState, useAppDispatch } from '../../store';
 import { logout } from '../auth/authSlice';
 // import { Setting } from './types/Setting';
 // const pages: Page[] = [
-//   { name: 'Информация', way: '/' },
+//   { name: 'Статьи', way: '/' },
 //   { name: 'Аренда', way: '/rent' },
 //   { name: 'Покупка', way: '/buy' },
 //   { name: 'Корзина', way: '/basket' },
@@ -127,7 +127,7 @@ function Navigation(): JSX.Element {
               {!user ? (
                 <div>
                 <MenuItem onClick={() => navigatePage('/info')}>
-                  <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
+                  <Typography textAlign="center">Статьи</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
                   <Typography textAlign="center">АРЕНДА</Typography>
@@ -142,7 +142,7 @@ function Navigation(): JSX.Element {
               ) : (user && user.role !== 'Admin') ? (
                 <div>
                   <MenuItem onClick={() => navigatePage('/info')}>
-                  <Typography textAlign="center">ИНФОРМАЦИЯ</Typography>
+                  <Typography textAlign="center">Статьи</Typography>
                   </MenuItem>
                 <MenuItem onClick={() => navigatePage('/rent')}>
                   <Typography textAlign="center">АРЕНДА</Typography>
@@ -200,7 +200,7 @@ function Navigation(): JSX.Element {
                   onClick={() => navigatePage('/info')}
                   sx={{ color: 'white' }}
                 >
-                  информация
+                  Статьи
                 </Button>
                   <Button
                     onClick={() => navigatePage('/rent')}
@@ -227,7 +227,7 @@ function Navigation(): JSX.Element {
                onClick={() => navigatePage('/info')}
                sx={{ color: 'white' }}
              >
-             информация
+             Статьи
              </Button>
              <Button
                onClick={() => navigatePage('/rent')}
@@ -285,9 +285,10 @@ function Navigation(): JSX.Element {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/img/logo.png" />
-              </IconButton>
+              <Button onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {/* <img alt="Remy Sharp" src="./img/logo.png" /> */}
+                <p>Личный кабинет</p>
+              </Button>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
