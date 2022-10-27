@@ -6,8 +6,8 @@ import Link from '@mui/material/Link';
 import telega from './Img/icons8-app.svg';
 import insta from './Img/icons8-instagram.svg';
 import vk from './Img/icons8-vk-в-круге.svg';
-import brand from './Img/logo.png';
-import './Nav.css'
+// import brand from './Img/logo.png';
+import './Nav.css';
 
 export default function Footer(): JSX.Element {
   return (
@@ -15,9 +15,9 @@ export default function Footer(): JSX.Element {
       <Container className="footer">
         <Box py={0} display="flex" flexWrap="wrap" alignItems="center" className="footBox">
           <Box component="nav" className="foot">
-            <div className='leftbox'>
-              <h4 className='footTitle'>Микронаушники №1 В Саратове.</h4>
-              <p className='copy'>© «Micro-64», 2022.</p>
+            <div className="leftbox">
+              <h4 className="footTitle">Микронаушники №1 В Саратове.</h4>
+              <p className="copy">© «Micro-64», 2022.</p>
             </div>
             <div>
               <Link href="https://t.me/89173102111"><img src={telega} alt="" /></Link>

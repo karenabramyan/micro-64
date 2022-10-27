@@ -41,6 +41,7 @@ function ModalItemAdmin(
   }
 
   function changeData(itemData: { itemId: number, price: string, amount: number }): void {
+    // eslint-disable-next-line no-restricted-globals
     event?.preventDefault();
     dispatch(changeItem(itemData));
   }
