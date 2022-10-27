@@ -32,15 +32,6 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
     setAnchorEl(null);
   };
 
-//   useEffect(() => {
-//     const info = likes.filter((likeItem) => likeItem.id === item.id);
-//     if (info.length > 0) {
-//       setLike(true);
-//     } else {
-//       setLike(false);
-//     }
-// }, []);
-
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   // const likeSelect = useSelector(selectLikes);
@@ -125,7 +116,6 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
           handleClose={handleClose}
           item={item}
           addToBasket={addToBasket}
-          addLike={addLike}
         />
         <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>Подробнее</Button>
       </CardActions>
