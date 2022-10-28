@@ -62,8 +62,11 @@
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 300px !important;
-  height: 300px !important;
+  width: 400px !important;
+  height: 400px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .swiper-slide img {
