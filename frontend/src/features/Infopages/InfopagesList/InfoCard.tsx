@@ -27,6 +27,7 @@ export default function InfoCard({ props }:any): JSX.Element {
         <Typography variant="h5" component="div">
         {props.name}
         </Typography>
+        <br />
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {cutBody(props.bodyTwo)}
         </Typography>
