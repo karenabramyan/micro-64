@@ -69,9 +69,11 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
   }
   return (
     <Card className="card-micro">
-      <IconButton size="medium" color="error" onClick={addLike} className="item-like-button">
+
+<IconButton size="medium" color="error" onClick={addLike} className="item-like-button">
       {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-      </IconButton>
+</IconButton>
+
       <CardMedia
         component="img"
         image={item.img}
@@ -95,7 +97,7 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
       </CardContent>
       <CardActions className="button-container-item">
 
-        <Button size="medium" color="inherit" variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)} className="button-buy-item">Заказать</Button>
+        <Button size="medium" color="error" variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)} className="button-buy-item">Заказать</Button>
         {selectSendErr && (
           <Popover
             id={id}
@@ -117,7 +119,7 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
           item={item}
           addToBasket={addToBasket}
         />
-        <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>Подробнее</Button>
+        <Button size="medium" color="error" variant="outlined" onClick={handleOpen}>Подробнее</Button>
       </CardActions>
     </Card>
   );

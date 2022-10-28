@@ -46,7 +46,7 @@ function Basket(): JSX.Element {
   useEffect(() => {
     const total = basketItems
       .map((item) => {
-        if (Number(item.days) === 0) {
+        if (Number(item.days) === 0 || item.days === '-') {
           return Number(item.price);
         }
         return Number(item.price) * Number(item.days);
@@ -66,7 +66,7 @@ function Basket(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="basket-container">
       <Typography className="center-text" variant="h5">Корзина</Typography>
       <br />
       {(totalItems.length > 0) ?
@@ -76,7 +76,9 @@ function Basket(): JSX.Element {
             <br />
             <Typography variant="h6" className="center-text">{`Общая стоимость: ${cutPrice(totalPrice)} руб.`}</Typography>
             <br />
-            <Button size="large" color="inherit" variant="outlined" className="center-text" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
+            <div className="basket-item-container">
+            <Button size="large" color="error" variant="outlined" className="center-text" onClick={() => makeOrder(basketItems)}>Оформить заказ</Button>
+            </div>
             <br />
             <br />
 
