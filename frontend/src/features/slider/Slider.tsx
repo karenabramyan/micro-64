@@ -6,6 +6,8 @@ import { Box, Typography } from '@mui/material';
 
 function Example(): JSX.Element {
   const images = [
+    './images/999.png',
+    './1.jpeg',
     './imagesForslider/1.jpeg',
     './imagesForslider/2.jpeg',
     './imagesForslider/3.jpeg',
