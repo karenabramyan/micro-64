@@ -1,5 +1,4 @@
 import { Box, Button, CardActions, Typography } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Modal from '@mui/material/Modal';
 import { useSelector } from 'react-redux';
 import User from '../../auth/types/User';

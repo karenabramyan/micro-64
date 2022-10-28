@@ -19,7 +19,6 @@ export default function InfoCard({ props }:any): JSX.Element {
   function navigatePage(way: string): void {
     navigate(way);
   }
-  console.log(props);
 
   return (
     <Card sx={{ minWidth: 275 }}>

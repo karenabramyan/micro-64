@@ -5,7 +5,6 @@ import 'react-slideshow-image/dist/styles.css';
 import { Box, createTheme, responsiveFontSizes, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
-
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
@@ -54,20 +53,20 @@ function Example(): JSX.Element {
 
   return (
     <>
-    <Box className="bunner">
-      <ThemeProvider theme={theme}>
-      <Typography variant="h2" gutterBottom component="h2">
-        Бренд №1 по аренде и продаже микронаушников в Саратове
-      </Typography>
-      </ThemeProvider>
-    </Box>
-    <Slide>
-      {images.map((img) => (
-        <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${img})` }} />
-        </div>
-))}
-    </Slide>
+      <Box className="bunner">
+        <ThemeProvider theme={theme}>
+          <Typography variant="h2" gutterBottom component="h2">
+            Бренд №1 по аренде и продаже микронаушников в Саратове
+          </Typography>
+        </ThemeProvider>
+      </Box>
+      <Slide>
+        {images.map((img) => (
+          <div className="each-slide-effect">
+            <div style={{ backgroundImage: `url(${img})` }} />
+          </div>
+        ))}
+      </Slide>
     </>
   );
 }
