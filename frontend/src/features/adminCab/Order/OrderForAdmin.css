@@ -1,0 +1,79 @@
+.admin-user-id {
+    width: 30px;
+    max-width: 30px;
+    min-width: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.admin-user-phone {
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.admin-item-title {
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.admin-order-days {
+    width: 40px;
+    max-width: 40px;
+    min-width: 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.admin-order-type {
+    width: 70px;
+    max-width: 70px;
+    min-width: 70px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.admin-order-price {
+    width: 70px;
+    max-width: 70px;
+    min-width: 70px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.admin-order-status {
+    width: 180px;
+    max-width: 180px;
+    min-width:180px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.basket-item-days {
+    width: 200px;
+    max-width: 200px;
+    min-width:200px;
+    text-align: center;
+    overflow: hidden;
+}
+
+ .admin-order-status {
+    width: 200px;
+    max-width: 200px;
+    min-width:200px;
+    text-align: center;
+    overflow: hidden;
+    margin-right: 5px;
+ }
+
+ .container-orders {
+    text-align: center;
+    height: 70vh;
+    margin-top: 0;
+    overflow: scroll;
+ }
