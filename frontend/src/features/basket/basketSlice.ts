@@ -92,7 +92,7 @@ const basketSlice = createSlice({
               state.sendError = action.error.message;
             })
           .addCase(sendToBasket.fulfilled, (state: BasketState, action) => {
-            state.sendError = undefined;
+            state.sendError = 'Товар добавлен в корзину!';
             if (action.payload.item) {
             state.basket.push({
               id: action.payload.item.id,

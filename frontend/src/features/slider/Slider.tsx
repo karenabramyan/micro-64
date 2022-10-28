@@ -2,7 +2,12 @@ import React from 'react';
 import './Slider.css';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import { Box, Typography } from '@mui/material';
+import { Box, createTheme, responsiveFontSizes, Typography } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 function Example(): JSX.Element {
   const images = [
@@ -50,9 +55,11 @@ function Example(): JSX.Element {
   return (
     <>
     <Box className="bunner">
-      <Typography variant="h2" gutterBottom>
+      <ThemeProvider theme={theme}>
+      <Typography variant="h2" gutterBottom component="h2">
         Бренд №1 по аренде и продаже микронаушников в Саратове
       </Typography>
+      </ThemeProvider>
     </Box>
     <Slide>
       {images.map((img) => (
