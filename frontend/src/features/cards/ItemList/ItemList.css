@@ -10,22 +10,23 @@
 }
 
 .image-micro {
-    height: 400px;
+    /* height: 400px;
     min-height: 400px;
-    max-height: 400px;
-    min-width: 280px;
-    width: 280px;
-    max-width: 280px;
+    max-height: 400px; */
+    /* min-width: 350px; */
+    width: 400px;
+    max-width: 400px;
 }
 
 .card-micro {
-    height: 650px;
-    min-height: 650px;
-    max-height: 650px;
+    height: 450px;
+    min-height: 450px;
+    max-height: 450px;
     min-width: 280px;
     width: 280px;
     max-width: 280px;
     margin: 30px;
+    border: #D32F2F groove 1px;
 }
 
 .item-title {
@@ -51,3 +52,7 @@
     margin-top: -10px;
 }
 
+.map {
+    height: 400px;
+    width: 400px;
+}

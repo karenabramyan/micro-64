@@ -32,15 +32,6 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
     setAnchorEl(null);
   };
 
-//   useEffect(() => {
-//     const info = likes.filter((likeItem) => likeItem.id === item.id);
-//     if (info.length > 0) {
-//       setLike(true);
-//     } else {
-//       setLike(false);
-//     }
-// }, []);
-
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   // const likeSelect = useSelector(selectLikes);
@@ -78,9 +69,11 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
   }
   return (
     <Card className="card-micro">
-      <IconButton size="medium" color="error" onClick={addLike} className="item-like-button">
+
+<IconButton size="medium" color="error" onClick={addLike} className="item-like-button">
       {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-      </IconButton>
+</IconButton>
+
       <CardMedia
         component="img"
         image={item.img}
@@ -104,7 +97,7 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
       </CardContent>
       <CardActions className="button-container-item">
 
-        <Button size="medium" color="inherit" variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)} className="button-buy-item">Заказать</Button>
+        <Button size="medium" color="error" variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)} className="button-buy-item">Заказать</Button>
         {selectSendErr && (
           <Popover
             id={id}
@@ -125,9 +118,8 @@ function ItemCard({ item, liked }: { item: Item, liked: boolean }): JSX.Element 
           handleClose={handleClose}
           item={item}
           addToBasket={addToBasket}
-          addLike={addLike}
         />
-        <Button size="medium" color="inherit" variant="outlined" onClick={handleOpen}>Подробнее</Button>
+        <Button size="medium" color="error" variant="outlined" onClick={handleOpen}>Подробнее</Button>
       </CardActions>
     </Card>
   );

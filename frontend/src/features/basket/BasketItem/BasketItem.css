@@ -39,3 +39,23 @@
     width: 15%;
 
 }
+
+.center-text {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.basket-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.basket-item-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -17,7 +17,7 @@ import AdminCab from '../features/adminCab/AdminCab';
 import ContactPage from '../features/contact/ContactPage';
 import AdminOrders from '../features/adminCab/AdminOrders';
 import Carousel from '../features/slider/Slider';
-import FranchisePage from '../features/franchise/FranchisePage'
+import FranchisePage from '../features/franchise/FranchisePage';
 
 import CommodityMatrix from '../features/adminCab/CommodityMatrix';
 import { selectUser } from '../features/auth/selectors';
@@ -49,10 +49,10 @@ function App(): JSX.Element {
         {user && (user.role === 'User') && <Route path="/like" element={<Like />} />}
         <Route path="/info/infopage/:id" element={<InfoPage />} />
         {user && (user.role === 'Admin') && <Route path="/admincab" element={<AdminCab />} />}
-        { user && (user.role === 'Admin') && <Route path="/adminorders" element={<AdminOrders />} />}
+        {user && (user.role === 'Admin') && <Route path="/adminorders" element={<AdminOrders />} />}
         <Route path="/contacts" element={<ContactPage />} />
         <Route path="/fran" element={<FranchisePage />} />
-        { user && (user.role === 'Admin') && <Route path="/commodity-matrix" element={<CommodityMatrix />} />}
+        {user && (user.role === 'Admin') && <Route path="/commodity-matrix" element={<CommodityMatrix />} />}
       </Route>
     </Routes>
   );

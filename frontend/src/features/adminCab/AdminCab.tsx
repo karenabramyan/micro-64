@@ -1,11 +1,8 @@
-import { Button, TextField, Typography, Container, FormGroup, OutlinedInput } from '@mui/material';
-// import { type } from 'os';
+import { Button, TextField, Typography, Container, FormGroup } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import CredentialsItem from './types/CredentialsItem';
 import * as api from './apiAdmin';
+import './AdminCab.css';
 
 function AdminCab(): JSX.Element {
   const navigate = useNavigate();
@@ -73,7 +70,7 @@ function AdminCab(): JSX.Element {
     <Container>
       <form className="form-item" onSubmit={handleItemSubmit} encType="multipart/form-data">
         <FormGroup>
-          <Typography variant="h5"> Новый товар</Typography>
+          <Typography variant="h5" className="new-item-title"> Новый товар</Typography>
           <br />
           <TextField variant="outlined" margin="dense" label="Название" name="title" type="text" value={title} onChange={(event) => handleTitleChange(event.target.value)} />
 
@@ -93,7 +90,9 @@ function AdminCab(): JSX.Element {
           
           <TextField variant="outlined" margin="dense" label="Количество" name="amount" type="number" value={amount} onChange={(event) => handleAmountChange(Number(event.target.value))} />
           <br />
-          <Button type="submit" size="large" color="error" variant="contained">Добавить</Button>
+          <div className="add-new-item-div">
+          <Button type="submit" size="large" color="error" variant="outlined">Добавить</Button>
+          </div>
         </FormGroup>
 
       </form>

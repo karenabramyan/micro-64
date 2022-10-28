@@ -24,16 +24,16 @@ function Login(): JSX.Element {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-function handleSubmit(event: React.FormEvent): void {
-      event.preventDefault();
-      dispatch(
-        login({
-          email,
-          password,
-        })
-      );
-      dispatch(resetLoginFormError());
-}
+  function handleSubmit(event: React.FormEvent): void {
+    event.preventDefault();
+    dispatch(
+      login({
+        email,
+        password,
+      })
+    );
+    dispatch(resetLoginFormError());
+  }
 
   useEffect(() => {
     if (selector!.user) {
@@ -45,27 +45,26 @@ function handleSubmit(event: React.FormEvent): void {
   }, [selector, navigate]);
 
   function handleEmailChange(inputEmail: string): void {
-
-  setEmail(inputEmail);
-}
+    setEmail(inputEmail);
+  }
 
   function handlePasswordChange(inputPassword: string): void {
-  setPassword(inputPassword);
-}
+    setPassword(inputPassword);
+  }
 
   return (
     <Container className="container-login">
       <form onSubmit={handleSubmit}>
 
-      <FormGroup className="form-group">
-        <Typography variant="h5">Вход</Typography>
-        <br />
-        <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
-        <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePasswordChange(event.target.value)} />
+        <FormGroup className="form-group">
+          <Typography variant="h5">Вход</Typography>
+          <br />
+          <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePasswordChange(event.target.value)} />
 
-        <br />
-        <Button type="submit" size="large" color="error" variant="contained">Вход</Button>
-      </FormGroup>
+          <br />
+          <Button type="submit" size="large" color="error" variant="outlined">Вход</Button>
+        </FormGroup>
       </form>
       {errorLog && (
         <Typography className="err-form-error" variant="overline">

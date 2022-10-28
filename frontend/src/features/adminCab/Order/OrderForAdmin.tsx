@@ -1,8 +1,8 @@
-import { Card, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Card, FormControl, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch } from '../../../store';
 import { changeOrders } from '../adminSlice';
-import { changeOrderStatus } from '../apiAdmin';
+// import { changeOrderStatus } from '../apiAdmin';
 import OrderAdminData from '../types/OrderAdminData';
 import './OrderForAdmin.css';
 
@@ -22,12 +22,14 @@ function OrderForAdmin({ order }: { order: OrderAdminData }): JSX.Element {
         <Typography className="admin-order-price">{order.price}</Typography>
         <Typography className="admin-order-date">{order.date.slice(0, 10)}</Typography>
 
-        <FormControl className="basket-item-days" sx={{ width: 180 }}>
-        <InputLabel>Статус заказа</InputLabel>
+        <FormControl className="admin-order-status" sx={{ width: 180 }}>
+        {/* <InputLabel>Статус заказа</InputLabel> */}
         <Select
+          // sx={{ height: '40px' }}
           value={order.orderStatus}
-          label="Статус заказа"
+          // label="Статус заказа"
           defaultValue={order.orderStatus}
+          inputProps={{ 'aria-label': 'Without label' }}
           onChange={(event: SelectChangeEvent) => changeOrder(
             { status: event.target.value, orderId: order.id })}
         >

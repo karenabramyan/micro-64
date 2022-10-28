@@ -5,11 +5,3 @@ import Item from '../cards/types/Item';
 export const selectAdminItems = (
   state: RootState
 ): Item[] => state.items.items;
-
-// export const selectUserId = (
-//   state: RootState
-// ): number | undefined => state.auth.user?.id;
-
-// export const selectSendError = (
-//   state: RootState
-// ): string | undefined => state.basket?.sendError;

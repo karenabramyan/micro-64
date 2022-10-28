@@ -12,7 +12,6 @@ function Registration(): JSX.Element {
   const dispatch = useAppDispatch();
   const selector = useSelector((globalState: RootState) => globalState.auth);
   const errorReg = selector.registerFormError;
-  console.log(selector);
   const [login, setLogin] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phone, setPhone] = useState<string>('+79');
@@ -20,57 +19,58 @@ function Registration(): JSX.Element {
   const [secPassword, setSecPassword] = useState<string>('');
 
   function handleSubmit(): void {
-      // eslint-disable-next-line no-restricted-globals
-      event!.preventDefault();
-      const newUser: RegisterData = {
-        login, email, phone, password, secPassword
-      };
-      dispatch(register(newUser));
-      dispatch(resetRegisterFormError());
-    }
+    // eslint-disable-next-line no-restricted-globals
+    event!.preventDefault();
+    const newUser: RegisterData = {
+      login, email, phone, password, secPassword
+    };
+    dispatch(register(newUser));
+    dispatch(resetRegisterFormError());
+  }
 
-    useEffect(() => {
-      if (selector.user) {
+  useEffect(() => {
+    if (selector.user) {
       navigate('/rent');
-}
-    }, [selector]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selector]);
 
   function handleLoginChange(inputLogin: string): void {
-        setLogin(inputLogin);
-    }
+    setLogin(inputLogin);
+  }
 
   function handleEmailChange(inputEmail: string): void {
-        setEmail(inputEmail);
-    }
+    setEmail(inputEmail);
+  }
 
-    function handlePhoneChange(inputPhone: string): void {
-        setPhone(inputPhone);
-    }
+  function handlePhoneChange(inputPhone: string): void {
+    setPhone(inputPhone);
+  }
 
   function handlePassChange(pass: string): void {
-        setPassword(pass);
-    }
+    setPassword(pass);
+  }
 
   function handleSecPassChange(pass: string): void {
-        setSecPassword(pass);
-    }
+    setSecPassword(pass);
+  }
 
   return (
     <Container className="container-register">
-    <form className="form-group" onSubmit={handleSubmit}>
-      <FormGroup>
-      <Typography variant="h4">Регистрация</Typography>
-      <br />
-      <TextField variant="outlined" margin="dense" label="Имя" type="text" value={login} onChange={(event) => handleLoginChange(event.target.value)} />
-      <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
-      <MuiTelInput variant="outlined" margin="dense" label="Номер телефона" value={phone} onChange={(event) => handlePhoneChange(event)} />
-      <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePassChange(event.target.value)} />
-      <TextField variant="outlined" margin="dense" label="Повторите пароль" type="password" value={secPassword} onChange={(event) => handleSecPassChange(event.target.value)} />
-      <br />
-      <Button type="submit" size="large" color="error" variant="contained">Зарегистрироваться</Button>
-      </FormGroup>
-    </form>
-    {errorReg && (<Typography className="err-form-error" variant="overline">{errorReg}</Typography>)}
+      <form className="form-group" onSubmit={handleSubmit}>
+        <FormGroup>
+          <Typography variant="h4">Регистрация</Typography>
+          <br />
+          <TextField variant="outlined" margin="dense" label="Имя" type="text" value={login} onChange={(event) => handleLoginChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Электронная почта" type="email" value={email} onChange={(event) => handleEmailChange(event.target.value)} />
+          <MuiTelInput variant="outlined" margin="dense" label="Номер телефона" value={phone} onChange={(event) => handlePhoneChange(event)} />
+          <TextField variant="outlined" margin="dense" label="Введите пароль" type="password" value={password} onChange={(event) => handlePassChange(event.target.value)} />
+          <TextField variant="outlined" margin="dense" label="Повторите пароль" type="password" value={secPassword} onChange={(event) => handleSecPassChange(event.target.value)} />
+          <br />
+          <Button type="submit" size="large" color="error" variant="outlined">Зарегистрироваться</Button>
+        </FormGroup>
+      </form>
+      {errorReg && (<Typography className="err-form-error" variant="overline">{errorReg}</Typography>)}
     </Container>
   );
 }

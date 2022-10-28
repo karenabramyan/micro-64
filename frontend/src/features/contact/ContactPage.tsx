@@ -3,8 +3,8 @@ import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './contact.css';
 
 const mapData = {
-  center: [51.5405600, 46.0086100],
-  zoom: 9,
+  center: [51.531271, 46.021474],
+  zoom: 15,
 };
 
 const coordinates = [
@@ -20,11 +20,13 @@ function ContactPage(): JSX.Element {
       <p>Адрес: улица Сакко и Ванцетти, 62, г.Саратов</p>
       <p>E-mail: Micro64saratov@yandex.ru</p>
       <p>Телефон для связи: +7(917)310-21-11 </p>
-      <YMaps className='mapCont'>
-        <Map defaultState={mapData}>
+      <div>
+      <YMaps>
+        <Map defaultState={mapData} className="map">
           {coordinates.map((coordinate) => <Placemark geometry={coordinate} />)}
         </Map>
       </YMaps>
+      </div>
     </div>
   );
 }
