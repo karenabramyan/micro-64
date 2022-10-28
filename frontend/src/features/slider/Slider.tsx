@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Slider.css';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import { Box, createTheme, responsiveFontSizes, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+import type SwiperClass from 'swiper';
+
+// eslint-disable-next-line prefer-destructuring
+const Swiper: typeof SwiperClass = (window as any).Swiper;
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -51,6 +55,25 @@ function Example(): JSX.Element {
     './imagesForslider/40.JPEG',
   ];
 
+  useEffect(() => {
+    // eslint-disable-next-line no-new
+    new Swiper('.mySwiper', {
+      autoplay: { delay: 3000 },
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+    });
+  }, []);
+
   return (
     <>
       <Box className="bunner">
@@ -60,13 +83,24 @@ function Example(): JSX.Element {
           </Typography>
         </ThemeProvider>
       </Box>
-      <Slide>
-        {images.map((img) => (
-          <div className="each-slide-effect">
-            <div style={{ backgroundImage: `url(${img})` }} />
+      <div className="swiper-carousel">
+        {/* {images.map((img) => (
+        <div className="each-slide-effect">
+        <div style={{ backgroundImage: `url(${img})` }} />
+        </div> */}
+        {/* ))} */}
+
+        <div className="swiper mySwiper">
+          <div className="swiper-wrapper">
+            {images.map((img) => (
+              <div className="swiper-slide">
+                <img src={img} alt="slider" />
+              </div>
+            ))}
           </div>
-        ))}
-      </Slide>
+        </div>
+
+      </div>
     </>
   );
 }
