@@ -50,14 +50,14 @@ function ModalWindow({ open, handleClose, item, addToBasket }:
         </Typography>
         <br />
         <Typography id="modal-modal-title" className="modal-item-capacity">
-          {`Емкость: ${item.capacity} час`}
+          {`Емкость: ${item.capacity} час.`}
         </Typography>
         <br />
         <Typography id="modal-modal-title" className="modal-item-price">
-          {`Цена: ${item.price}`}
+          {`Цена: ${item.price} руб.`}
         </Typography>
         <CardActions className="modal-item-buttons">
-        <Button size="medium" color="inherit" endIcon={<AddShoppingCartIcon />} variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)}>Заказать</Button>
+        <Button size="medium" color="error" variant="outlined" onClick={(event) => addToBasket(selectUs, item.id, event)}>Заказать</Button>
         </CardActions>
         <Typography id="modal-modal-title" className="modal-item-description">
           {`О товаре: ${item.description}`}
