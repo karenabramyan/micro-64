@@ -6,6 +6,6 @@ export default async function sendApplication(user: any, items: any): Promise<vo
       'Content-type': 'application/json',
     },
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const result = await response.json();
-  console.log(result, 'RESPONSE FETCH');
 }

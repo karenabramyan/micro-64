@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './Slider.css';
-import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import { Box, createTheme, responsiveFontSizes, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';

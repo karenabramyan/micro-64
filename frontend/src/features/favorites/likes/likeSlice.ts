@@ -47,17 +47,16 @@ const likeSlice = createSlice({
         // console.log(action.payload);
 
         if (action.payload.like) {
-          console.log(action.payload.like);
-          console.log(state.likes);
+
           // state.likes.push();
         }
         if (action.payload.status === 'destroy') {
           state.likes = state.likes.filter((l) => l.id !== action.payload.itemId);
         }
       });
-      // .addCase(removeLike.fulfilled, (state, action) => {
-      //   state.likes = state.likes.filter((l) => l !== action.payload);
-      // });
+    // .addCase(removeLike.fulfilled, (state, action) => {
+    //   state.likes = state.likes.filter((l) => l !== action.payload);
+    // });
   },
 });
 

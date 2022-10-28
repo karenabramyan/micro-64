@@ -8,7 +8,7 @@ export async function loadLikes(): Promise<Like[]> {
 }
 
 export async function createLike(likData: LikData)
- : Promise<{ like?: Like, status?: string, itemId?: number }> {
+  : Promise<{ like?: Like, status?: string, itemId?: number }> {
   // console.log(likData);
 
   const response = await fetch('/api/likes', {
@@ -23,8 +23,6 @@ export async function createLike(likData: LikData)
 }
 
 export async function removeLike(likData: LikData): Promise<{ itemId: number }> {
-  console.log(likData);
-
   const response = await fetch('/api/likes', {
     method: 'DELETE',
     body: JSON.stringify(likData),
