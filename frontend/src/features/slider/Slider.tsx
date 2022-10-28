@@ -57,13 +57,14 @@ function Example(): JSX.Element {
 
   useEffect(() => {
     // eslint-disable-next-line no-new
-    new Swiper('.mySwiper', {
+    const swiper = new Swiper('.mySwiper', {
       autoplay: { delay: 3000 },
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
       slidesPerView: 'auto',
       spaceBetween: 20,
+      loop: true,
       coverflowEffect: {
         rotate: 50,
         stretch: 0,
@@ -72,6 +73,8 @@ function Example(): JSX.Element {
         slideShadows: true,
       },
     });
+
+    return () => swiper.destroy();
   }, []);
 
   return (
