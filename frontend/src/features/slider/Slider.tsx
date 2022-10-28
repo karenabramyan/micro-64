@@ -5,7 +5,6 @@ import 'react-slideshow-image/dist/styles.css';
 import { Box, createTheme, responsiveFontSizes, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
-
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
